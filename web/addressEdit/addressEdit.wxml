@@ -1,0 +1,78 @@
+<view class="address-edit-content">
+    <view class="address-edit-prompt">
+        <view class="prompt-text" style="width: 100rpx">温馨提示:</view>
+        <view class="prompt-text" style="width: calc(100% - 100rpx);">如果您购买跨境保税商品，则须提交身份证且与订单支付人、收货人保持一致，以确保订单顺利清关，尽快到达您的身边！</view>
+    </view>
+    <view class="address-edit-info picker-country">
+        <view class="consignee">
+            <view class="name">收货人</view>
+            <view class="text">
+              <input type="text" id="consignee" class="receiveName_state" value="{{name}}" bindblur="changeName"></input>
+            </view>
+        </view>
+        <view class="telephone">
+            <view class="name">联系电话</view>
+            <view class="text">
+              <input type="number" id="telephone" class="receivePhone_state" value="{{telephone}}" bindblur="changePhone" maxlength="11"></input>
+            </view>
+        </view>
+        <view class="province obvious">
+            <view class="name">选择省份</view>
+            <view class="text" bindtap="open">
+              <input type="text" disabled="true" value="{{province}}"></input>
+            </view>
+        </view>
+        <view class="city obvious">
+            <view class="name">选择城市</view>
+            <view class="text" bindtap="open">
+              <input type="text" disabled="true" value="{{city}}"></input>
+            </view>
+        </view>
+        <view class="city obvious">
+            <view class="name">选择市区</view>
+            <view class="text" bindtap="open">
+              <input type="text" disabled="true" value="{{county}}"></input>
+            </view>
+        </view>
+        <view class="address">
+            <view class="name">详细地址</view>
+            <view class="text">
+                <input type="text" id="address" class="address_state" value="{{address}}" bindblur="changeAddress"></input>
+            </view>
+        </view>
+    </view>
+    <view class="address-edit-defaultSetting">
+        <view class="text">
+            设置为默认收货地址
+        </view>
+        <view wx:if="{{setDefault == 1}}" class="btnBox active" bindtap="changeDefault">
+            <view class="btnSet">
+                <view class="btn"></view>
+            </view>
+        </view>
+        <view wx:if="{{setDefault == 0}}" class="btnBox" bindtap="changeDefault">
+            <view class="btnSet">
+                <view class="btn"></view>
+            </view>
+        </view>
+    </view>
+    <view wx:if="{{id}}" class="address-edit-commit" bindtap="saveAddress">保存收货地址</view>
+    <view wx:else class="address-edit-commit" bindtap="setNewAddress">创建收货地址</view>
+</view>
+<view wx:if="{{condition}}" class="citypicker">
+  <picker-view indicator-style="height: 100rpx;" style="width: 100%; height: 400rpx;" value="{{value}}" bindchange="bindChange" class="citybody">
+    <view class="cityheader">
+      <view bindtap="open" class="city-cancel">取消</view>
+      <view bindtap="open" class="city-true">确定</view>
+    </view>
+    <picker-view-column>
+      <view wx:for="{{provinces}}" wx:key="" style="line-height:34px;">{{item.name}}</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view wx:for="{{citys}}" wx:key="" style="line-height:34px;">{{item.name}}</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view wx:for="{{countys}}" wx:key="" style="line-height:34px;">{{item.name}}</view>
+    </picker-view-column>
+  </picker-view>
+</view>

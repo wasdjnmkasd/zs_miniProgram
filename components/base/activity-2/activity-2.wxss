@@ -1,0 +1,94 @@
+.activity-2-content{
+  overflow: hidden;
+  background: #fff;
+  margin-bottom: 10rpx;
+}
+.activity-2-content .title{
+  height: 80rpx;
+  line-height: 80rpx;
+  margin-left: 30rpx;
+  font-size: 32rpx;
+  color: #333;
+}
+.activity-2-content .goodsList-list{
+  overflow-x: auto;
+  overflow-y: hidden;
+  position: relative;
+  padding-bottom: 20rpx;
+}
+.goodsList-list .content-list{
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  overflow: hidden;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+}
+.goodsList-list .content-list .list-item{
+  float: left;
+  width: 220rpx;
+  height: 257rpx;
+  background: #fff;
+  margin-right: 15rpx;
+  margin-bottom: 10rpx;
+  overflow: hidden;
+  border: 1rpx solid #efefef;
+  box-sizing: border-box;
+}
+.goodsList-list .content-list .list-item:last-child{
+  margin-right: 0;
+}
+.goodsList-list .content-list .list-item .shopImg{
+  width: 200rpx;
+  height: 148rpx;
+  position: relative;
+  text-align: center
+}
+.goodsList-list .content-list .list-item navigator{
+  width: 100%;
+  height: 100%;
+  color: #333;
+  padding: 10rpx;
+  font-size: 18rpx;
+  text-decoration: none;
+  display: inline-block;
+  box-sizing: border-box;
+}
+.goodsList-list .content-list .list-item .shopImg image{
+  max-width: 148rpx;
+  max-height: 148rpx;
+  display: inline-block;
+  margin: auto;
+}
+.goodsList-list .content-list .list-item .shopName{
+  height: 48rpx;
+  font-size: 18rpx;
+  line-height: 25rpx;
+  overflow: hidden;
+  margin-top: 5rpx;
+}
+.goodsList-list .content-list .list-item .shopPrice{
+  height: 34rpx;
+}
+.goodsList-list .content-list .list-item .shopPrice text{
+  float: left;
+  font-size: 20rpx;
+  font-weight: 600;
+  padding-top: 8rpx;
+  color: #f00;
+}
+.goodsList-list .content-list .list-item .shopPrice text.enname{
+  font-size: 16rpx;
+  padding-top: 12rpx;
+  color: #999;
+  text-decoration: line-through;
+  margin-left: 5rpx;
+}
+.goodsList-list .content-list .list-item.lookMore{
+  text-align: center;
+}
+.goodsList-list .content-list .list-item.lookMore navigator image{
+  width: 109rpx;
+  height: 135rpx;
+  margin-top: 61rpx;
+}

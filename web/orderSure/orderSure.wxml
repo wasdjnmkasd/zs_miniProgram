@@ -1,0 +1,126 @@
+<view class="orderSure-content">
+  <block wx:for="{{addressListData}}" wx:key="">
+    <navigator wx:if="{{item.id == addressId}}" url="/web/addressManage/addressManage?btnHide=1" open-type="navigate" hover-class="none">
+      <view class="textGroup">
+        <view class="text delivery-name">
+          <view class="name" style="letter-spacing:9rpx;">收货人</view>
+          <view class="value">{{item.receiveName}}</view>
+        </view>
+        <view class="text delivery-iphone">
+          <view class="name">联系电话</view>
+          <view class="value">{{item.receivePhone}}</view>
+        </view>
+        <view class="text delivery-address">
+          <view class="name">收货地址</view>
+          <view class="value">{{item.province}}{{item.city}}{{item.area}}{{item.address}}</view>
+        </view>
+      </view>
+      <image class="deliveryInfoBgImg" src="{{imgHost}}/images/platform/order/href.png"></image>
+    </navigator>
+  </block>
+  <block wx:if="{{addressListData.length == 0}}">
+    <navigator url="/web/addressEdit/addressEdit" open-type="navigate" hover-class="none">
+      <view class="noAddressList">
+        <text>+</text>添加收货地址 
+        <image class="deliveryInfoBgImg" src="{{imgHost}}/images/platform/order/href.png"></image>
+      </view>
+    </navigator>
+  </block>
+  <view class="orderSure-orderDetails">
+    <block wx:for="{{ordersInfo}}" wx:for-index="k1"  wx:for-item="v1" wx:key="">
+      <block wx:for="{{v1}}" wx:for-index="k2"  wx:for-item="v2" wx:key="">
+        <view class="goodsList">
+          <view class="header">
+            <view class="circle"></view>
+            <view class="text">仓库：{{v2.supplierName}} -- {{v2.typeName}}</view>
+          </view>
+          <view class="body">
+            <block wx:for="{{v2.itemObj}}" wx:for-index="k3"  wx:for-item="v3" wx:key="">
+              <view class="itemList">
+                <view class="commodity-info">
+                  <view class="commodity-img">
+                    <image wx:if="{{v3.itemImg}}" src="{{v3.itemImg}}"></image>
+                    <image wx:else src="{{imgHost}}/images/platform/account/default_img.jpg"></image>
+                    <image wx:if="{{v2.type == 0}}" class="corner_mark" src="{{imgHost}}/images/platform/tag/icon_cross.png"></image>
+                    <image wx:if="{{v2.type == 2}}" class="corner_mark" src="{{imgHost}}/images/platform/tag/icon_normal.png"></image>
+                  </view>
+                  <view class="commodity-description">
+                    <view class="commodity-name">
+                      {{v3.itemName}}
+                    </view>
+                    <view class="commodity-specifications" wx:if="{{v3.infoStr}}">
+                      <view class="name">规格</view>
+                      <view class="value">{{v3.infoStr}}</view>
+                    </view>
+                  </view>
+                  <view class="commodity-number">
+                    <view class="commodity-price">￥{{v3.priceList[0].price}}</view>
+                    <view class="commodity-quantity">X{{v3.quantity}}</view>
+                  </view>
+                </view>
+              </view>
+            </block>
+            <view class="commodity-priceInfo">
+              <view class="commodity-taxFee">
+                <view class="commodity-price">
+                  <view class="money">￥{{v2.taxFee}}</view>
+                  <view class="text">税费</view>
+                </view>
+              </view>
+              <view class="commodity-postFee">
+                <view class="commodity-price">
+                  <view class="money">￥{{v2.postFee}}</view>
+                  <view class="text">运费</view>
+                </view>
+              </view>
+              <view class="commodity-totalPrice">
+                <view class="commodity-price">
+                  <view class="money">￥{{v2.supplierPrice}}</view>
+                  <view class="text">商品总价</view>
+                </view>
+                <view class="commodity-price">
+                  <view class="money">￥{{v2.supplierBargainPrice || '0.00'}}</view>
+                  <view class="text">优惠金额</view>
+                </view>
+              </view>
+            </view>
+            <view class="commodity-remark">
+              <input type="text" bindblur="remarkBlur" placeholder="买家留言：选填，填写内容已和客服确认"></input>
+            </view>
+            <view class="commodity-payInfo">
+              <view class="commodity-actualPrice">
+                  <view class="commodity-price">
+                    <view class="money">￥{{v2.totalPrice}}</view>
+                    <view class="text">实际价格</view>
+                  </view>
+              </view>
+              <view class="commodity-payBtn">
+                <view class="btn btn_commit" data-type="{{k1}}" data-supplierId="{{k2}}"  bindtap="orderSubmit">提交订单</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </block>
+  </view>
+  <view class="alert-idNum" wx:if="{{idNumAlert}}">
+    <view class="alert-cancel-btn" bindtap="hideIdNumAlert"></view>
+    <view class="alert-title">
+      <text>实名认证</text>
+      <view bindtap="hideIdNumAlert">x</view>
+    </view>
+    <view class="alert-content">
+      <view class="content-desc">
+        <image src="{{imgHost}}/images/platform/order/2.png"></image>
+        <text>海关要求购买跨境商品需要提供实名信息哦~ </text>
+      </view>
+      <input bindinput="userNameInput" class="userName" type="text" placeholder="真实姓名（即付款账户的实名）"></input>
+      <input bindinput="idNumInput" class="idNum" type="text" placeholder="身份证号码（将加密处理）"></input>
+      <view class="content-alert">
+        <text bindtap="showContent">了解实名认证</text>
+        <image bindtap="showContent" src="{{imgHost}}/images/platform/order/1.png"></image>
+      </view>
+    </view>
+    <view class="alert-btn" bindtap="confirmIdNum">提交</view>
+  </view>
+</view>

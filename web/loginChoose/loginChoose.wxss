@@ -1,0 +1,46 @@
+page{
+  padding: 0;
+  background: #fff;
+}
+.loginChoose-content{
+  text-align: center;
+}
+.loginChoose-content image{
+  width: 300rpx;
+  height: 230rpx;
+  margin-top: 200rpx;
+  margin-bottom: 80rpx;
+}
+.loginChoose-content > navigator,
+.loginChoose-content button{
+  width: 660rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  margin: 0 auto;
+  box-sizing: border-box;
+  border-radius: 0;
+  background: #b4272d;
+  color: #fff;
+  border: 1rpx solid #b4272d;
+  font-size: 30rpx;
+  margin-bottom: 25rpx;
+}
+.loginChoose-content > navigator{
+  color: #b4272d;
+  background: #fff;
+  border: 1rpx solid #b4272d;
+}
+.loginChoose-content button::after{
+  border: none;
+}
+.loginChoose-content .loginBtns{
+  overflow: hidden;
+  text-align: center;
+}
+.loginChoose-content .loginBtns navigator{
+  display: inline;
+  font-size: 28rpx;
+  color: #666;
+  margin-left: 25rpx;
+}

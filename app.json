@@ -1,0 +1,51 @@
+{
+  "pages":[
+    "web/index/index",
+    "web/nav/nav",
+    "web/personal/personal",
+    "web/searchProduct/searchProduct",
+    "web/goodsDetail/goodsDetail",
+    "web/shoppingCart/shoppingCart",
+    "web/personal-information/personal-information",
+    "web/customerService/customerService",
+    "web/addressManage/addressManage",
+    "web/addressEdit/addressEdit",
+    "web/login/login",
+    "web/orderSure/orderSure",
+    "web/register/register",
+    "web/forgetPassword/forgetPassword",
+    "web/orderDetail/orderDetail",
+    "web/orderList/orderList",
+    "web/logistics/logistics",
+    "web/bindMobile/bindMobile",
+    "web/bargainIndex/bargainIndex",
+    "web/bargainGoodsDetail/bargainGoodsDetail",
+    "web/loginChoose/loginChoose"
+  ],
+  "window":{
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#009944",
+    "navigationBarTitleText": "中国供销海外购",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "web/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "web/nav/nav",
+        "text": "分类"
+      },
+      {
+        "pagePath": "web/shoppingCart/shoppingCart",
+        "text": "购物车"
+      },
+      {
+        "pagePath": "web/personal/personal",
+        "text": "个人"
+      }
+    ]
+  }
+}

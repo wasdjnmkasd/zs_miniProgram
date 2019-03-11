@@ -1,0 +1,285 @@
+page{
+  padding: 0 0 100rpx 0;
+  overflow: hidden;
+  height: 100%;
+  box-sizing: border-box;
+}
+.bargainContent{
+  position: relative;
+  height: 100%;
+}
+.bargainContent .bargain-header{
+  width: 750rpx;
+  height: 375rpx;
+}
+.bargainContent .bargain-header image{
+  width: 100%;
+  height: 100%;
+}
+.bargainContent .bargain-body{
+  position: relative;
+}
+.bargainContent .goodsList-title{
+  text-align: center;
+  font-size: 34rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  color: #333;
+  background: #fff;
+  position: relative;
+  border-bottom: 1rpx solid #efefef;
+}
+.bargainContent .goodsList-title::before{
+  content: '';
+  position: absolute;
+  top: 49rpx;
+  left: 110rpx;
+  width: 120rpx;
+  height: 2rpx;
+  background: #eee;
+}
+.bargainContent .goodsList-title::after{
+  content: '';
+  position: absolute;
+  top: 49rpx;
+  right: 110rpx;
+  width: 120rpx;
+  height: 2rpx;
+  background: #eee;
+}
+.bargainContent .bargain-body .bargain-body-list{
+  position: relative;
+}
+.bargain-body-list .bargain-body-list-item{
+  width: 100%;
+  overflow: hidden;
+  padding: 20rpx 20rpx 0 20rpx;
+  background: #fff;
+  position: relative;
+  border-bottom: 1rpx solid #efefef;
+  box-sizing: border-box;
+}
+.bargain-body-list .bargain-body-list-item .list-item-left{
+  float: left;
+  width: 260rpx;
+  height: 240rpx;
+  margin-bottom: 20rpx;
+}
+.bargain-body-list .bargain-body-list-item .list-item-left button{
+  padding: 0;
+  margin: 0;
+  line-height: auto;
+  border-radius: 0;
+  box-shadow: none;
+}
+.bargain-body-list .bargain-body-list-item .list-item-left image{
+  width: 240rpx;
+  height: 240rpx;
+}
+.bargain-body-list .bargain-body-list-item .list-item-right{
+  float: left;
+  width: calc(100% - 260rpx);
+  height: 240rpx;
+  position: relative; 
+  margin-bottom: 20rpx;
+}
+.list-item-right .name{
+  color: #383838;
+  font-size: 33rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow:ellipsis;
+}
+.list-item-right .name image{
+  width: 36rpx;
+  height: 36rpx;
+  margin-right: 10rpx;
+  vertical-align: middle;
+  margin-top: -5rpx;
+}
+.list-item-right .desc{
+  color: #b7b7b7;
+  font-size: 28rpx;
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  margin-top: 5rpx;
+}
+.list-item-right .price{
+  font-size: 30rpx;
+  position: absolute;
+  bottom: 0;
+}
+.list-item-right .price .lowPrice{
+  color: #ff1b04;
+  font-weight: 700;
+}
+.list-item-right .price .oldPrice{
+  font-size: 26rpx;
+  color: #333;
+}
+.list-item-right .btn{
+  width: 180rpx;
+  height: 65rpx;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  line-height: 65rpx;
+  text-align: center;
+  background: #ff1b04;
+  color: #fff;
+  font-size: 30rpx;
+  border-radius: 40rpx;
+}
+.list-item-right .stock{
+  font-size: 28rpx;
+  position: absolute;
+  left: 0;
+  bottom: 50rpx;
+  color: #666;
+}
+.list-item-right .msg{
+  position: absolute;
+  bottom: 0;
+  font-size: 28rpx;
+}
+.list-item-right .msg text{
+  color: #ff1b04;
+  font-weight: 700;
+}
+.bargain-footer{
+  height: 100rpx;
+  line-height: 100rpx;
+  background: #fff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  box-shadow: 0rpx -5rpx 10rpx rgba(220,220,220,0.3);
+  z-index: 999;
+}
+.bargain-footer view{
+  float: left;
+  width: 40%;
+  text-align: center;
+  font-size: 36rpx;
+  color: #666;
+}
+.bargain-footer view.home{
+  width: 20%;
+}
+.bargain-footer view.home image{
+  width: 40rpx;
+  height: 40rpx;
+  margin-top: -20rpx;
+  background: #009944;
+  padding: 40rpx;
+  border-radius: 60rpx;
+}
+.bargain-footer view.active{
+  color: #ff1b04;
+  font-weight: 700;
+}
+.bargainContent .list-item-bottom{
+  width: 100%;
+  overflow: hidden;
+  height: 120rpx;
+  line-height: 120rpx;
+  border-top: 1px solid #efefef;
+}
+.bargainContent .list-item-bottom view{
+  float: right;
+}
+.bargainContent .list-item-bottom .dobtn{
+  float: right;
+  width: 180rpx;
+  height: 63rpx;
+  background: #ff1b04;
+  color: #fff;
+  line-height: 60rpx;
+  text-align: center;
+  border-radius: 40rpx;
+  font-size: 30rpx;
+  margin-top: 27rpx;
+  margin-left: 30rpx;
+  border: 1rpx solid #ff1104;
+}
+.bargainContent .list-item-bottom .dobtn.rebargain{
+  color: #ff1b04;
+  background: #fff;
+}
+.bargainContent .list-item-bottom view.time{
+  font-size: 32rpx;
+}
+.bargainContent .list-item-bottom view.time view{
+  float: left;
+  margin-right: 10rpx;
+  font-size: 30rpx;
+}
+.bargainContent .list-item-bottom view.time view text{
+  color: #ff1104;
+  font-weight: 600;
+}
+.bargainContent .list-item-bottom view.timeText{
+  font-size:32rpx;
+  color:#ababab;
+}
+.bargainContent .list-item-bottom view.time > text{
+  display: inline-block;
+  width: 50rpx;
+  height: 50rpx;
+  text-align: center;
+  line-height: 50rpx;
+  color: #333;
+  border-radius: 5rpx;
+  background: #efefef;
+  margin: 0 10rpx;
+}
+.empty{
+  width:100%;
+  height:600rpx;
+  text-align:center;
+  position:relative;
+}
+.empty image{
+  width:500rpx;
+  height:388rpx;
+  display:inline-block;
+  margin:80rpx auto 0 auto;
+}
+.empty .text{
+  height:88rpx;
+  margin:0 auto;
+  padding-left:20rpx;
+  display:inline-block;
+  font-family:PingFangSC-Light,helvetica,'Heiti SC';
+  font-size:32rpx;
+  line-height:88rpx;
+  color:#888888;
+  font-weight:400;
+  letter-spacing:8rpx;
+}
+button::after{
+  border:none;
+}
+button {
+  background-color: #fff;
+}
+.bargainContent .bargainBtn{
+  padding: 30rpx 20rpx 40rpx 20rpx;
+  background: #fff;
+}
+.bargainContent .bargainBtn view{
+  width: 100%;
+  border: 1rpx solid #ff1104;
+  color: #ff1104;
+  text-align: center;
+  font-size: 30rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 40rpx;
+}

@@ -1,0 +1,90 @@
+<component-header headerData="{{headerData}}" bind:changeStatus="changeStatus"></component-header>
+<view class="shoppingCart-content">
+  <block wx:if="{{shopCartData.length > 0}}">
+    <scroll-view class="shoppingCart-ordersDetails" scroll-y>
+      <block wx:for="{{shopCartData}}" wx:key="">
+        <view class="goodsList {{item.isTouchMove ? 'touch-move-active' : ''}}" bindtouchstart="touchstart" bindtouchmove="touchmove" data-index="{{index}}">
+          <view class="goodsList-body">
+            <view class="itemList">
+              <view class="commodity-group">
+                <view class="commodity-select" bindtap="goodsItemSelected" data-itemId="{{item.goodsSpecs.priceList[0].itemId}}">
+                  <block wx:if="{{item.goodsSpecs.status == 1}}">
+                    <image wx:if="{{item.status == 'selected'}}" src="{{imgHost}}/images/platform/commodity/selected.png"></image>
+                    <view wx:else class="select-icon"></view>
+                  </block>
+                  <block wx:elif="{{item.goodsSpecs.status == 0}}">
+                    <view class="text text_lose">已下架</view>
+                  </block>
+                </view>
+                <navigator url="/web/goodsDetail/goodsDetail?goodsId={{item.goodsSpecs.goodsId}}" open-type="navigate" hover-class="none" class="commodity-img">
+                  <image wx:if="{{item.picPath}}" src="{{item.picPath}}"></image>
+                  <image wx:else src="{{imgHost}}/images/platform/config/default_img.jpg"></image>
+                  <image wx:if="{{item.type == 0}}" class="corner_mark" src="{{imgHost}}/images/platform/tag/icon_cross.png"></image>
+                  <image wx:if="{{item.type == 2}}" class="corner_mark" src="{{imgHost}}/images/platform/tag/icon_normal.png"></image>
+                </navigator>
+                <view class="commodity-info">
+                  <navigator url="/web/goodsDetail/goodsDetail?goodsId={{item.goodsSpecs.goodsId}}" open-type="navigate" hover-class="none" class="commodity-name">
+                    <text wx:if="{{item.supplierName == '天天仓'}}">[保税TT仓]{{item.goodsName}}</text>
+                    <text wx:elif="{{item.supplierName == '粮油仓'}}">[保税LY仓]{{item.goodsName}}</text>
+                    <text wx:elif="{{item.supplierName == '行云仓'}}">[保税XY仓]{{item.goodsName}}</text>
+                    <text wx:elif="{{item.supplierName == '富邦仓'}}">[保税FB仓]{{item.goodsName}}</text>
+                    <text wx:else>[{{item.supplierName}}]{{item.goodsName}}</text>
+                  </navigator>
+                  <view class="commodity-itemId">
+                    <text wx:if="{{item.goodsSpecs.info}}">规格:{{item.goodsSpecs.infoStr}}</text>
+                  </view>
+                  <view class="commodity-price">
+                    <text>￥{{item.goodsSpecs.priceList[0].price}}</text>
+                  </view>
+                </view>
+              </view>
+              <view class="commodity-quantity">
+                <view class="inputGroup">
+                  <view class="btn btn_plus" data-max="{{item.goodsSpecs.priceList[0].max}}" bindtap="numberAdd" data-itemId="{{item.goodsSpecs.priceList[0].itemId}}" data-stock="{{item.goodsSpecs.stock}}"></view>
+                  <input type="number" value='{{item.quantity}}' placeholder-class="placeholder-btn_input" class="btn btn_input" data-min="{{item.goodsSpecs.priceList[0].min}}" data-max="{{item.goodsSpecs.priceList[0].max}}" data-itemId="{{item.goodsSpecs.priceList[0].itemId}}" data-stock="{{item.goodsSpecs.stock}}" bindchange="numberChange"></input>
+                  <view class="btn btn_minus" data-min="{{item.goodsSpecs.priceList[0].min}}" data-itemId="{{item.goodsSpecs.priceList[0].itemId}}" bindtap="numberMinus"></view>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="goodsList-del" bindtap="shopCartDelete" data-id="{{item.id}}">删除</view>
+        </view>
+      </block>
+    </scroll-view>
+    <view class="shoppingCart-optionsGroup">
+      <view class="optionsGroup-content">
+        <view class="control" bindtap="allGoodsSelected">
+          <image wx:if="{{allChooseStatus == 'selected'}}" src="{{imgHost}}/images/platform/commodity/selectAll.png"></image>
+          <view wx:else class="select-icon"></view>
+          <text>已选({{selectedNum}})</text>
+        </view>
+        <view class="btnGroup">
+          <view class="btn_commitOrder" wx:if="{{shopCartStatus == 'normal'}}" bindtap="shopCartBuy">结算</view>
+          <view class="btn_commitOrder" bindtap="allShopCartDelete" wx:if="{{shopCartStatus == 'delete'}}">删除</view>
+          <view class="text_price" wx:if="{{shopCartStatus == 'normal'}}">
+            <block wx:if="{{allCrossPrice != 0 && allNormalPrice != 0}}">
+              <view>一般：￥{{allNormalPrice}}</view>
+              <view>跨境：￥{{allCrossPrice}}</view>
+            </block>
+            <block wx:elif="{{allCrossPrice != 0 && allNormalPrice == 0}}">
+              <text>跨境：￥{{allCrossPrice}}</text>
+            </block>
+            <block wx:elif="{{allNormalPrice != 0 && allCrossPrice == 0}}">
+              <text>一般：￥{{allNormalPrice}}</text>
+            </block>
+            <block wx:elif="{{allNormalPrice == 0 && allCrossPrice == 0}}">
+              <text>总价：￥0.00</text>
+            </block>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+  <block wx:elif="{{shopCartData.length == 0}}">
+    <view class="shoppingCart-empty">
+      <image src="{{imgHost}}/images/platform/shopCart/empty.png"></image>
+      <text>购物车空了，去买点什么吧！</text>
+    </view>
+  </block>
+</view>
+<component-footer footerData="{{footerData}}"></component-footer>

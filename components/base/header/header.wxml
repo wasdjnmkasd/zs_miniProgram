@@ -1,0 +1,26 @@
+<view class="header-1-content">
+  <view class="header-left">
+    <view class="icon_scan" wx:if="{{headerData.leftIcon != false}}">
+      <image bindtap="scanCode" wx:if="{{headerData.leftIcon == 'scan'}}" src='{{imgHost}}/images/platform/header/i_scan.png'></image>
+      <image wx:if="{{headerData.leftIcon == 'back'}}" src='{{imgHost}}/images/platform/header/back.png' bindtap='toBack'></image>
+      <navigator url="/web/index/index" open-type="switchTab" hover-class="none">
+        <image wx:if="{{headerData.leftIcon == 'home'}}" src='{{imgHost}}/images/platform/header/home.png'></image>
+      </navigator>
+    </view>
+  </view>
+  <view wx:if="{{headerData.type == 'search'}}" class="header-input">
+    <image src='{{imgHost}}/images/platform/header/i_search.png' class="i_search"></image>
+    <input type='search' placeholder='Swisse' value="{{headerData.searchData}}" bindconfirm="search"></input>
+    <image src='{{imgHost}}/images/platform/header/i_clear.png' class="i_clear"></image>
+  </view>
+  <view wx:if="{{headerData.type == 'title'}}" class="header-title">{{headerData.title}}</view>
+  <view class="header-right" wx:if="{{headerData.rightIcon != false}}">
+    <image bindtap="toNews" wx:if="{{headerData.rightIcon == 'news'}}" src='{{imgHost}}/images/platform/header/i_news.png'></image>
+    <image wx:if="{{headerData.rightIcon == 'edit' && shopCartStatus == 'normal'}}" src='{{imgHost}}/images/platform/header/edit.png' bindtap="changeStatus"></image>
+    <image wx:if="{{headerData.rightIcon == 'edit' && shopCartStatus == 'delete'}}" src='{{imgHost}}/images/platform/header/sure.png' bindtap="changeStatus"></image>
+    <view data-url="/web/shoppingCart/shoppingCart" bindtap="toShoppingCart">
+      <image wx:if="{{headerData.rightIcon == 'shopCart'}}" src='{{imgHost}}/images/platform/header/shopCart.png'></image>
+      <view wx:if="{{headerData.rightIcon == 'shopCart' && headerData.shoppingCartCount}}" class="number">{{headerData.shoppingCartCount}}</view>
+    </view>
+  </view>
+</view>

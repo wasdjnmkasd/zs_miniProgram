@@ -1,0 +1,124 @@
+<scroll-view class="bargainContent" bindscrolltolower="getMoreData" scroll-y="true" scroll-top="{{top}}">
+  <block wx:if="{{type == 0}}">
+    <view class="bargain-body">
+      <block wx:if="{{bargainIndexData.goodsListActive.length > 0}}">
+        <view class="goodsList-title">我发起的砍价</view>
+        <view class="bargain-body-list userList" wx:for="{{bargainIndexData.goodsListActive}}" wx:key="">
+          <view class="bargain-body-list-item" style="margin-bottom:20rpx;border-bottom:none;">
+            <view class="list-item-left" data-id="{{item.id}}" data-type="continue" bindtap="toBargain">
+              <image wx:if="{{item.goodsImg}}" src="{{item.goodsImg}}"></image>
+              <image wx:else src="{{imgHost}}/images/platform/account/default_img.jpg"></image>
+            </view>
+            <view class="list-item-right">
+              <view class="name">
+                <image wx:if="{{item.originCountry}}" src="{{imgHost}}/images/platform/city/{{item.originCountry}}.png"></image>
+                <text>{{item.goodsName}}</text>
+              </view>
+              <view class="desc" wx:if="{{item.description}}">{{item.description}}</view>
+              <view class="desc" wx:else>暂无商品描述</view>
+              <view class="stock">剩余库存：{{item.stock}}</view>
+              <view class="msg">
+                已砍<text>￥{{item.bargainPrice}}</text>现价<text>￥{{item.surplusPrice}}</text>
+              </view>
+            </view>
+            <view class="list-item-bottom">
+              <view class="dobtn" wx:if="{{item.start && !item.buy}}" data-id="{{item.id}}" data-type="continue" bindtap="toBargain">继续砍价</view>
+              <view class="time" wx:if="{{item.start && !item.buy}}">
+                <view>商品最低价<text>￥{{item.lowPrice}}</text></view>
+                <text>{{item.nextHour || '00'}}</text>:<text>{{item.nextMinute || '00'}}</text>:<text>{{item.nextSecond || '00'}}</text>
+              </view>
+              <view class="timeText" wx:elif="{{!item.start && !item.buy}}">砍价结束请及时购买</view>
+              <view class="timeText" wx:elif="{{!item.start && item.buy}}">已生成订单请及时处理</view>
+            </view>
+          </view>
+        </view>
+      </block>
+      <block wx:if="{{bargainIndexData.goodsList.length > 0}}">
+        <view class="goodsList-title">所有砍价商品</view>
+        <view class="bargain-body-list" wx:for="{{bargainIndexData.goodsList}}" wx:key="">
+          <view class="bargain-body-list-item">
+            <view class="list-item-left">
+              <button hover-class="none" open-type="getUserInfo" data-id="{{item.goodsRoleId}}" data-type="create" bindgetuserinfo="toBargain">
+                <image wx:if="{{item.goodsImg}}" src="{{item.goodsImg}}"></image>
+                <image wx:else src="{{imgHost}}/images/platform/account/default_img.jpg"></image>
+              </button>
+            </view>
+            <view class="list-item-right">
+              <view class="name">
+                <image wx:if="{{item.originCountry}}" src="{{imgHost}}/images/platform/city/{{item.originCountry}}.png"></image>
+                <text>{{item.goodsName}}</text>
+              </view>
+              <view class="desc" wx:if="{{item.description}}">{{item.description}}</view>
+              <view class="desc" wx:else>暂无商品描述</view>
+              <view class="price">
+                <view class="lowPrice">砍至{{item.lowPrice}}元拿</view>
+                <view class="oldPrice">价值{{item.goodsPrice}}元</view>
+              </view>
+              <button open-type="getUserInfo" class="btn" data-id="{{item.goodsRoleId}}" data-type="create" bindgetuserinfo="toBargain">去砍价</button>
+            </view>
+          </view>
+        </view>
+      </block>
+      <block wx:if="{{bargainIndexData.goodsList.length == 0 && bargainIndexData.goodsListActive.length == 0}}">
+        <view class="empty">
+          <image src="https://teststatic.cncoopbuy.com:8080/wechat/images/platform/order/empty.png"></image>
+          <view class="text">还没有砍价商品呢！</view>
+        </view>
+      </block>
+    </view>
+  </block>
+  <block wx:if="{{type == 1}}">
+    <block wx:if="{{userBargainData.goodsList.length > 0}}">
+      <view class="bargain-body-list userList" wx:for="{{userBargainData.goodsList}}" wx:key="">
+        <view class="bargain-body-list-item" style="margin-bottom:{{index == userBargainData.goodsList.length -1 ? '0' : '20rpx'}};border-bottom:none;">
+          <view class="list-item-left" data-id="{{item.id}}" data-type="continue" bindtap="toBargain">
+            <image wx:if="{{item.goodsImg}}" src="{{item.goodsImg}}"></image>
+            <image wx:else src="{{imgHost}}/images/platform/account/default_img.jpg"></image>
+          </view>
+          <view class="list-item-right">
+            <view class="name">
+              <image wx:if="{{item.originCountry}}" src="{{imgHost}}/images/platform/city/{{item.originCountry}}.png"></image>
+              <text>{{item.goodsName}}</text>
+            </view>
+            <view class="desc" wx:if="{{item.description}}">{{item.description}}</view>
+            <view class="desc" wx:else>暂无商品描述</view>
+            <view class="stock">剩余库存：{{item.stock}}</view>
+            <view class="msg">
+              已砍<text>￥{{item.bargainPrice}}</text>现价<text>￥{{item.surplusPrice}}</text>
+            </view>
+          </view>
+          <view class="list-item-bottom">
+            <view class="dobtn" wx:if="{{item.start && !item.buy}}" data-id="{{item.id}}" data-type="continue" bindtap="toBargain">继续砍价</view>
+            <view class="dobtn" wx:if="{{!item.start && !item.buy}}" data-id="{{item.id}}" data-type="continue" bindtap="toBargain">立即购买</view>
+            <button open-type="getUserInfo" class="dobtn rebargain" wx:if="{{!item.start && !item.buy && (item.goodsPrice - item.bargainPrice) > item.lowPrice}}" data-id="{{item.id}}"  bindgetuserinfo="toRebargain">重新砍价</button>
+            <view class="dobtn" wx:elif="{{!item.start && item.buy}}" data-id="{{item.id}}" data-type="continue" bindtap="toOdrders">订单详情</view>
+            <view class="time">
+              <view>商品最低价<text>￥{{item.lowPrice}}</text></view>
+              <block wx:if="{{item.start && !item.buy}}">
+                <text>{{item.nextHour || '00'}}</text>:<text>{{item.nextMinute || '00'}}</text>:<text>{{item.nextSecond || '00'}}</text>
+              </block>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view wx:if="{{!showOngoing}}" class="bargainBtn" bindtap="getOngoingBarginList">
+        <view>查看正在砍价的商品</view>
+      </view>
+    </block>
+    <block wx:elif="{{userBargainData.goodsList.length == 0}}">
+      <view class="empty">
+        <image src="https://teststatic.cncoopbuy.com:8080/wechat/images/platform/order/empty.png"></image>
+        <view class="text">还没有已砍价商品呢！</view>
+      </view>
+    </block>
+  </block>
+</scroll-view>
+<view class="bargain-footer">
+  <view class="shopList {{type == 0 ? 'active' : ''}}" data-type="0" bindtap="tabChange">砍价商品</view>
+  <view class="home">
+    <navigator url="/web/index/index" open-type="switchTab" hover-class="none">
+      <image src="{{imgHost}}/images/platform/header/home_white.png"></image>
+    </navigator>
+  </view>
+  <view class="myList {{type == 1 ? 'active' : ''}}" data-type="1" bindtap="tabChange">我的砍价</view>
+</view>

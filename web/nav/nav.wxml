@@ -1,0 +1,26 @@
+<component-header headerData="{{headerData}}"></component-header>
+<view class="nav-1">
+  <view class="nav-1-content">
+    <view class="nav-list">
+      <scroll-view scroll-y class="classify-list-left">
+        <block wx:for="{{navTotalData}}" wx:key="">
+          <view class="{{firstActive == item.id ? 'active' : ''}}" id="{{item.id}}" bindtap='chooseItem'>{{item.industryName}}</view>
+        </block>
+      </scroll-view>
+      <scroll-view scroll-y class="classify-list-right" style="height:{{scrollHeight}}">
+        <block wx:for="{{navRightData}}" wx:key="">
+          <view class="classify-list-right-item">
+            <text class="item-title">{{item.dictName}}</text>
+            <block wx:for="{{item.entryList}}" wx:key="">
+              <navigator url="/web/searchProduct/searchProduct?thirdCategory={{item.id}}&goodsName={{item.entryName}}" open-type="navigate" hover-class="none">
+                <image src="{{item.thirdPicPath}}"></image>
+                <view><text>{{item.entryName}}</text></view>
+              </navigator>
+            </block>
+          </view>
+        </block>
+      </scroll-view>
+    </view>
+  </view>
+</view>
+<component-footer footerData="{{footerData}}"></component-footer>

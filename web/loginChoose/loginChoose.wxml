@@ -1,0 +1,9 @@
+<view class="loginChoose-content">
+  <image src="{{imgHost}}/images/platform/login/logo_01.jpg"></image>
+  <button bindtap="wxLogin">微信登录</button>
+  <navigator url="/web/login/login" open-type="navigate" hover-class="none">手机号登陆</navigator>
+  <view class="loginBtns">
+    <navigator url="/web/register/register" open-type="navigate" hover-class="none">帐号注册</navigator>
+    <navigator url="/web/forgetPassword/forgetPassword" open-type="navigate" hover-class="none">忘记密码</navigator>
+  </view>
+</view>

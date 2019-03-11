@@ -1,0 +1,4 @@
+/* web/searchProduct/searchProduct.wxss */
+page{
+  overflow: hidden;
+}

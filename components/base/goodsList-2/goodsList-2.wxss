@@ -1,0 +1,116 @@
+.goodsList-2-content{
+  box-sizing: border-box;
+  width: 750rpx;
+  display: block;
+  position: relative;
+  background-color: #ffffff;
+  padding: 0 20rpx 40rpx 20rpx;
+  margin-top: 20rpx;
+}
+.goodsList-2-content .commodity-header{
+  height: 70rpx;
+  padding-top: 20rpx;
+  text-align: center;
+}
+.goodsList-2-content .commodity-header image{
+  width: 286rpx;
+  height: 28rpx;
+}
+.goodsList-2-content .commodity-center{
+  overflow: hidden;
+  position: relative;
+  background: #fff;
+  column-count: 3; 
+  column-gap: 15rpx;
+}
+.goodsList-2-content .commodity-item{
+  text-align: left;
+  border-radius: 15rpx;
+  border: 1rpx solid #ccc;
+  break-inside: avoid; 
+  box-sizing: border-box;
+  margin-bottom: 15rpx;
+}
+.goodsList-2-content .commodity-item navigator{
+  box-sizing: border-box;
+  width: 100%;
+  height: auto;
+  color: #333;
+  padding: 10rpx;
+  font-size: 18rpx;
+  text-decoration: none;
+  display: inline-block;
+}
+.goodsList-2-content .commodity-item navigator .shopImg{
+  width: 100%;
+  height: 210rpx;
+  margin-bottom: 5rpx;
+  position: relative;
+}
+.goodsList-2-content .commodity-item navigator .shopImg .mainImg{
+  max-width: 98%;
+  max-height: 98%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+.goodsList-2-content .commodity-item navigator .shopImg .iconType {
+  width: 60rpx;
+  height: 60rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0;
+  margin: 0;
+}
+.goodsList-2-content .commodity-item navigator .shopName{
+  width: 100%;
+  max-height: 48rpx;
+  font-weight: 500;
+  font-size: 18rpx;
+  line-height: 25rpx;
+  overflow: hidden;
+  margin-bottom: 8rpx;
+}
+.goodsList-2-content .commodity-item navigator .shopIcon{
+  width: 100%;
+  height: 27rpx;
+  overflow: hidden;
+}
+.goodsList-2-content .commodity-item navigator .shopIcon image{
+  width: 60rpx;
+  height: 24rpx;
+  margin-right: 5rpx;
+}
+.goodsList-2-content .commodity-item navigator .shopPrice{
+  width: 100%;
+  height: 32rpx;
+}
+.goodsList-2-content .commodity-item navigator .shopPrice .origin{
+  float: left;
+  width: 20rpx;
+  height: 20rpx;
+  margin-top: 7rpx;
+  border-radius: 50%;
+  background-color: #cccccc;
+}
+.goodsList-2-content .commodity-item navigator .shopPrice .origin image{
+  width: 20rpx;
+  height: 20rpx;
+  display: inline-block;
+}
+.goodsList-2-content .commodity-item navigator .shopPrice .price{
+  width: calc(100% - 25rpx);
+  color: #f00;
+  font-size: 24rpx;
+  line-height: 33rpx;
+  font-weight: 600;
+  text-align: right;
+  display: inline-block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}

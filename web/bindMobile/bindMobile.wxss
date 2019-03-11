@@ -1,0 +1,93 @@
+.bindMobile-content{
+  width: 100%;
+  height: auto;
+  padding-top: 90rpx;
+}
+.bindMobile-content > view{
+  width: calc(100% - 88rpx);
+  margin: 0 auto 40rpx auto;
+  border: solid 1rpx #cccccc;
+  background-color: #fff;
+  background-image: none;
+  border-radius: 15rpx;
+  overflow: hidden;
+}
+.bindMobile-content > view > input{
+  width: calc(100% - 160rpx);
+  height: 86rpx;
+  font-family: PingFangSC-Light,helvetica,'Heiti SC';
+  font-size: 30rpx;
+  line-height: inherit;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  float: left;
+}
+.bindMobile-content .bindMobile-account image:first-child{
+  width: 22rpx;
+  height: 32rpx;
+  padding: 27rpx 29rpx;
+  float: left;
+}
+.bindMobile-content .bindMobile-account image:last-child{
+  width: 28rpx;
+  height: 28rpx;
+  padding: 29rpx 26rpx;
+  float: left;
+}
+.bindMobile-content .bindMobile-validation image:first-child{
+  width: 32rpx;
+  height: 32rpx;
+  padding: 27rpx 24rpx;
+  float: left;
+}
+.bindMobile-content .bindMobile-validation input{
+  width: calc(100% - 250rpx);
+  height: 86rpx;
+  font-family: PingFangSC-Light,helvetica,'Heiti SC';
+  font-size: 30rpx;
+  line-height: inherit;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  float: left;
+}
+.bindMobile-content .bindMobile-validation .textRight{
+  width: 170rpx;
+  font-family: PingFangSC-Light,helvetica,'Heiti SC';
+  font-size: 26rpx;
+  color: #777;
+  padding: 0 0 0 20rpx;
+  vertical-align: middle;
+  float: left;
+  position: relative;
+  cursor: pointer;
+  box-sizing: border-box;
+  height: 86rpx;
+  line-height: 86rpx;
+}
+.bindMobile-content .bindMobile-validation .textRight::before{
+  content: "";
+  width: 1rpx;
+  height: 44rpx;
+  background-color: #cfcfcf;
+  position: absolute;
+  top: 22rpx;
+  left: 0;
+}
+.bindMobile-content .bindMobile-bingBtn{
+  width: calc(100% - 88rpx);
+  height: 92rpx;
+  font-family: PingFangSC-Light,helvetica,'Heiti SC';
+  font-size: 36rpx;
+  color: #ffffff;
+  line-height: 92rpx;
+  text-align: center;
+  margin: 60rpx auto 60rpx auto;
+  background-color: #b4282d;
+  border-radius: 15rpx;
+  display: block;
+}
+.bindMobile-content > view.error_status{
+  border-color: #f34d4d;
+}

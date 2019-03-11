@@ -1,0 +1,213 @@
+page{
+  padding-top: 0;
+}
+.personal-content{
+  width: 750rpx;
+  height: auto;
+  position: relative;
+}
+.personal-header{
+  width: 100%;
+  height: 350rpx;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 500;
+  overflow: hidden;
+}
+.personal-header .shopImg{
+  width: 100%;
+  height: auto;
+  text-align: center;
+  margin-top: 20rpx;
+  margin-bottom: 15rpx;
+  display: inline-block;
+  position: relative;
+  z-index: 99;
+}
+.personal-header .shopImg .imgBox{
+  width: 180rpx;
+  height: 180rpx;
+  padding: 8rpx;
+  background-color: #cfcfcf;
+  border: solid 1rpx #c3c3c3;
+  border-radius: 90rpx;
+  display: inline-block;
+  box-sizing: border-box;
+}
+.personal-header .shopImg .imgBox image{
+  width: 162rpx;
+  height: 162rpx;
+  background-color: #ffffff;
+  background-size: cover;
+  border-radius: 81rpx;
+  display: inline-block;
+}
+.personal-header .userName{
+  padding: 0 15rpx;
+  height: auto;
+  margin-bottom: 15rpx;
+  display: inline-block;
+  position: relative;
+  z-index: 99;
+}
+.personal-header .userName text{
+  height: 48rpx;
+  font-family: PingFangSC-Light,helvetica,'Heiti SC';
+  font-weight: 500;
+  font-size: 32rpx;
+  color: #ffffff;
+  line-height: 50rpx;
+  display: inline-block;
+  text-shadow: 1rpx 1rpx 1rpx #555;
+}
+.personal-header .aboutus{
+  width: 100%;
+  height: auto;
+  text-align: center;
+  display: inline-block;
+  position: relative;
+  z-index: 99;
+}
+.personal-header .aboutus text{
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 80rpx;
+  height: 36rpx;
+  font-family: PingFangSC-Light,helvetica,'Heiti SC';
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #ffffff;
+  line-height: 36rpx;
+  vertical-align: middle;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-shadow: 1rpx 1rpx 1rpx #555;
+}
+.personal-header .personal-bgImg{
+  width: 750rpx;
+  height: 350rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 9;
+}
+.personal-orders{
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  margin-bottom: 20rpx;
+  border-bottom: solid 1rpx #e4e4e4;
+  margin-top: 350rpx;
+}
+.personal-orders .orders-content{
+  width: 100%;
+  height: 138rpx;
+  background-color: #ffffff;
+  overflow: hidden;
+}
+.personal-orders .orders-content > view{
+  width: 20%;
+  height: 100%;
+  float: left;
+  position: relative;
+  text-align: center;
+}
+.personal-orders .orders-content > view image{
+  width: 82rpx;
+  height: 79rpx;
+  margin-top: 30rpx;
+  display: inline-block;
+  position: relative;
+}
+.personal-orders .orders-content > view .number{
+  width: 28rpx;
+  height: 28rpx;
+  font-family: PingFangSC-Light,helvetica,'Heiti SC';
+  font-size: 16rpx;
+  color: #ffffff;
+  line-height: 30rpx;
+  text-align: center;
+  border-radius: 14rpx;
+  background-color: #f34d4d;
+  position: absolute;
+  top:20rpx;
+  left:50%;
+  margin-left: 6rpx;
+}
+.personal-orders .orders-content > view image.order_all{
+  width: 110rpx;
+}
+.personal-function{
+  width: 100%;
+  height: auto;
+  margin-bottom: 20rpx;
+  overflow: hidden;
+}
+.personal-function > view{
+  width: 100%;
+  height: 88rpx;
+  padding: 0 4rpx 0 16rpx;
+  overflow: hidden;
+  background-color: #ffffff;
+  border-bottom: solid 1rpx #e4e4e4;
+  display: block;
+  box-sizing: border-box;
+}
+.personal-function > view:first-child{
+  margin-top: solid 1rpx #e4e4e4;
+}
+.personal-function > view image{
+  width: 70rpx;
+  height: 70rpx;
+  margin: 9rpx 9rpx 0 0;
+  float: left;
+}
+.personal-function > view image.icon_right{
+  width: 88rpx;
+  height: 88rpx;
+  margin: 0;
+  float: right;
+}
+.personal-function > view text{
+  height: 88rpx;
+  font-family: PingFangSC-Light,helvetica,'Heiti SC';
+  font-size: 32rpx;
+  color: #333333;
+  line-height: 88rpx;
+  float: left;
+}
+.personal-btn{
+  width: 100%;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  margin-bottom: 20rpx;
+  background-color: #ffffff;
+  border-top: solid 1px #dfdfdf;
+  border-bottom: solid 1px #dfdfdf;
+}
+.alert-content{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.6);
+  z-index: 99998;
+}
+.alert-content image{
+  width: 100%;
+  height: 100%;
+}
+.alert-content .cancelBtn{
+  width: 250rpx;
+  height: 80rpx;
+  position: absolute;
+  bottom: 120rpx;
+  left: 230rpx;
+  z-index: 99999;
+}

@@ -1,0 +1,71 @@
+<scroll-view class="searchProduct-1" scroll-y style="height:calc(100% - 186rpx);" bindscrolltolower="getMoreData" scroll-top="{{toHeight}}">
+  <view class="searchProduct-1-content">
+    <view class="searchProduct-header">
+      <view class="header-content">
+        <view class="header-items choose_general active" wx:if="{{activeTab == 1}}" bindtap="getSearchListData_com">综合</view>
+        <view class="header-items choose_general" wx:else bindtap="getSearchListData_com">综合</view>
+        <view class="header-items choose_new active" wx:if="{{activeTab == 2}}" bindtap="getSearchListData_new">最新</view>
+        <view class="header-items choose_new" wx:else bindtap="getSearchListData_new">最新</view>
+        <view class="header-items choose_price active" wx:if="{{activeTab == 3}}" bindtap="getSearchListData_price">
+          价格
+          <image src="{{imgHost}}/images/platform/product/down.png"></image>
+        </view>
+        <view class="header-items choose_price active" wx:elif="{{activeTab == 4}}" bindtap="getSearchListData_price">
+          价格
+          <image src="{{imgHost}}/images/platform/product/up.png"></image>
+        </view>
+        <view class="header-items choose_price" wx:else bindtap="getSearchListData_price">
+          价格
+          <image src="{{imgHost}}/images/platform/product/none.png"></image>
+        </view>
+      </view>
+    </view>
+    <view class="searchProduct-body">
+      <view class="searchProduct-body-item" wx:if="{{searchListData.data.length > 0}}">
+        <block wx:for="{{searchListData.data}}" wx:key="">
+          <view class="item-content">
+            <navigator url="/web/goodsDetail/goodsDetail?goodsId={{item.goodsSpecsList[0].goodsId}}" open-type="navigate" hover-class="none">
+              <view class="imgBox">
+              <view>
+                <image wx:if="{{item.goodsFileList != null}}" src="{{item.goodsFileList[0].path}}"></image>
+                <image wx:else src="{{imgHost}}/images/platform/account/default_img.jpg"></image>
+                <image wx:if="{{item.type == 0}}" class="corner_mark" src="{{imgHost}}/images/platform/tag/icon_cross.png"></image>
+                <image wx:elif="{{item.type == 2}}" class="corner_mark" src="{{imgHost}}/images/platform/tag/icon_normal.png"></image>
+              </view>
+              </view>
+            </navigator>
+            <view class="textGroup">
+              <view class="name">
+                {{item.customGoodsName}}
+              </view>
+              <view>
+                <view class="price">￥{{item.oneRealPrice}}</view>
+                <!-- <view class="imgBox" bindtap="addShopCart" data-goodId="{{item.goodsId}}">
+                  <image src="{{imgHost}}/images/platform/product/icon_shoppingCart.png"></image>
+                </view> -->
+              </view>
+              <view class="description">
+                <view class="tagBox">
+                  <block wx:for="{{item.tagListArr}}" wx:key="">
+                    <image wx:if="{{item == '必选'}}" src="{{imgHost}}/images/platform/tag/icon_tag1.png"></image>
+                    <image wx:if="{{item == '爆款'}}" src="{{imgHost}}/images/platform/tag/icon_tag2.png"></image>
+                    <image wx:if="{{item == '热销'}}" src="{{imgHost}}/images/platform/tag/icon_tag3.png"></image>
+                    <image wx:if="{{item == '优选'}}" src="{{imgHost}}/images/platform/tag/icon_tag4.png"></image>
+                  </block>
+                </view>
+              </view>
+            </view>
+          </view>
+        </block>
+        <view class="isLoading">
+          <view class="load-text" wx:if="{{!isEnd}}">上拉加载更多。。。</view>
+          <view class="load-text" wx:else>已经到底啦。。。</view>
+        </view>
+      </view>
+      <view class="empty_search" wx:if="{{searchListData.data.length == 0}}">
+        <image src="{{imgHost}}/images/platform/product/search.png"></image>
+        <view class="text">您寻找的商品还未上架！</view>
+      </view>
+    </view>
+  </view>
+</scroll-view>

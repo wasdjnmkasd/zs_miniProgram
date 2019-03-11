@@ -1,0 +1,60 @@
+<component-header headerData="{{headerData}}"></component-header>
+<view class="customerService-1-content">
+  <view class="customerService-1-prompt">
+    <view class="prompt-text" style="width: 118rpx; margin-left: 10rpx;">温馨提示：</view>
+    <view class="prompt-text"style="width: calc(100% - 140rpx);">客服在线时间为周一至周五9:00 - 18:00，敬请谅解！</view>
+  </view>
+  <view class="customerService-1-main">
+    <view class="mainCont name">
+      <view class="name">公司名称</view>
+      <view class="content">
+        <view class="cont name">
+          <input type="text" value="{{customerData.companyName}}" disabled="true"></input>
+        </view>
+      </view>
+    </view>
+    <view class="mainCont address">
+      <view class="name">公司地址</view>
+      <view class="content">
+        <view class="cont address">
+          <input type="text" value="{{customerData.companyAddress}}"></input>
+        </view>
+      </view>
+    </view>
+    <view class="mainCont telephone">
+      <view class="name">客服热线</view>
+      <view class="content">
+        <view class="cont telephone">
+          <input type="text" value="{{customerData.companyPhone}}" disabled="true"></input>
+        </view>
+      </view>
+    </view>
+    <view class="mainCont emailBox">
+      <view class="name">客服邮箱</view>
+      <view class="content">
+        <view class="cont emailBox">
+          <input type="text" value="{{customerData.companyEmail}}" disabled="true"></input>
+        </view>
+      </view>
+    </view>
+    <view class="mainCont QQBox">
+      <view class="name">客服QQ</view>
+      <view class="content">
+        <view class="cont QQBox">
+          <input type="text" value="{{customerData.companyQQ}}" disabled="true"></input>
+        </view>
+      </view>
+    </view>
+    <view class="mainCont wxBox">
+      <view class="name">客服微信</view>
+      <view class="content">
+        <view class="cont ewxBox">
+          <input type="text" value="{{customerData.companyWx}}" disabled="true"></input>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="customerService-1-commit" bindtap="phoneCall">拨打热线</view>
+  <button class="btn" hover-class="none" open-type="contact">在线客服</button>
+</view>
+<component-footer></component-footer>

@@ -1,0 +1,64 @@
+.navInlet-2{
+  box-sizing: border-box;
+  width: 750rpx;
+  height: 449rpx;
+  display: block;
+  margin-bottom: 20rpx;
+  background: #fff;
+  position: relative;
+  overflow: hidden;
+  padding: 55rpx 20rpx 40rpx 30rpx;
+}
+.navInlet-2-bg{
+  width: 715rpx;
+  height: 365rpx;
+  position: absolute;
+  left: 20rpx;
+  top: 40rpx;
+  z-index: 9;
+}
+.content-left{
+  float: left;
+  margin-right: 10rpx;
+  position: relative;
+  z-index: 99;
+}
+.content-left navigator{
+  width: 268rpx;
+  height: 350rpx;
+  display: inline-block;
+}
+.content-left navigator image{
+  width: 100%;
+  height: 100%;
+}
+.content-right{
+  float: left;
+  position: relative;
+  z-index: 99;
+}
+.content-right .item-top navigator{
+  float: left;
+  width: 211rpx;
+  height: 170rpx;
+  text-align: center;
+}
+.content-right .item-top navigator image{
+  width: 171rpx;
+  height: 144rpx;
+  margin-top: 20rpx;
+}
+.content-right .item-bottom{
+  text-align: center;
+  height: 170rpx;
+}
+.content-right .item-bottom navigator{
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+}
+.content-right .item-bottom navigator image{
+  width: 378rpx;
+  height: 144rpx;
+  margin-top: 13rpx;
+}

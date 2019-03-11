@@ -1,0 +1,127 @@
+<component-header headerData="{{headerData}}"></component-header>
+<view class="orderList-content">
+  <view class="orderList-stateGroup">
+    <view class = "stateGroup-content">
+      <view class="state state_all {{status == null || status == 'null' ? 'active' : ''}}" data-status="null" bindtap="changeStatus">所有订单</view>
+      <view class="state state_needPay {{status == 0 ? 'active' : ''}}" data-status="0" bindtap="changeStatus">
+        待付款
+        <view class="number" wx:if="{{waitToPayNum != 0}}">{{waitToPayNum}}</view>
+      </view>
+      <view class="state state_needDeliver {{status == '1,2,3,4,5,11,12' ? 'active' : ''}}" data-status="1,2,3,4,5,11,12" bindtap="changeStatus">
+        待发货
+        <view class="number" wx:if="{{waitSendNum != 0}}">{{waitSendNum}}</view>
+      </view>
+      <view class="state state_needReceive {{status == 6 ? 'active' : ''}}" data-status="6" bindtap="changeStatus">
+        待收货
+        <view class="number" wx:if="{{waitReceiveNum != 0}}">{{waitReceiveNum}}</view>
+      </view>
+      <view class="state state_finished {{status == 7 ? 'active' : ''}}" data-status="7" bindtap="changeStatus">已完成</view>
+    </view>
+  </view>
+  <block wx:if="{{orderListData.length > 0}}">
+    <scroll-view scroll-y class="orderList-orderDetails" bindscrolltolower="getMoreData">
+      <block wx:for="{{orderListData}}" wx:for-index="index_1" wx:for-item="item_1" wx:key="">
+        <view class="orderItem">
+          <view class="header">
+            <view class="circle"></view>
+            <view class="text">
+              <text>订单号: {{item_1.orderId}}</text>
+            </view>
+            <view class="state" wx:if="{{item_1.status == 0}}">待付款</view>
+            <view class="state" wx:if="{{item_1.status == 1 || item_1.status == 11 || item_1.status == 12}}">已付款</view>
+            <view class="state" wx:if="{{item_1.status == 2 || item_1.status == 3 || item_1.status == 4 ||item_1.status == 5}}">待发货</view>
+            <view class="state" wx:if="{{item_1.status == 6}}">待收货</view>
+            <view class="state" wx:if="{{item_1.status == 7}}">交易完成</view>
+            <view class="state" wx:if="{{item_1.status == 8}}">退款中</view>
+            <view class="state" wx:if="{{item_1.status == 9}}">交易关闭</view>
+            <view class="state" wx:if="{{item_1.status == 99}}">订单异常</view>
+          </view>
+          <view class="body">
+            <block wx:for="{{item_1.orderGoodsList}}" wx:for-index="index_2" wx:for-item="item_2" wx:key="">
+              <view class="order-commodity">
+                <view class="commodity-img">
+                  <navigator url="/web/goodsDetail/goodsDetail?goodsId={{item_2.goodsId}}" open-type='navigate' hover-class='none'>
+                    <image wx:if="{{item_2.itemImg}}" src="{{item_2.itemImg}}"></image>
+                    <image wx:else src="{{imgHost}}/images/platform/account/default_img.jpg"></image>
+                    <image wx:if="{{item_1.orderFlag == 0}}" class="corner_mark" src="{{imgHost}}/images/platform/tag/icon_cross.png"></image>
+                    <image wx:if="{{item_1.orderFlag == 2}}" class="corner_mark" src="{{imgHost}}/images/platform/tag/icon_normal.png"></image>
+                  </navigator>
+                </view>
+                <view class="commodity-info">
+                  <view class="commodity-name">
+                    <navigator url="/web/goodsDetail/goodsDetail?goodsId={{item_2.goodsId}}" open-type='navigate' hover-class='none'>
+                      <view class="text">{{item_2.itemName}}</view>
+                    </navigator>
+                  </view>
+                  <view class="commodity-itemId" wx:if="{{item_2.infoStr}}">
+                    <view class="text">规格：{{item_2.infoStr}}</view>
+                  </view>
+                </view>
+                <view class="commodity-number">
+                    <view class="commodity-price">￥{{item_2.itemPrice}}</view>
+                    <view class="commodity-quantity">X{{item_2.itemQuantity}}</view>
+                </view>
+              </view>
+            </block>
+            <view class="commodity-totalPrice">
+              <view class="commodity-totalAmount {{item_1.status != 0 && item_1.status != 1 && item_1.status != 2 && item_1.status != 3 && item_1.status != 4 &&item_1.status != 5 && item_1.status != 11 && item_1.status != 12? 'isMiddle' : ''}}">
+                <view class="logistics">配送费:￥{{item_1.orderDetail.postFee}})</view>
+                <view class="taxFee">(综合税:￥{{item_1.orderDetail.taxFee}}</view>
+                <view class="money">{{item_1.orderDetail.payment}}</view>
+                <view class="symbol">￥</view>
+                <view class="text">总金额:</view>
+              </view>
+              <view class="commodity-deliverDes" wx:if="{{item_1.status == 0}}">
+                订单付款成功后，我们将在两个工作日之内尽快给您发货！
+              </view>
+              <view class="commodity-deliverDes" wx:if="{{item_1.status == 1 || item_1.status == 11 || item_1.status == 12}}">
+                付款成功，我们将在两个工作日之内尽快给您发货！
+              </view>
+            </view>
+            <view class="order-btnControl">
+              <view class="btnBox">
+                <block wx:if="{{item_1.status == 0}}">
+                  <view class="btn" data-orderId="{{item_1.orderId}}" bindtap="toOrderPay">立即付款</view>
+                  <view class="btn" data-orderId="{{item_1.orderId}}" bindtap="toCloseOrder">关闭订单</view>
+                  <view class="btn" data-orderId="{{item_1.orderId}}" bindtap="toOrderDetail">查看详情</view>
+                </block>
+                <block wx:if="{{item_1.status == 1 || item_1.status == 2 || item_1.status == 3 || item_1.status == 4 ||item_1.status == 5 || item_1.status == 11 || item_1.status == 12}}">
+                  <button class="btn" hover-class="none" open-type='contact'>申请退款</button>
+                  <view class="btn" data-orderId="{{item_1.orderId}}" bindtap="toOrderDetail">查看详情</view>
+                </block>
+                <block wx:if="{{item_1.status == 6}}">
+                  <view class="btn" data-orderId="{{item_1.orderId}}" bindtap="toSureOrder">确认收货</view>
+                  <button class="btn" hover-class="none" open-type='contact'>申请退款</button>
+                  <view class="btn" data-orderId="{{item_1.orderId}}" bindtap="toLogistics">查看物流</view>
+                  <view class="btn" data-orderId="{{item_1.orderId}}" bindtap="toOrderDetail">查看详情</view>
+                </block>
+                <block wx:if="{{item_1.status == 7}}">
+                  <view class="btn" data-orderId="{{item_1.orderId}}" bindtap="toDeleteOrder">删除订单</view>
+                  <view class="btn" data-orderId="{{item_1.orderId}}" bindtap="toLogistics">查看物流</view>
+                  <view class="btn" data-orderId="{{item_1.orderId}}" bindtap="toOrderDetail">查看详情</view>
+                </block>
+                <block wx:if="{{item_1.status == 9}}">
+                  <view class="btn" data-orderId="{{item_1.orderId}}" bindtap="toDeleteOrder">删除订单</view>
+                  <view class="btn" data-orderId="{{item_1.orderId}}" bindtap="toOrderDetail">查看详情</view>
+                </block>
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+      <view class="isLoading">
+        <view class="component-load-text">
+          <view wx:if="{{!isEnd}}">请下拉加载...</view>
+          <view wx:else>没有更多数据了...</view>
+        </view>
+      </view>
+    </scroll-view>
+  </block>
+  <block wx:if="{{orderListData.length == 0}}">
+    <view class="order-empty">
+      <image src="{{imgHost}}/images/platform/order/empty.png"></image>
+      <view class="text">还没有这类订单呢！</view>
+    </view>
+  </block>
+  <view region="payChoose"></view>
+</view>

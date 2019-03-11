@@ -1,0 +1,29 @@
+<view class="footer-1">
+  <view class="footer-1-content">
+    <view class="footer-shortcutIcon icon_4">
+      <navigator url="/web/index/index" open-type='switchTab' hover-class='none'>
+        <image wx:if="{{footerData.active == 1}}" src='{{imgHost}}/images/platform/footer/home_active.png'></image>
+        <image wx:else src='{{imgHost}}/images/platform/footer/home.png'></image>
+      </navigator>
+    </view>
+    <view class="footer-shortcutIcon icon_4">
+      <navigator url="/web/nav/nav" open-type='switchTab' hover-class='none'>
+        <image wx:if="{{footerData.active == 2}}" src='{{imgHost}}/images/platform/footer/nav_active.png'></image>
+        <image wx:else src='{{imgHost}}/images/platform/footer/nav.png'></image>
+      </navigator>
+    </view>
+    <view class="footer-shortcutIcon icon_4">
+      <view data-url="/web/shoppingCart/shoppingCart" bindtap="toShoppingCart">
+        <image wx:if="{{footerData.active == 3}}" src='{{imgHost}}/images/platform/footer/shoppingCart_active.png'></image>
+        <image wx:else src='{{imgHost}}/images/platform/footer/shoppingCart.png'></image>
+        <view class="number" wx:if="{{footerData.shoppingCartCount}}">{{footerData.shoppingCartCount}}</view>
+      </view>
+    </view>
+    <view class="footer-shortcutIcon icon_4">
+      <navigator url="/web/personal/personal" open-type='switchTab' hover-class='none'>
+        <image wx:if="{{footerData.active == 4}}" src='{{imgHost}}/images/platform/footer/personal_active.png'></image>
+        <image wx:else src='{{imgHost}}/images/platform/footer/personal.png'></image>
+      </navigator>
+    </view>
+  </view>
+</view>

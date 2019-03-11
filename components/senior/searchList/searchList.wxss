@@ -1,0 +1,224 @@
+page{
+  width: 100%;
+  height: 100%;
+}
+.searchProduct-1-content{
+  width: 100%;
+  height: 100%;
+}
+.searchProduct-1-content .searchProduct-header{
+  height: 88rpx;
+}
+.searchProduct-1-content .searchProduct-header .header-content{
+  width: 750rpx;
+  height: 88rpx;
+  background: #fff;
+  border-bottom: solid 1rpx #dfdfdf;
+  position: fixed;
+  top: 88rpx;
+  left: 0;
+  z-index: 500;
+}
+.header-content .header-items{
+  width: 33.3333333%;
+  float: left;
+  color: #333333;
+  font-size: 27rpx;
+  font-weight: 500;
+  line-height: 88rpx;
+  text-align: center;
+  position: relative;
+}
+.header-content .header-items.choose_price image{
+  width: 28rpx;
+  height: 28rpx;
+  position: absolute;
+  top: 30rpx;
+  left: 153rpx;
+}
+.header-content .header-items.active{
+  color: #b4282d;
+}
+.searchProduct-body-item{
+  background: #fff;
+  overflow: hidden;
+}
+.searchProduct-body-item .item-content{
+  width: 50%;
+  text-align: center;
+  display: inline-block;
+  vertical-align: top;
+  overflow: hidden;
+  padding: 5rpx 10rpx 10rpx 15rpx;
+  box-sizing: border-box;
+  border-bottom: 1rpx solid #efefef;
+  border-right: 1rpx solid #efefef;
+}
+.searchProduct-body-item .item-content:nth-child(2n){
+  border-right: none;
+}
+.searchProduct-body-item .item-content navigator{
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.item-content navigator .imgBox{
+  width: 350rpx;
+  height: 350rpx;
+  padding-top: 35rpx;
+  padding-left: 35rpx;
+  position: relative;
+  box-sizing: border-box;
+}
+.item-content navigator .imgBox view{
+  width: 280rpx;
+  height: 280rpx;
+  background-color: #ffffff;
+  position: relative;
+}
+.item-content navigator .imgBox view image{
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+}
+.item-content navigator .imgBox view image.corner_mark{
+  width: 60rpx;
+  height: 60rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 0;
+  margin: 0;
+  max-width: 120rpx;
+}
+.searchProduct-body-item .item-content .description{
+  width: 350rpx;
+  color: #9F8A60;
+  overflow: hidden;
+}
+.searchProduct-body-item .item-content .description text{
+  width: calc(100% - 140rpx);
+  height: 58rpx;
+  float: left;
+  font-size: 22rpx;
+  font-weight: 500;
+  line-height: 59rpx;
+  text-align: left;
+  padding-left: 20rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+.searchProduct-body-item .item-content .description .tagBox{
+  float: left;
+  height: 30rpx;
+  padding-right: 10rpx;
+  margin-left: 10rpx;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.searchProduct-body-item .item-content .description .tagBox image{
+  width: 60rpx;
+  height: 24rpx;
+  float: left;
+  margin: 3rpx 3rpx 0 0;
+  display: block;
+  background-position: center;
+  background-repeat: no-repeat
+}
+.searchProduct-body-item .item-content .textGroup{
+  width: 350rpx;
+  padding: 0 3rpx;
+  box-sizing: border-box;
+}
+.searchProduct-body-item .item-content .textGroup .name{
+  width: 100%;
+  text-align: left;
+  padding: 0 10rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+  font-size: 25rpx;
+  font-weight: 500;
+  color: #333;
+  box-sizing: border-box;
+}
+.searchProduct-body-item .item-content .textGroup .price{
+  max-width: calc(100% - 75rpx);
+  height: 38rpx;
+  float: left;
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #b4282d;
+  line-height: 38rpx;
+  margin-left: 7rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.searchProduct-body-item .item-content .textGroup .imgBox{
+  width: 56rpx;
+  margin-top: -5rpx;
+  float: right;
+}
+.searchProduct-body-item .item-content .textGroup .imgBox image{
+  width: 34rpx;
+  height: 34rpx;
+}
+.empty_search{
+  width: 100%;
+  text-align: center;
+  position: relative;
+}
+.empty_search image{
+   width: 320rpx;
+  height: 320rpx;
+  display: inline-block;
+  position: absolute;
+  top: 80rpx;
+  left: 210rpx;
+}
+.empty_search .text{
+  height: 88rpx;
+  margin: 0 auto;
+  display: inline-block;
+  font-family: PingFangSC-Light,helvetica,'Heiti SC';
+  font-size: 30rpx;
+  color: #888888;
+  font-weight: 400;
+  letter-spacing: 8rpx;
+  position: absolute;
+  top: 418rpx;
+  left: 10rpx;
+  bottom: 0;
+  right: 0;
+}
+.searchProduct-body .isLoading{
+  width: 100%;
+  height: 56rpx;
+  padding: 20rpx 0;
+  background-color: #eeeeee;
+  overflow: hidden;
+  display: block;
+}
+.searchProduct-body .isLoading .load-text{
+  width: 100%;
+  height: 56rpx;
+  text-align: center;
+  display: inline-block;
+  font-size: 27rpx;
+  line-height: 58rpx;
+  color: #999;
+  letter-spacing: 5rpx;
+}

@@ -1,0 +1,35 @@
+<view class="goodsList-2">
+  <view class="goodsList-2-content">
+    <view class="commodity-header">
+      <image src="{{imgHost}}/images/platform/goodsList/goodsList-title.png"></image>
+    </view>
+    <view class="commodity-center">
+      <block wx:for="{{goodsListData_2.cont}}" wx:key="">
+        <view class="commodity-item">
+          <navigator url="{{item.href}}" open-type='navigate' hover-class='none'>
+            <view class="shopImg">
+              <image class="mainImg" src="{{item.picPath}}"></image>
+              <image class="iconType" wx:if="{{item.goodsType == 0}}" src="{{imgHost}}/images/platform/tag/icon_cross.png"></image>
+              <image class="iconType" wx:elif="{{item.goodsType == 2}}" src="{{imgHost}}/images/platform/tag/icon_normal.png"></image>
+            </view>
+            <view class="shopName">{{item.title}}</view>
+            <view class="shopIcon" wx:if="{{item.tagPath}}">
+              <block wx:for="{{item.tagPath}}" wx:key="">
+                <image wx:if="{{item == '必选'}}" src="{{imgHost}}/images/platform/goodsList/goodsList-tag1.png"></image>
+                <image wx:if="{{item == '爆款'}}" src="{{imgHost}}/images/platform/goodsList/goodsList-tag2.png"></image>
+                <image wx:if="{{item == '热销'}}" src="{{imgHost}}/images/platform/goodsList/goodsList-tag3.png"></image>
+                <image wx:if="{{item == '优选'}}" src="{{imgHost}}/images/platform/goodsList/goodsList-tag4.png"></image>
+              </block>
+            </view>
+            <view class="shopPrice">
+              <view class="origin">
+                <image src="{{imgHost}}/images/platform/city/{{item.origin}}.png"></image>
+              </view>
+              <view class="price">￥{{item.price}}</view>
+            </view>
+          </navigator>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>

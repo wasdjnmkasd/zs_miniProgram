@@ -1,0 +1,187 @@
+page{
+  padding: 0;
+}
+.address-edit-content{
+  width: 100%;
+  height: auto;
+  padding-top: 20rpx;
+  margin-bottom: 20rpx;
+  overflow: hidden;
+}
+.address-edit-content .address-edit-prompt{
+  width: calc(100% - 40rpx);
+  padding: 10rpx;
+  color: #f34d4d;
+  font-size: 20rpx;
+  line-height: 28rpx;
+  font-weight: 500;
+  margin: 0 auto 20rpx auto;
+  border-top: solid 1rpx #dfdfdf;
+  border-bottom: solid 1rpx #dfdfdf;
+  background-color: #fff8db;
+  border-radius: 8rpx;
+  box-sizing: border-box;
+}
+.address-edit-content .address-edit-prompt .prompt-text {
+  display: inline-block;
+  vertical-align: top;
+}
+.address-edit-content .address-edit-info{
+  width: calc(100% - 40rpx);
+  margin: 0 auto 20rpx auto;
+  height: auto;
+  padding: 0 48rpx;
+  border-radius: 13rpx;
+  background-color: #ffffff;
+  box-sizing: border-box;
+}
+.address-edit-content .address-edit-info > view{
+  width: 100%;
+  height: 90rpx;
+  display: table;
+}
+.address-edit-content .address-edit-info > view:not(:first-child) {
+  border-top: solid 1px #eeeeee;
+}
+.address-edit-content .address-edit-info > view .name{
+  width: 150rpx;
+  height: 100%;
+  font-family: PingFangSC-Light,helvetica,'Heiti SC';
+  font-size: 30rpx;
+  line-height: 90rpx;
+  color: #999;
+  display: table-cell;
+}
+.address-edit-content .address-edit-info > view .text{
+  width: calc(100% - 150rpx);
+  height: 90rpx;
+  vertical-align: middle;
+  position: relative;
+  display: table-cell;
+}
+.address-edit-content .address-edit-info > view .text input,
+.address-edit-content .address-edit-info > view .text select{
+  width: 100%;
+  height: 54rpx;
+  font-family: PingFangSC-Light,helvetica,'Heiti SC';
+  font-size: 28rpx;
+  line-height: 54rpx;
+  color: #999999;
+  padding: 0 15rpx;
+  background-color: transparent;
+  -webkit-appearance: none;
+  appearance: none;
+  position: relative;
+}
+.address-edit-content .address-edit-defaultSetting{
+  width: calc(100% - 40rpx);
+  margin: auto;
+  height: auto;
+  padding: 0 48rpx;
+  border-radius: 13rpx;
+  background-color: #ffffff;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.address-edit-content .address-edit-defaultSetting .text{
+  width: calc(100% - 186rpx);
+  height: 90rpx;
+  float: left;
+  font-family: PingFangSC-Light,helvetica,'Heiti SC';
+  font-size: 30rpx;
+  line-height: 90rpx;
+  color: #333333;
+}
+.address-edit-content .address-edit-defaultSetting .btnBox{
+  width: 186rpx;
+  height: 90rpx;
+  float: left;
+  position: relative;
+}
+.address-edit-content .address-edit-defaultSetting .btnBox .btnSet{
+  width: 118rpx;
+  height: 68rpx;
+  border-radius: 34rpx;
+  background-color: #dfdfdf;
+  position: absolute;
+  top: 11rpx;
+  right: 0;
+  display: inline-block;
+}
+.address-edit-content .address-edit-defaultSetting .btnBox.active .btnSet{
+  background-color: #c75e62;
+}
+.address-edit-content .address-edit-defaultSetting .btnBox.active .btnSet .btn{
+  left: auto;
+  right: 4rpx;
+  box-shadow: -3rpx 0 5rpx 0 rgba(0,0,0,0.36);
+  -webkit-box-shadow: -3rpx 0 5rpx 0 rgba(0,0,0,0.36);
+  -moz-box-shadow: -3rpx 0 5rpx 0 rgba(0,0,0,0.36);
+  -ms-box-shadow: -3rpx 0 5rpx 0 rgba(0,0,0,0.36);
+}
+.address-edit-content .address-edit-defaultSetting .btnBox .btnSet .btn{
+  width: 60rpx;
+  height: 60rpx;
+  background-color: #ffffff;
+  border-radius: 30rpx;
+  position: absolute;
+  top: 4rpx;
+  left: 4rpx;
+  right: auto;
+  box-shadow: 3rpx 0 5rpx 0 rgba(0,0,0,0.36);
+  -webkit-box-shadow: 3rpx 0 5rpx 0 rgba(0,0,0,0.36);
+  -moz-box-shadow: 3rpx 0 5rpx 0 rgba(0,0,0,0.36);
+  -ms-box-shadow: 3rpx 0 5rpx 0 rgba(0,0,0,0.36);
+}
+.address-edit-content .address-edit-commit{
+  width: calc(100% - 60rpx);
+  height: 92rpx;
+  font-family: PingFangSC-Light,helvetica,'Heiti SC';
+  font-size: 36rpx;
+  color: #ffffff;
+  line-height: 92rpx;
+  text-align: center;
+  margin: 50rpx auto 60rpx auto;
+  background-color: #b4282d;
+  border-radius: 15rpx;
+  display: block;
+}
+.citypickers{
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  min-height: 100%;
+  background-color: red;
+}
+picker-view{
+  background: #fff;
+  font-size: 36rpx;
+  text-align: center;
+}
+.citybody {
+  position: fixed;
+  bottom: 0;
+}
+.cityheader {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 4;
+  background: #fff;
+}
+.city-cancel {
+  float: left;
+  margin: 20rpx 20rpx 20rpx 40rpx;
+  color: #818181;
+}
+.city-true {
+  float: right;
+  margin: 20rpx 40rpx 20rpx 20rpx;
+  color: #2FB42E
+}
+.section .picker {
+  background-color: #fff;
+  border-bottom: 1px #d9d9d9 solid;
+  border-top: 1px #d9d9d9 solid;
+  padding: 20rpx;
+}

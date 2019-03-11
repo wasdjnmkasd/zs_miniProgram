@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "component-header": "/components/base/header/header",
+    "component-banner": "/components/base/banner/banner"
+  },
+  "navigationBarTitleText": "商品详情"
+}

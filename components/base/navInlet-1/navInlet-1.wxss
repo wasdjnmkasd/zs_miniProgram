@@ -1,0 +1,23 @@
+.navInlet-1-content{
+  padding: 40rpx 48rpx 0 48rpx;
+  background: #fff;
+  overflow: hidden;
+}
+.navInlet-1-content .content-item{
+  width: 86rpx;
+  height: 101rpx;
+  float: left;
+  margin-right: 57rpx;
+  margin-bottom: 40rpx;
+}
+.navInlet-1-content .content-item:nth-child(5n){
+  margin-right: 0;
+}
+.navInlet-1-content .content-item navigator{
+  width: 100%;
+  height: 100%;
+}
+.navInlet-1-content .content-item navigator image{
+  width: 100%;
+  height: 100%;
+}

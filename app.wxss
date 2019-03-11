@@ -1,0 +1,10 @@
+::-webkit-scrollbar{
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+page{
+  background: #f4f4f4;
+  padding-bottom: 98rpx;
+  padding-top: 90rpx;
+}

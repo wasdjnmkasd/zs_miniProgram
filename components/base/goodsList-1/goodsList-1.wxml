@@ -1,0 +1,32 @@
+<view class="floor-1-{{goodsListData_1.sort}}">
+  <view class="floor-1-content">
+    <view class="mainImg">
+      <navigator url="{{goodsListData_1.own.href}}" open-type='navigate' hover-class='none'>
+        <image src="{{imgHost}}{{goodsListData_1.own.picPath}}"></image>
+      </navigator>
+    </view>
+    <view class="goodsList-list">
+      <scroll-view scroll-y class="content-list">
+        <block wx:for="{{goodsListData_1.cont}}" wx:key="">
+          <view class="list-item">
+            <navigator url="{{item.href}}" open-type='navigate' hover-class='none'>
+              <view class="shopImg">
+                <image src="{{item.picPath}}"></image>
+              </view>
+              <view class="shopName">{{item.title}}</view>
+              <view class="shopPrice">
+                <text class="text">￥{{item.price}}</text>
+                <text class="linePrice" wx:if="{{item.enname}}">￥{{item.enname}}</text>
+              </view>
+            </navigator>
+          </view>
+        </block>
+        <view class="list-item lookMore">
+          <navigator url="/web/searchProduct/searchProduct?{{goodsListData_1.own._href}}" open-type='navigate' hover-class='none'>
+            <image src="{{imgHost}}/images/platform/goodsList/goodsList-more.png"></image>
+          </navigator>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+</view>

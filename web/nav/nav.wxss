@@ -1,0 +1,103 @@
+.nav-1-content{
+  width: 750rpx;
+  height: calc(100% - 188rpx);
+  display: block;
+  position: fixed;
+  top: 88rpx;
+  left: 0;
+  z-index: 800;
+  background-color: #ffffff;
+}
+.nav-list{
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.nav-list > scroll-view{
+  width: 100%;
+  height: 100%;
+  float: left;
+}
+.nav-list .classify-list-left{
+  width: 162rpx;
+  height: calc(100% - 188rpx);
+}
+.nav-list .classify-list-left view{
+  font-size: 26rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  padding: 0 3rpx;
+  color: #666;
+  background: #ffffff;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  position: relative;
+}
+.nav-list .classify-list-left view.active{
+  font-size: 28rpx;
+  color: #ab2b2b;
+}
+.nav-list .classify-list-left view.active::before{
+  content: "";
+  width: 10rpx;
+  height: 50rpx;
+  position: absolute;
+  top: 17rpx;
+  left: 2rpx;
+  background-color: #ab2b2b;
+}
+.nav-list .classify-list-right{
+  width: 588rpx;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  border-left: solid 2rpx #eee;
+}
+.nav-list .classify-list-right text.item-title{
+  color: #999;
+  font-size: 26rpx;
+  font-weight: 400;
+  position: relative;
+  padding: 40rpx 0 20rpx 0;
+  display: block;
+  border-bottom: 2rpx solid #eee;
+}
+.nav-list .classify-list-right .classify-list-right-item{
+  width: 100%;
+  display: inline-block;
+}
+.nav-list .classify-list-right .classify-list-right-item view{
+  float: left;
+  min-width: 135rpx;
+  max-width: 245rpx;
+  margin: 0 20rpx;
+  color: #333;
+  height: 76rpx;
+}
+.nav-list .classify-list-right .classify-list-right-item navigator{
+  width: calc(100% / 3);
+  height: 240rpx;
+  float: left;
+  text-align: center;
+  padding: 10rpx 0;
+}
+.nav-list .classify-list-right .classify-list-right-item navigator image{
+  width: 160rpx;
+  height: 160rpx;
+}
+.nav-list .classify-list-right .classify-list-right-item view text{
+  width: 98%;
+  display: inline-block;
+  padding: 0 10rpx;
+  font-size: 24rpx;
+  font-weight: 400;
+  text-align: center;
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}

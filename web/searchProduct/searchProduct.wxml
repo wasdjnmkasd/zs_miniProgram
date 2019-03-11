@@ -1,0 +1,3 @@
+<component-header headerData="{{headerData}}"></component-header>
+<component-searchList searchListData="{{searchListData}}" bind:addShopCart="getShoppingCartCount"></component-searchList>
+<component-footer footerData="{{footerData}}"></component-footer>

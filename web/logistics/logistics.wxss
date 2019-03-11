@@ -1,0 +1,128 @@
+page{
+  padding-bottom: 0;
+}
+.logistics-content{
+  width: 100%;
+  height: auto;
+  margin-bottom: 20rpx;
+  position: relative;
+  overflow: hidden;
+}
+.logistics-content .logistics-item .logistics-basic{
+  width: 100%;
+  height: 135rpx;
+  padding: 0 10rpx 0 20rpx;
+  margin-bottom: 15rpx;
+  overflow: hidden;
+  background-color: #ffffff;
+  box-sizing: border-box;
+} 
+.logistics-content .logistics-item .logistics-basic .commodityDescription{
+  width: calc(100% - 200rpx);
+  height: 135rpx;
+  padding-top: 25rpx;
+  float: left;
+  display: block;
+  margin-left: 30rpx;
+}
+.logistics-content .logistics-item .logistics-basic .commodityDescription .text{
+  width: 100%;
+  height: 36rpx;
+  margin-bottom: 10rpx;
+  overflow: hidden;
+  display: block;
+}
+.logistics-content .logistics-item .logistics-basic .commodityDescription .text .name{
+  width: 140rpx;
+  height: 100%;
+  float: left;
+  font-family: PingFangSC-Light,helvetica,'Heiti SC';
+  font-size: 28rpx;
+  line-height: 36rpx;
+  color: #333333;
+}
+.logistics-content .logistics-item .logistics-basic .commodityDescription .text .value{
+  width: calc(100% - 140rpx);
+  height: 100%;
+  float: left;
+  font-family: PingFangSC-Light,helvetica,'Heiti SC';
+  font-size: 28rpx;
+  line-height: 36rpx;
+  color: #666666;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.logistics-content .logistics-item .logistics-details{
+  width: 100%;
+  height: auto;
+  min-height: 540rpx;
+  padding: 45rpx 20rpx 0 30rpx;
+  margin-bottom: 30rpx;
+  overflow: hidden;
+  background-color: #ffffff;
+  position: relative;
+  box-sizing: border-box;
+}
+.logistics-content .logistics-item .logistics-details::before{
+  content: "";
+  width: 2rpx;
+  height: calc(100% - 120rpx);
+  background-color: #dfdfdf;
+  position: absolute;
+  top: 60rpx;
+  left: 44rpx;
+}
+.logistics-content .logistics-item .logistics-details .logisticsItem{
+  width: 100%;
+  height: auto;
+  padding-left: 42rpx;
+  display: block;
+  position: relative;
+  box-sizing: border-box;
+}
+.logistics-content .logistics-item .logistics-details .logisticsItem.newest::before {
+  content: "";
+  border: solid 15rpx #b6d89e;
+  border-radius: 15rpx;
+  position: absolute;
+  top: 5rpx;
+  left: 0;
+}
+.logistics-content .logistics-item .logistics-details .logisticsItem.newest::after{
+  content: "";
+  border: solid 10rpx #7cba52;
+  border-radius: 10rpx;
+  position: absolute;
+  top: 10rpx;
+  left: 5rpx;
+}
+.logistics-content .logistics-item .logistics-details .logisticsItem .text{
+  width: 100%;
+  height: auto;
+  margin-bottom: 20rpx;
+  display: inline-block;
+  position: relative;
+  border-bottom: 1rpx solid #e4e4e4;
+}
+.logistics-content .logistics-item .logistics-details .logisticsItem .text .description{
+  width: 100%;
+  height: auto;
+  margin-bottom: 10rpx;
+  display: inline-block;
+  font-family: PingFangSC-Light,helvetica,'Heiti SC';
+  font-size: 28rpx;
+  line-height: 42rpx;
+  color: #333333;
+}
+.logistics-content .logistics-item .logistics-details .logisticsItem .text .time {
+  width: 100%;
+  height: auto;
+  padding-left: 7rpx;
+  margin-bottom: 22rpx;
+  display: inline-block;
+  font-family: PingFangSC-Light,helvetica,'Heiti SC';
+  font-size: 24rpx;
+  line-height: 36rpx;
+  color: #999999;
+}

@@ -1,0 +1,70 @@
+<!-- <component-header headerData="{{headerData}}"></component-header> -->
+<view class="personal-content">
+  <view class="personal-header">
+    <view class="shopImg">
+      <view class="imgBox">
+        <image wx:if="{{shopInfoData.headImg}}" src="{{shopInfoData.headImg}}"></image>
+        <image wx:else src="{{imgHost}}/images/platform/personal/icon_shop.jpg"></image>
+      </view>
+    </view>
+    <view class="userName">
+      <text wx:if="{{!isLogin}}">游客（未登录）</text>
+      <text wx:else>{{personalData.userDetail.name || personalData.phone}}(普通用户)</text>
+    </view>
+    <view class="aboutus">
+      <text wx:if="{{shopInfoData.aboutus}}">微店简介：{{shopInfoData.aboutus}}</text>
+      <text wx:else>微店简介：本店铺提供丰富的海外商品，欢迎广大顾客光临购买！</text>
+    </view>
+    <image class="personal-bgImg" src="{{imgHost}}/images/platform/personal/personalBgImg.png"></image>
+  </view>
+  <view class="personal-orders">
+    <view class="orders-content">
+      <view data-url="/web/orderList/orderList?status=null" bindtap="toOrderList">
+        <image src="{{imgHost}}/images/platform/personal/order_all.png" class="order_all"></image>
+      </view>
+      <view data-url="/web/orderList/orderList?status=0" bindtap="toOrderList">
+        <image src="{{imgHost}}/images/platform/personal/order_needPay.png" class="order_needPay"></image>
+        <view class="number" wx:if="{{waitToPayNum}}">{{waitToPayNum}}</view>
+      </view>
+      <view data-url="/web/orderList/orderList?status=1,2,3,4,5,11,12" bindtap="toOrderList">
+        <image src="{{imgHost}}/images/platform/personal/order_needDeliver.png" class="order_needDeliver"></image>
+        <view class="number" wx:if="{{waitSendNum}}">{{waitSendNum}}</view>
+      </view>
+      <view data-url="/web/orderList/orderList?status=6" bindtap="toOrderList">
+        <image src="{{imgHost}}/images/platform/personal/order_needReceived.png" class="order_needReceived"></image>
+        <view class="number" wx:if="{{waitReceiveNum}}">{{waitReceiveNum}}</view>
+      </view>
+      <view data-url="/web/orderList/orderList?status=7" bindtap="toOrderList">
+        <image src="{{imgHost}}/images/platform/personal/order_finished.png" class="order_finished"></image>
+      </view>
+    </view>
+  </view>
+  <view class="personal-function">
+    <view data-url="/web/addressManage/addressManage" bindtap="toAddressManage">
+      <image src="{{imgHost}}/images/platform/personal/deliveryAddress.png"></image>
+      <text>收货地址</text>
+      <image src="{{imgHost}}/images/platform/personal/href_blod.png" class="icon_right"></image>
+    </view>
+    <view data-url="/web/personal-information/personal-information" bindtap="toPersonalInfo">
+      <image src="{{imgHost}}/images/platform/personal/information.png"></image>
+      <text>个人信息</text>
+      <image src="{{imgHost}}/images/platform/personal/href_blod.png" class="icon_right"></image>
+    </view>
+    <view data-url="/web/customerService/customerService" bindtap="toCustomerService">
+      <image src="{{imgHost}}/images/platform/personal/customerService.png"></image>
+      <text>客服信息</text>
+      <image src="{{imgHost}}/images/platform/personal/href_blod.png" class="icon_right"></image>
+    </view>
+  </view>
+  <view class="personal-btn" bindtap="toLoginChoose" wx:if="{{isLogin}}">
+    <text>切换登录</text>
+  </view>
+  <view class="personal-btn" wx:else>
+    <navigator url="/web/loginChoose/loginChoose" open-type='navigate' hover-class='none'>登陆</navigator>
+  </view>
+</view>
+<component-footer footerData="{{footerData}}"></component-footer>
+<view class="alert-content" wx:if="{{alertContentShow}}">
+  <image src="{{imgHost}}/images/platform/personal/alert-content.png"></image>
+  <view class="cancelBtn" bindtap="alertContentHide"></view>
+</view>

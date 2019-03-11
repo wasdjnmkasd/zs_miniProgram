@@ -1,0 +1,18 @@
+<component-header headerData="{{headerData}}"></component-header>
+<view class="login-content">
+  <view class="login-account {{account.status == 0 ? '' : 'error_status'}}">
+    <image src="{{imgHost}}/images/platform/account/people.png" class="icon_people"></image>
+    <input type="number" placeholder="请输入手机号码..." value="{{account.value}}" maxlength="11" bindblur="accountBlur"></input>
+    <image src="{{imgHost}}/images/platform/account/close_circle.png" class="icon_clear" bindtap="accountClear"></image>
+  </view>
+  <view class="login-password {{password.status == 0 ? '' : 'error_status'}}">
+    <image src="{{imgHost}}/images/platform/account/lock.png" class="icon_lock"></image>
+    <input type="password" placeholder="请输入6-12位密码..." value="{{password.value}}" maxlength="12" bindinput="passwordChange" bindblur="passwordBlur"></input>
+    <image src="{{imgHost}}/images/platform/account/eye.png" class="icon_eye"></image>
+  </view>
+  <view class="login-loginBtn" bindtap="userLogin">登录</view>
+  <view class="login-prompt">
+    <navigator url="/web/register/register" open-type="navigate" hover-class="none">帐号注册</navigator>
+    <navigator url="/web/forgetPassword/forgetPassword" open-type="navigate" hover-class="none">忘记密码</navigator>
+  </view>
+</view>

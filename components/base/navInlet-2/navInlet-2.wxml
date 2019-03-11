@@ -1,0 +1,23 @@
+<view class="navInlet-2">
+  <image src="{{imgHost}}/images/platform/navInlet/navInlet-bg.png" class="navInlet-2-bg"></image>
+  <view class="content-left">
+    <navigator url="/web/searchProduct/searchProduct?goodsName=一般贸易(包邮)&upShelves=1&tag=一般贸易(包邮)" open-type="navigate" hover-class="none">
+      <image src="{{imgHost}}/images/platform/navInlet/navInlet-11.png"></image>
+    </navigator>
+  </view>
+  <view class="content-right">
+    <view class="item-top">
+      <navigator url="/web/searchProduct/searchProduct?goodsName=热销榜单&upShelves=1&tag=热销榜单" open-type='navigate' hover-class="none">
+        <image src='{{imgHost}}/images/platform/navInlet/navInlet-12.png'></image>
+      </navigator>
+      <navigator url="/web/searchProduct/searchProduct?goodsName=新品推荐&upShelves=1&tag=新品推荐" open-type='navigate' hover-class="none">
+        <image src='{{imgHost}}/images/platform/navInlet/navInlet-13.png'></image>
+      </navigator>
+    </view>
+    <view class="item-bottom">
+      <navigator url="/web/searchProduct/searchProduct?goodsName=一般贸易&upShelves=1&type=2" open-type='navigate' hover-class="none">
+        <image src='{{imgHost}}/images/platform/navInlet/navInlet-14.png'></image>
+      </navigator>
+    </view>
+  </view>
+</view>

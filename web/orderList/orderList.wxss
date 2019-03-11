@@ -1,0 +1,394 @@
+page{
+  width: 100%;
+  height: 100%;
+  padding-bottom: 0;
+  overflow: hidden;
+}
+.orderList-content{
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.orderList-content .orderList-stateGroup{
+  width: 750rpx;
+  height: 90rpx;
+  overflow: hidden;
+  border-top: solid 1rpx #dfdfdf;
+}
+.orderList-content .orderList-stateGroup .stateGroup-content{
+  width: 750rpx;
+  height: 90rpx;
+  background-color: #eeeeee;
+  position: fixed;
+  top: 90rpx;
+  left: 0;
+  z-index: 9999;
+  overflow: hidden;
+}
+.orderList-content .orderList-stateGroup .stateGroup-content .state{
+  width: 20%;
+  height: 80rpx;
+  background-color: #ffffff;
+  float: left;
+  font-family: PingFangSC-Light,helvetica,'Heiti SC';
+  font-size: 29rpx;
+  line-height: 80rpx;
+  color: #666666;
+  text-align: center;
+  position: relative;
+  cursor: pointer;
+}
+.orderList-content .orderList-stateGroup .stateGroup-content .state .number{
+  width: 28rpx;
+  height: 28rpx;
+  font-family: PingFangSC-Light,helvetica,'Heiti SC';
+  font-size: 16rpx;
+  color: #ffffff;
+  line-height: 28rpx;
+  text-align: center;
+  border-radius: 14rpx;
+  background-color: #f34d4d;
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  margin-left: 30rpx;
+}
+.orderList-content .orderList-stateGroup .stateGroup-content .state.active{
+  color: #b4282d;
+}
+.orderList-content .orderList-orderDetails{
+  width: 100%;
+  height: calc(100% - 182rpx);
+}
+.orderList-orderDetails .orderItem{
+  width: 100%;
+  height: auto;
+  margin-bottom: 25rpx;
+}
+.orderList-orderDetails .orderItem:last-child{
+  margin-bottom: 0;
+}
+.orderList-orderDetails .orderItem .header{
+  width: 100%;
+  height: 80rpx;
+  padding: 0 20rpx 0 30rpx;
+  overflow: hidden;
+  background-color: #ffffff;
+  border: solid 1rpx #dfdfdf;
+  box-sizing: border-box;
+}
+.orderList-orderDetails .orderItem .header .circle{
+  width: 30rpx;
+  height: 30rpx;
+  margin-top: 25rpx;
+  margin-right: 10rpx;
+  float: left;
+  border-radius: 20rpx;
+  background-color: #8fca68;
+}
+.orderList-orderDetails .orderItem .header .text{
+  width: calc(100% - 210rpx);
+  height: 80rpx;
+  float: left;
+  font-family: PingFangSC-Light,helvetica,'Heiti SC';
+  font-size: 30rpx;
+  line-height: 80rpx;
+  color: #333333;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.orderList-orderDetails .orderItem .header .text text{
+  height: 80rpx;
+  font-family: PingFangSC-Light,helvetica,'Heiti SC';
+  font-size: 28rpx;
+  line-height: 80rpx;
+  color: #666666;
+  float: left;
+}
+.orderList-orderDetails .orderItem .header .state{
+  width: 120rpx;
+  height: 80rpx;
+  float: right;
+  text-align: right;
+  font-family: PingFangSC-Light,helvetica,'Heiti SC';
+  font-size: 25rpx;
+  line-height: 80rpx;
+  color: #666666;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.orderList-orderDetails .orderItem .body{
+  width: 100%;
+  height: auto;
+}
+.orderList-orderDetails .orderItem .body .order-commodity{
+  width: 100%;
+  height: 180rpx;
+  padding: 0 20rpx 0 40rpx;
+  overflow: hidden;
+  display: block;
+  background-color: #ffffff;
+  position: relative;
+  box-sizing: border-box;
+}
+.orderItem .body .order-commodity .commodity-img{
+  width: 160rpx;
+  height: 160rpx;
+  float: left;
+  overflow: hidden;
+  margin-top: 10rpx;
+  margin-right: 15rpx;
+  position: relative;
+  text-align: center;
+}
+.orderItem .body .order-commodity .commodity-img navigator{
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  border: solid 1rpx #dfdfdf;
+  box-sizing: border-box;
+}
+.orderItem .body .order-commodity .commodity-img navigator image{
+  width: 100%;
+  height: 100%;
+}
+.orderItem .body .order-commodity .commodity-img navigator image.corner_mark{
+  width: 60rpx;
+  height: 60rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 0;
+}
+.orderItem .body .order-commodity .commodity-info{
+  width: calc(100% - 350rpx);
+  height: 180rpx;
+  float: left;
+  padding-top: 32rpx;
+  overflow: hidden;
+}
+.orderItem .body .order-commodity .commodity-info .commodity-name{
+  width: 100%;
+  height: 50rpx;
+  font-family: PingFangSC-Light,helvetica,'Heiti SC';
+  font-size: 30rpx;
+  line-height: 42rpx;
+  color: #333333;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+}
+.orderItem .body .order-commodity .commodity-info .commodity-name navigator{
+  width: 100%;
+  height: 100%;
+  font-family: PingFangSC-Light,helvetica,'Heiti SC';
+  font-size: 30rpx;
+  line-height: 42rpx;
+  color: #333333;
+  margin-bottom: 20rpx;
+  display: block;
+}
+.orderItem .body .order-commodity .commodity-info .commodity-name navigator view{
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.orderItem .body .order-commodity .commodity-info .commodity-itemId{
+  width: 100%;
+  height: 42rpx;
+  font-family: PingFangSC-Light,helvetica,'Heiti SC';
+  font-size: 27rpx;
+  line-height: 42rpx;
+  color: #333333;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+}
+.orderItem .body .order-commodity .commodity-number{
+  width: 170rpx;
+  height: 180rpx;
+  float: right;
+}
+.orderItem .body .order-commodity .commodity-number .commodity-price{
+  width: 100%;
+  padding-right: 10rpx;
+  margin-top: 46rpx;
+  font-family: PingFangSC-Light,helvetica,'Heiti SC';
+  font-size: 28rpx;
+  color: #666666;
+  text-align: right;
+  display: inline-block;
+}
+.orderItem .body .order-commodity .commodity-number .commodity-quantity{
+  width: 100%;
+  padding-right: 10rpx;
+  margin-top: 10rpx;
+  font-family: PingFangSC-Light,helvetica,'Heiti SC';
+  font-size: 28rpx;
+  color: #666666;
+  text-align: right;
+  display: inline-block;
+}
+.orderItem .body .commodity-totalPrice{
+  width: 100%;
+  height: 85rpx;
+  padding: 0 10rpx 0 30rpx;
+  display: block;
+  background-color: #ffffff;
+  position: relative;
+  box-sizing: border-box;
+}
+.orderItem .body .commodity-totalPrice::before{
+  content: "";
+  width: calc(100% - 30rpx);
+  border-top: solid 1rpx #dfdfdf;
+  position: absolute;
+  top: 0;
+  left: 30rpx;
+}
+.orderItem .body .commodity-totalPrice .commodity-totalAmount{
+  width: 100%;
+  height: 85rpx;
+  float: left;
+  position: relative;
+  box-sizing: border-box;
+}
+.orderItem .body .commodity-totalPrice .commodity-totalAmount.isMiddle {
+  padding-top: 16rpx;
+}
+.orderItem .body .commodity-totalPrice .commodity-totalAmount .logistics{
+  padding-right: 15rpx;
+  float: right;
+  font-family: PingFangSC-Light,helvetica,'Heiti SC';
+  font-size: 24rpx;
+  color: #666666;
+  line-height: 55rpx;
+}
+.orderItem .body .commodity-totalPrice .commodity-totalAmount .taxFee{
+  padding-right: 15rpx;
+  float: right;
+  font-family: PingFangSC-Light,helvetica,'Heiti SC';
+  font-size: 24rpx;
+  color: #666666;
+  line-height: 55rpx;
+}
+.orderItem .body .commodity-totalPrice .commodity-totalAmount .money{
+  padding-right: 10rpx;
+  float: right;
+  font-family: PingFangSC-Light,helvetica,'Heiti SC';
+  font-size: 30rpx;
+  color: #333333;
+  line-height: 55rpx;
+}
+.orderItem .body .commodity-totalPrice .commodity-totalAmount .symbol{
+  float: right;
+  font-family: PingFangSC-Light,helvetica,'Heiti SC';
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #333333;
+  line-height: 55rpx;
+}
+.orderItem .body .commodity-totalPrice .commodity-totalAmount .text{
+  padding-right: 15rpx;
+  float: right;
+  font-family: PingFangSC-Light,helvetica,'Heiti SC';
+  font-size: 30rpx;
+  color: #666666;
+  line-height: 55rpx;
+}
+.orderItem .body .commodity-totalPrice .commodity-deliverDes {
+  position: absolute;
+  bottom: 7rpx;
+  font-size: 21rpx;
+  color: #f34d4d;
+  right: 22rpx;
+}
+.orderItem .body .order-btnControl{
+  width: 100%;
+  height: 75rpx;
+  background-color: #ffffff;
+  border-top: solid 1rpx #dfdfdf;
+  overflow: hidden;
+  display: block;
+}
+.orderItem .body .order-btnControl .btnBox{
+  width: 100%;
+  height: 100%;
+  float: right;
+  overflow: hidden;
+}
+.orderItem .body .order-btnControl .btnBox .btn{
+  width: 172rpx;
+  height: 75rpx;
+  float: right;
+  padding: 0 15rpx;
+  font-family: PingFangSC-Light,helvetica,'Heiti SC';
+  font-size: 30rpx;
+  font-weight: 400;
+  line-height: 75rpx;
+  border-top: none;
+  border-bottom: none;
+  text-align: center;
+  background-color: #f9f9f9;
+  color: #777777;
+  box-sizing: border-box;
+  border-radius: 0;
+}
+.orderItem .body .order-btnControl .btnBox .btn::after{
+  border: none;
+}
+.orderItem .body .order-btnControl .btnBox .btn:not(:last-child) {
+  border-left: solid 1rpx #dfdfdf;
+}
+.orderList-content .isLoading{
+  width: 100%;
+  height: 56rpx;
+  margin: 20rpx 0;
+  background-color: #eeeeee;
+  overflow: hidden;
+  display: block;
+}
+.orderList-content .isLoading .component-load-text{
+  width: 100%;
+  height: 56rpx;
+  text-align: center;
+}
+.orderList-content .isLoading .component-load-text view{
+  display: inline-block;
+  font-size: 27rpx;
+  height: 56rpx;
+  line-height: 58rpx;
+  color: #999;
+  letter-spacing: 5rpx;
+}
+.orderList-content .order-empty{
+  width: 100%;
+  height: 600rpx;
+  text-align: center;
+  position: relative;
+}
+.orderList-content .order-empty image{
+  width: 500rpx;
+  height: 388rpx;
+  display: inline-block;
+  margin: 80rpx auto 0 auto;
+}
+.orderList-content .order-empty .text{
+  height: 88rpx;
+  margin: 0 auto;
+  padding-left: 20rpx;
+  display: inline-block;
+  font-family: PingFangSC-Light,helvetica,'Heiti SC';
+  font-size: 32rpx;
+  line-height: 88rpx;
+  color: #888888;
+  font-weight: 400;
+  letter-spacing: 8rpx;
+}

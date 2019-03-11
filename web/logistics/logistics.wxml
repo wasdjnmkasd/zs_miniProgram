@@ -1,0 +1,29 @@
+<component-header headerData="{{headerData}}"></component-header>
+<view class="logistics-content">
+  <block wx:for="{{logisticsData}}" wx:for-item="item_1" wx:for-index="index_1" wx:key="">
+    <view class="logistics-item">
+      <view class="logistics-basic">
+        <view class="commodityDescription">
+          <view class="text code">
+            <view class="name">运单编号:</view>
+            <view class="value">{{item_1.LogisticCode}}</view>
+          </view>
+          <view class="text carrier">
+            <view class="name">承运信息:</view>
+            <view class="value">{{item_1.expressName}}</view>
+          </view>
+        </view>
+      </view>
+      <view class="logistics-details">
+        <block wx:for="{{item_1.Traces}}" wx:for-item="item_2" wx:for-indx="index_2" wx:key="">
+          <view class="logisticsItem newest">
+            <view class="text">
+              <view class="description">{{item_2.AcceptStation}}</view>
+              <view class="time">{{item_2.AcceptTime}}</view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </block>
+</view>

@@ -1,0 +1,108 @@
+.register-content {
+  width: 100%;
+  height: auto;
+  padding-top: 90rpx;
+}
+.register-content > view {
+  width: calc(100% - 88rpx);
+  margin: 0 auto 40rpx auto;
+  border: solid 1rpx #cccccc;
+  background-color: #fff;
+  background-image: none;
+  border-radius: 15rpx;
+  overflow: hidden;
+}
+.register-content > view.error_status{
+  border-color: #f34d4d;
+}
+.register-content > view > input{
+  width: calc(100% - 160rpx);
+  height: 86rpx;
+  font-family: PingFangSC-Light,helvetica,'Heiti SC';
+  font-size: 30rpx;
+  line-height: inherit;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  float: left;
+}
+.register-content .register-account image:first-child{
+  width: 22rpx;
+  height: 32rpx;
+  padding: 27rpx 29rpx;
+  float: left;
+}
+.register-content .register-account image:last-child{
+  width: 28rpx;
+  height: 28rpx;
+  padding: 29rpx 26rpx;
+  float: left;
+}
+.register-content .register-validation image:first-child{
+  width: 32rpx;
+  height: 32rpx;
+  padding: 27rpx 24rpx;
+  float: left;
+}
+.register-content .register-validation input{
+  width: calc(100% - 250rpx);
+  height: 86rpx;
+  font-family: PingFangSC-Light,helvetica,'Heiti SC';
+  font-size: 30rpx;
+  line-height: inherit;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  float: left;
+}
+.register-content .register-validation .textRight{
+  width: 170rpx;
+  font-family: PingFangSC-Light,helvetica,'Heiti SC';
+  font-size: 26rpx;
+  color: #777;
+  padding: 0 0 0 20rpx;
+  vertical-align: middle;
+  float: left;
+  position: relative;
+  cursor: pointer;
+  box-sizing: border-box;
+  height: 86rpx;
+  line-height: 86rpx;
+}
+.register-content .register-validation .textRight::before{
+  content: "";
+  width: 1rpx;
+  height: 44rpx;
+  background-color: #cfcfcf;
+  position: absolute;
+  top: 22rpx;
+  left: 0;
+}
+.register-content .register-password image:first-child,
+.register-content .register-confirmPassword image:first-child{
+  width: 20rpx;
+  height: 32rpx;
+  padding: 27rpx 30rpx;
+  float: left;
+}
+.register-content .register-password image:last-child,
+.register-content .register-confirmPassword image:last-child
+{
+  width: 34rpx;
+  height: 24rpx;
+  padding: 31rpx 23rpx;
+  float: left;
+}
+.register-content .register-registerBtn{
+  width: calc(100% - 88rpx);
+  height: 92rpx;
+  font-family: PingFangSC-Light,helvetica,'Heiti SC';
+  font-size: 36rpx;
+  color: #ffffff;
+  line-height: 92rpx;
+  text-align: center;
+  margin: 60rpx auto 60rpx auto;
+  background-color: #b4282d;
+  border-radius: 15rpx;
+  display: block;
+}

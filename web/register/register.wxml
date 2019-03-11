@@ -1,0 +1,30 @@
+<component-header headerData="{{headerData}}"></component-header>
+<view class="register-content">
+  <view class="register-account {{account.status == 0 ? '' : 'error_status'}}">
+    <image src="{{imgHost}}/images/platform/account/people.png"></image>
+    <input type="number" placeholder="请输入手机号码..." value="{{account.value}}" maxlength="11" bindblur="accountBlur"></input>
+    <image src="{{imgHost}}/images/platform/account/close_circle.png" bindtap="accountClear"></image>
+  </view>
+  <view class="register-validation {{validation.status == 0 ? '' : 'error_status'}}">
+    <image src="{{imgHost}}/images/platform/account/validation.png"></image>
+    <input type="text" placeholder="请输入验证码..." bindblur="validationBlur"></input>
+    <view class="textRight" bindtap="getValidation" wx:if="{{account.status != 2 && !vClick}}">
+      <text>获取验证码</text>
+    </view>
+    <view class="textRight" wx:else>
+      <text wx:if="{{!vClick}}">获取验证码</text>
+      <text wx:else>已发送({{vNum}})</text>
+    </view>
+  </view>
+  <view class="register-password {{password.status == 0 ? '' : 'error_status'}}">
+    <image src="{{imgHost}}/images/platform/account/lock.png"></image>
+    <input type="password" placeholder="请输入6-12位密码..." value="{{password.value}}" maxlength="12" bindblur="passwordBlur"></input>
+    <image src="{{imgHost}}/images/platform/account/eye.png"></image>
+  </view>
+  <view class="register-confirmPassword {{confirmPassword.status == 0 ? '' : 'error_status'}}">
+    <image src="{{imgHost}}/images/platform/account/lock.png"></image>
+    <input type="password" placeholder="请再次确认密码..." value="{{confirmPassword.value}}" maxlength="12" bindblur="confirmPasswordBlur"></input>
+    <image src="{{imgHost}}/images/platform/account/eye.png"></image>
+  </view>
+  <view class="register-registerBtn" bindtap="toRegister">确认注册</view>
+</view>

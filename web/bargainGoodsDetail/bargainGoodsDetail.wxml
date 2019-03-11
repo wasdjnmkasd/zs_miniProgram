@@ -1,0 +1,91 @@
+<view class="bargainGoodsDetail-content">
+  <image class="bgImg" src="{{imgHost}}/images/platform/bargain/bargain_bgImg_01.jpg"></image>
+  <view class="content-header">
+    <view class="logo" bindtap="toIndex">
+      <image src="{{imgHost}}/images/platform/header/home_white.png"></image>
+      中国供销海外购
+    </view>
+    <view class="rule" bindtap="showAlert">活动规则</view>
+  </view>
+  <view class="content-body">
+    <view class="userMsg">
+      <view class="imgBox">
+        <image src="{{bargainData.userImg}}"></image>
+      </view>
+      <text>{{bargainData.userName}}</text>      
+    </view>
+    <view class="title">
+      <text>“</text>
+      我发现一件好货 一起来{{bargainData.lowPrice}}元拿吧
+      <text>”</text>
+    </view>
+    <view class="goodsDetail">
+      <view class="goodsDetail-left">
+        <image wx:if="{{bargainData.goodsImg}}" src="{{bargainData.goodsImg}}"></image>
+        <image wx:else src="{{imgHost}}/images/platform/account/default_img.jpg"></image>
+      </view>
+      <view class="goodsDetail-right">
+        <view class="name">{{bargainData.goodsName}}</view>
+        <view class="price">价值{{bargainData.goodsPrice}}元</view>
+        <view class="time" wx:if="{{bargainData.start}}">
+          <text>{{nextHour}}</text>:<text>{{nextMinute}}</text>:<text>{{nextSecond}}</text>后结束
+        </view>
+        <view class="time" wx:else>
+          砍价结束请及时购买
+        </view>
+      </view>
+    </view>
+    <view class="progress">
+      <view class="showMsg" style="margin-left: calc({{bargainData.bargainPrice / (bargainData.goodsPrice - bargainData.lowPrice) * 100}}% - 100rpx)">已砍{{bargainData.bargainPrice}}元</view>
+      <progress percent="{{bargainData.bargainPrice / (bargainData.goodsPrice - bargainData.lowPrice) * 100}}" border-radius="50rpx" activeColor="#FF1104" backgroundColor="#fff" active="true" stroke-width="10"></progress>
+      <view class="priceMsg">
+        <text class="oldPrice">￥{{bargainData.goodsPrice}}</text>
+        <text class="finalPrice">￥{{bargainData.lowPrice}}</text>
+      </view>
+    </view>
+    <view class="btns">
+      <block wx:if="{{isShare}}">
+        <button data-id="{{bargainData.goodsRoleId}}" class="helpBargain" open-type="getUserInfo" bindgetuserinfo="helpBargain">帮好友砍价</button>
+        <view class="toBargain" bindtap="toBargian">我要砍价</view>
+      </block>
+      <block wx:else>
+        <button style="{{bargainData.start && (bargainData.goodsPrice - bargainData.bargainPrice) > bargainData.lowPrice? 'display:block':'display:none'}}" open-type="share" class="share">邀请好友 帮忙砍价</button>
+        <button open-type="getUserInfo" class="share" style="{{!bargainData.start && (bargainData.goodsPrice - bargainData.bargainPrice) > bargainData.lowPrice? 'display:block':'display:none'}}" data-id="{{bargainData.id}}"  bindgetuserinfo="toRebargain">重新砍价</button>
+        <view class="toBuy" bindtap="bargainBuy">立即购买</view>
+      </block>
+    </view>
+    <view class="list">
+      <view class="list-title">砍价榜</view>
+      <view class="list-content" wx:for="{{bargainData.bargainList}}" wx:key="">
+        <view class="list-content-item">
+          <view class="item-index">{{index*1 + 1}}</view>
+          <view class="item-userMsg">
+            <view class="userMgs-left">
+              <image src="{{item.userImg}}"></image>
+            </view>
+            <view class="userMgs-right">
+              <view class="name">{{item.userName}}</view>
+              <view class="text">{{bargainDesc[index]}}</view>
+            </view>
+          </view>
+          <view class="item-price">
+            砍掉<text>{{item.bargainPrice}}</text>元
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="alertBg {{alertShow ? 'active' : ''}}">
+    <view class="alertContent">
+      <view class="title">活动规则</view>
+      <view class="text">
+        <view>1. 用户选择心仪的商品发起砍价活动，通过分享链接邀请好友帮忙砍价，发起砍价后24小时内，如砍到最低价时，可按最低价进行下单购买；如未砍至最低价，想立即下单，也可按当前已砍商品金额进行下单购买。发起砍价后24小时内未下单，则视为砍价结束。</view>
+        <view>2. 每位用户邀请的好友，对于同一个砍价商品，只能帮砍一次。</view>
+        <view>3. 每次砍价的金额随机，邀请的好友越多，离砍价成功就越近。</view>
+        <view>4. 任何通过不正当手段（包括但不限于侵犯第三人合法权益、作弊、扰乱系统、实施网络攻击、批量注册、用机器注册用户、用机器模拟客户端等方式）批量砍价以获得活动利益的，供销精品海外购有权撤销用户所获利益并要求赔偿相关损失。</view>
+        <view>5. 若您已砍价成功，却无法下单，或在砍价过程中遇到任何异常问题，请及时联系在线客服，会有专人为您解决。</view>
+      </view>
+      <view class="cancelBtn" bindtap="cancelAlert">X</view>
+    </view>
+  </view>
+</view>
