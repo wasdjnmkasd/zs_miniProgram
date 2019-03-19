@@ -23,8 +23,9 @@ Page({
     alertShare: false,
     hidden: true,
     saveImgBtnHidden: false,
-    openSettingBtnHidden: true
-  }, 
+    openSettingBtnHidden: true,
+    activeType: 0
+  },
   showShare: function(){
     var that = this;
     that.setData({
@@ -192,7 +193,7 @@ Page({
     } else if (that.data.alertShow) {
       if (!userId) {
         wx.navigateTo({
-          url: '/web/login/login',
+          url: '/web/loginChoose/loginChoose',
         })
         return;
       }
@@ -293,7 +294,7 @@ Page({
     } else if (that.data.alertShow){
       if(!userId){
         wx.navigateTo({
-          url: '/web/login/login',
+          url: '/web/loginChoose/loginChoose',
         })
         return;
       }
@@ -514,11 +515,11 @@ Page({
       }
     }
     attrValueList[index].selectedValue = value;
-    for (var i = 0; i < attrValueList.length; i++) {
-      for (var j = 0; j < attrValueList[i].attrValues.length; j++) {
-        attrValueList[i].attrValueStatus[j] = false;
-      }
-    }
+    // for (var i = 0; i < attrValueList.length; i++) {
+    //   for (var j = 0; j < attrValueList[i].attrValues.length; j++) {
+    //     attrValueList[i].attrValueStatus[j] = false;
+    //   }
+    // }
     for (var k = 0; k < attrValueList.length; k++) {
       for (var i = 0; i < includeGroup.length; i++) {
         for (var j = 0; j < includeGroup[i].attrValueList.length; j++) {
@@ -590,6 +591,7 @@ Page({
       goodsId: goodsId
     };
     app.getShareImg(that,data);
+    that.hideShare();
     wx.showLoading({
       title: '加载中...',
       mask: true
@@ -694,11 +696,78 @@ Page({
       }
     });
   },
+  toChoose: function(){
+    var userId = wx.getStorageSync('userId');
+    if (userId){
+      wx.navigateTo({
+        url: '/web/addressManage/addressManage?btnHide=1',
+      })
+    }else{
+      wx.navigateTo({
+        url: '/web/loginChoose/loginChoose?isBack=1',
+      })
+    }
+  },
+  defaultScroll: function (e) {
+    var top = e.detail.scrollTop;
+    var that = this;
+    var top_1 = that.data.top_1;
+    var top_2 = that.data.top_2;
+    if (top > 300) {
+      that.setData({
+        toTopShow: true
+      })
+    }else{
+      that.setData({
+        toTopShow: false
+      })
+    }
+    if (top > 0 && top <= top_1){
+      that.setData({
+        activeType: 0
+      })
+    } else if (top > top_1 && top <= top_2) {
+      that.setData({
+        activeType: 1
+      })
+    } else if (top > top_2) {
+      that.setData({
+        activeType: 2
+      })
+    }
+  },
+  toTop: function () {
+    var that = this;
+    that.setData({
+      scrollHeight: 0
+    });
+  },
+  chooseActiveType: function(e){
+    var that = this;
+    var activeType = e.target.dataset.id;
+    that.setData({
+      activeType: activeType
+    })
+    if (activeType == 0){
+      that.setData({
+        scrollHeight: 0
+      })
+    } else if (activeType == 1){
+      that.setData({
+        toView: 'goodsDetail-moreMsg'
+      })
+    } else if (activeType == 2){
+      that.setData({
+        toView: 'goodsDetail-detailMsg'
+      })
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     var that = this;
+    var userId = wx.getStorageSync('userId') || '';
     if (!options.scene){
       if (options && (options.goodsId || options.itemId)) {
         var data = {
@@ -746,6 +815,16 @@ Page({
         })
       }
     }
+    wx.createSelectorQuery().select('#goodsDetail-moreMsg').boundingClientRect(function (rect) {
+      that.setData({
+        top_1: rect.top - 60
+      });
+    }).exec();
+    wx.createSelectorQuery().select('#goodsDetail-detailMsg').boundingClientRect(function (rect) {
+      that.setData({
+        top_2: rect.top
+      });
+    }).exec();
   },
 
   /**
@@ -767,6 +846,9 @@ Page({
       that.setData({
         'headerData.shoppingCartCount': 0
       });
+    }
+    if (userId) {
+      app.getAddressData(that, {});
     }
   },
 
@@ -806,11 +888,11 @@ Page({
     var shopId = app.globalData.shopId;
     var goodsId = that.data.goodsDetailData.goodsId;
     var goodsName = that.data.goodsDetailData.customGoodsName;
-    var desc = that.data.goodsDetailData.description || '中国供销海外购';
+    var imageUrl = that.data.goodsDetailData.goodsFileList[0].path;
     return {
       title: goodsName,
-      desc: desc,
-      path: 'web/goodsDetail/goodsDetail?scene=goodsId%3D' + goodsId + '%26shopId%3D' + shopId
+      path: 'web/goodsDetail/goodsDetail?scene=goodsId%3D' + goodsId + '%26shopId%3D' + shopId,
+      imageUrl: imageUrl
     }
   }
 })

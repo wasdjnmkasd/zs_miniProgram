@@ -20,7 +20,8 @@
     "web/bindMobile/bindMobile",
     "web/bargainIndex/bargainIndex",
     "web/bargainGoodsDetail/bargainGoodsDetail",
-    "web/loginChoose/loginChoose"
+    "web/loginChoose/loginChoose",
+    "web/protocol/protocol"
   ],
   "window":{
     "backgroundTextStyle": "light",

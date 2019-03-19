@@ -1,6 +1,12 @@
-<view class="goodsDetail-1-content">
+<view class="goodsDetailNav">
+  <view data-id="0" bindtap="chooseActiveType" class="{{activeType == 0? 'active item' : 'item'}}"><image style="visibility:{{activeType == 0 ? 'visible' : 'hidden'}}" src="{{imgHost}}/images/platform/goods/icon_goodsDetail_nav.png"></image>商品</view>
+  <view data-id="1" bindtap="chooseActiveType" class="{{activeType == 1? 'active item' : 'item'}}"><image style="visibility:{{activeType == 1 ? 'visible' : 'hidden'}}" src="{{imgHost}}/images/platform/goods/icon_goodsDetail_nav.png"></image>信息</view>
+  <view data-id="2" bindtap="chooseActiveType" class="{{activeType == 2? 'active item' : 'item'}}"><image style="visibility:{{activeType == 2 ? 'visible' : 'hidden'}}" src="{{imgHost}}/images/platform/goods/icon_goodsDetail_nav.png"></image>详情</view>
+  <image bindtap="showShare" class="navShareIcon" src="{{imgHost}}/images/platform/goods/icon_share.png"></image>
+</view>
+<scroll-view class="goodsDetail-1-content" scroll-y bindscroll="defaultScroll" scroll-top="{{scrollHeight}}" scroll-into-view="{{toView}}">
   <component-banner bannerData="{{bannerData}}"></component-banner>
-  <view class="goodsDetail-goodsMsg">
+  <view class="goodsDetail-goodsMsg" id="goodsDetail-goodsMsg">
     <view class="goodsMsg-left">
       <view>{{goodsDetailData.customGoodsName}}</view>
       <view></view>
@@ -29,37 +35,31 @@
       <text>{{goodsDetailData.origin}}</text>
     </view>
   </view>
-  <view class="goodsDetail-moreMsg">
-    <view class="moreMsg-item item-choose" bindtap="alertContent" wx:if="{{goodsDetailData.goodsSpecsList.length > 1 || (goodsDetailData.goodsSpecsList.length == 1 && goodsDetailData.goodsSpecsList.info)}}">
-      <text wx:if="{{!selectSku}}">请商品选择规格</text>
-      <text wx:elif="{{selectSku}}">{{selectSku}}</text>
-      <image src="{{imgHost}}/images/platform/personal/toEdit.png"></image>
-    </view>
-    <view class="moreMsg-item">
-      发货仓库：
-      <text wx:if="{{goodsDetailData.supplierName == '天天仓'}}">保税TT仓</text>
-      <text wx:elif="{{goodsDetailData.supplierName == '粮油仓'}}">保税LY仓</text>
-      <text wx:elif="{{goodsDetailData.supplierName == '行云仓'}}">保税XY仓</text>
-      <text wx:elif="{{goodsDetailData.supplierName == '富邦仓'}}">富邦仓</text>
-      <text wx:else>{{goodsDetailData.supplierName}}</text>
-    </view>
-    <view class="moreMsg-item">
-      配送服务：
-      <text wx:if="{{goodsDetailData.type == 0}}">快递配送</text>
-      <text wx:if="{{goodsDetailData.type == 2}}">物流或快递</text>
-    </view>
-    <block wx:if="{{goodsDetailData.goodsSpecsList.length == 1}}">
-      <view class="moreMsg-item">
-        库存数量：<text>{{goodsDetailData.goodsSpecsList[0].stock}}</text>
+  <view class="goodsDetail-moreMsg" id="goodsDetail-moreMsg" bindtap="toChoose">
+    <view class="moreMsg-left">送至：</view>
+    <view class="moreMsg-right">
+      <block wx:if="{{addressListData.length > 0}}">
+        <block wx:for="{{addressListData}}" wx:key="">
+          <view wx:if="{{item.id == addressId}}" class="address">{{item.province}} {{item.city}} {{item.area}}</view>
+        </block>
+      </block>
+      <block wx:else>
+        <view class="address">浙江省 宁波市 北仑区</view>
+      </block>
+      <view class="supplierMsg">由 {{goodsDetailData.supplierName}} 负责发货</view>
+      <view class="msg">
+        <image src="{{imgHost}}/images/platform/goods/timg.png"></image>央企自营
+        <image src="{{imgHost}}/images/platform/goods/timg.png"></image>正品保障
+        <image src="{{imgHost}}/images/platform/goods/timg.png"></image>全球直采
+        <image src="{{imgHost}}/images/platform/goods/timg.png"></image>售后无忧
       </view>
-    </block>
-    <block wx:if="{{goodsDetailData.goodsSpecsList.length > 1}}">
-      <view wx:if="{{chooseItemData.stock != null}}" class="moreMsg-item">
-        库存数量：<text>{{chooseItemData.stock}}</text>
-      </view>
-    </block>
+      <image class="bgImg" src="{{imgHost}}/images/platform/commodity/href_blod.png"></image>
+    </view>
   </view>
-  <view class="goodsDetail-detailMsg">
+  <view style="width:100%;margin-bottom:20rpx;">
+    <official-account bindload="officialLoad" style="font-size:24rpx;"></official-account>
+  </view>
+  <view class="goodsDetail-detailMsg" id="goodsDetail-detailMsg">
     <view class="goodsDetail-detailMsg-title">商品详情</view>
     <view class="detailMsg">
       <image wx:if="{{goodsDetailData.type == 0}}" src="{{imgHost}}/images/platform/goods/notice.jpg"></image>
@@ -69,6 +69,60 @@
         </block>
       </view>
     </view>
+    <view class="userBook">
+      <view class="center">消费者告知书</view>
+      <view class="content">
+          <view class="nickName">尊敬的客户您好：</view>
+          <view class="header">
+            在您选购境外商品前，请您仔细阅读并完全理解本告知书的全部内容，对自身风险承担做出客观判断。认同本文所告知内容后再进行下单购买：
+          </view>
+            <view class="stage stage1">
+            <view class="path1">
+              1、
+            </view>
+            <view class="path2">
+              您在<b>中国供销海外购</b>网站上购买的境外商品为产地直销商品，仅限个人自用不得进行销售，商品本身可能无中文标签，您可参考网站翻译或在线联系我司客服。
+            </view>
+          </view>
+            <view class="stage stage2">
+            <view class="path1">
+              2、
+            </view>
+            <view class="path2">
+              您所购买的境外商品适用的品质、健康、标识等项目适用标准或与我国标准有所不同，所以在使用过程中由此可能产生的危害或损失以及其他风险，<b>中国供销海外购</b>不予承担任何责任，将由您个人承担。
+            </view>
+          </view>
+            <view class="stage stage3">
+            <view class="path1">
+              3、
+            </view>
+            <view class="path2">
+              身份信息问题
+            </view>
+            <view class="question">
+              为什么要上传身份证？
+            </view>
+            <view class="answer">
+              入境的包裹海关要求提供收件人的身份证资料（正反面照片）来确认包裹是否属于个人自用，中国供销海外购保证您的身份证信息仅作清关用途，将被严格保密。
+            </view>
+            <view class="question">
+              身份证每次都上传吗？
+            </view>
+            <view class="answer">
+              首次上传身份证后，只要使用相同的收件人姓名和手机号码，就无需再次上传身份证。如收件人姓名和首次上传不同，则需再次上传。
+            </view>
+            <view class="question">
+              收件人和身份证姓名不一致怎么办？
+            </view>
+            <view class="answer">
+              信息不完全相符会导致包裹在清关口岸需再次申报，请您提供正确信息给海外购平台客服，客服会通知物流公司向海关重新申报该包裹。重新申报流程会相应延误到货时间，建议提交订单前仔细确认，确保收件人和身份证姓名一致，身份证号及其他订单信息无误。建议收件人和订购人尽量为同一人。
+            </view>
+          </view>
+          <view class="footer">
+            <view class="block">以上一切最终解释权归<b>中国供销海外购</b>所有！</view>
+          </view>
+      </view>
+  </view>
   </view>
   <view class="goodsDetail-alert" wx:if="{{alertShow}}">
     <view class="bg-cancel-btn" bindtap="alertContent"></view>
@@ -132,24 +186,6 @@
       <view class="goodsDetail-alert-cancel" bindtap="alertContent">x</view>
     </scroll-view>
   </view>
-  <view class="goodsDetail-btns">
-    <view class="goodsDetail-btns-content">
-      <view class="btnBox">
-        <!-- <view class="share btnBox-icon" bindtap="showShare">
-          <image src="{{imgHost}}/images/platform/goods/icon_share.png"></image>
-        </view> -->
-        <view class="home btnBox-icon" bindtap="goHome">
-          <image src="{{imgHost}}/images/platform/header/home.png"></image>
-        </view>
-        <view class="shoppingCart btnBox-icon" bindtap="goShopCart">
-          <image src="{{imgHost}}/images/platform/header/shopCart.png"></image>
-          <text wx:if="{{footerData.shoppingCartCount}}" class="shopCartNum">{{footerData.shoppingCartCount}}</text>
-        </view>
-        <view class="btn text_addShopCart" bindtap="goodsAddShopCart">加入购物车</view>
-        <view class="btn text_toBuy" bindtap="goodsToBuy">立即购买</view>
-      </view>
-    </view>
-  </view>
   <view hidden='{{hidden}}' class='preview'>
     <image src='{{prurl}}' mode='widthFix'></image>
     <button type='primary' size='mini' class='saveImg' bindtap='save' hidden='{{saveImgBtnHidden}}'>保存图片</button>
@@ -173,11 +209,32 @@ bindopensetting='handleSetting' hidden='{{openSettingBtnHidden}}'>去授权</but
         <view class="imgBox friends">
           <image src="{{imgHost}}/images/platform/goods/share_02.png"></image>
         </view>
-        <view class="text">分享到朋友圈</view>
+        <view class="text">保存图片</view>
       </button>
+    </view>
+  </view>
+</scroll-view>
+<view class="goodsDetail-btns">
+  <view class="goodsDetail-btns-content">
+    <view class="btnBox">
+      <!-- <view class="share btnBox-icon" bindtap="showShare">
+        <image src="{{imgHost}}/images/platform/goods/icon_share.png"></image>
+      </view> -->
+      <view class="home btnBox-icon" bindtap="goHome">
+        <image src="{{imgHost}}/images/platform/header/home.png"></image>
+      </view>
+      <view class="shoppingCart btnBox-icon" bindtap="goShopCart">
+        <image src="{{imgHost}}/images/platform/header/shopCart.png"></image>
+        <text wx:if="{{footerData.shoppingCartCount}}" class="shopCartNum">{{footerData.shoppingCartCount}}</text>
+      </view>
+      <view class="btn text_addShopCart" bindtap="goodsAddShopCart">加入购物车</view>
+      <view class="btn text_toBuy" bindtap="goodsToBuy">立即购买</view>
     </view>
   </view>
 </view>
 <view class="fixedShare" bindtap="showShare">
   <image src="{{imgHost}}/images/platform/goods/icon_share.png"></image>
+</view>
+<view class="fixed-top">
+  <image style="display:{{toTopShow? 'block' : 'none'}}" bindtap="toTop" src="{{imgHost}}/images/platform/scroll/top.png"></image>
 </view>

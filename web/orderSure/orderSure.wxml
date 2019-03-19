@@ -87,6 +87,10 @@
             <view class="commodity-remark">
               <input type="text" bindblur="remarkBlur" placeholder="买家留言：选填，填写内容已和客服确认"></input>
             </view>
+            <view class="commodity-protocol">
+              提交订单则表示您同意
+              <view bindtap="toProtocol">《用户购买协议》</view>
+            </view>
             <view class="commodity-payInfo">
               <view class="commodity-actualPrice">
                   <view class="commodity-price">

@@ -3,6 +3,7 @@ App({
   globalData: {
     host: 'https://api.cncoopbuy.com',
     imgHost: 'https://teststatic.cncoopbuy.com:8080/wechat',
+    nodeHost: 'https://front.cncoopbuy.com',
     centerId: 2,
     platUserType: 5,
     loginType: 1,
@@ -63,6 +64,19 @@ App({
     var shopId = (urlShopId * 1) || (sceneShopId * 1) || localShopId || 2;
     that.globalData.shopId = shopId;
     wx.setStorageSync('shopId', shopId);
+    const updateManager = wx.getUpdateManager();
+    updateManager.onUpdateReady(function () {
+      wx.showModal({
+        title: '更新提示',
+        content: '新版本已经准备好，是否重启应用？',
+        success(res) {
+          if (res.confirm) {
+            // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
+            updateManager.applyUpdate()
+          }
+        }
+      })
+    })
   },
   setWatcher(page) {
     watch.setWatcher(page);
@@ -245,9 +259,15 @@ App({
               duration: 1500
             })
           }else{
-            wx.navigateBack({
-              delta: 2
-            })
+            if (data.loginType == 1){
+              wx.navigateBack({
+                delta: 2
+              })
+            } else if (data.loginType == 5){
+              wx.navigateBack({
+                delta: 1
+              })
+            }
           }
         } else if (res.data && !res.data.success) {
           wx.showToast({
@@ -258,6 +278,19 @@ App({
         }
       },
       fail: function (res) {
+        var that = this;
+        var route = obj.route;
+        var detailObj = {
+          route: route,
+          data: data
+        }
+        var d = {
+          'logsName': 'ajaxFail',
+          'errorCode': 'userLogin',
+          'errorMsg': res,
+          'detail': detailObj
+        };
+        that.setLogs(d);
         wx.showToast({
           title: '请求失败，请检查网络是否畅通',
           icon: 'none',
@@ -316,6 +349,19 @@ App({
         }
       },
       fail: function (res) {
+        var that = this;
+        var route = obj.route;
+        var detailObj = {
+          route: route,
+          data: data
+        }
+        var d = {
+          'logsName': 'ajaxFail',
+          'errorCode': 'userCheck',
+          'errorMsg': res,
+          'detail': detailObj
+        };
+        that.setLogs(d);
         wx.showToast({
           title: '请求失败，请检查网络是否畅通',
           icon: 'none',
@@ -403,6 +449,19 @@ App({
                 }
               },
               fail: function (res) {
+                var that = this;
+                var route = obj.route;
+                var detailObj = {
+                  route: route,
+                  data: data
+                }
+                var d = {
+                  'logsName': 'ajaxFail',
+                  'errorCode': 'userRegister',
+                  'errorMsg': res,
+                  'detail': detailObj
+                };
+                that.setLogs(d);
                 wx.showToast({
                   title: '请求失败，请检查网络是否畅通',
                   icon: 'none',
@@ -485,6 +544,19 @@ App({
         }
       },
       fail: function (res) {
+        var that = this;
+        var route = obj.route;
+        var detailObj = {
+          route: route,
+          data: data
+        }
+        var d = {
+          'logsName': 'ajaxFail',
+          'errorCode': 'userPwdChange',
+          'errorMsg': res,
+          'detail': detailObj
+        };
+        that.setLogs(d);
         wx.showToast({
           title: '请求失败，请检查网络是否畅通',
           icon: 'none',
@@ -517,6 +589,18 @@ App({
         }
       },
       fail: function (res) {
+        var route = obj.route;
+        var detailObj = {
+          route: route,
+          data: data
+        }
+        var d = {
+          'logsName': 'ajaxFail',
+          'errorCode': 'userDetailQuery',
+          'errorMsg': res,
+          'detail': detailObj
+        };
+        that.setLogs(d);
         wx.showToast({
           title: '请求失败，请检查网络是否畅通',
           icon: 'none',
@@ -551,6 +635,18 @@ App({
         }
       },
       fail: function (res) {
+        var route = obj.route;
+        var detailObj = {
+          route: route,
+          data: data
+        }
+        var d = {
+          'logsName': 'ajaxFail',
+          'errorCode': 'shopDetailQuery',
+          'errorMsg': res,
+          'detail': detailObj
+        };
+        that.setLogs(d);
         wx.showToast({
           title: '请求失败，请检查网络是否畅通',
           icon: 'none',
@@ -573,7 +669,6 @@ App({
       success: function (res) {
         var data = res.data.module || [];
         var goodsListData_1 = [];
-        var goodsListData_2 = [];
         if (data == []) {
           wx.showToast({
             title: '获取数据失败',
@@ -590,9 +685,9 @@ App({
             if (data[i].code == "goodsList-2") {
               goodsListData_1.push(data[i]);
             }
-            if (data[i].code == "goodsList-3") {
-              goodsListData_2.push(data[i]);
-            }
+            // if (data[i].code == "goodsList-3") {
+            //   goodsListData_2.push(data[i]);
+            // }
             if (data[i].code == "activity-1"){
               obj.setData({
                 ['activityData_1.own']: data[i].own,
@@ -604,12 +699,11 @@ App({
                 ['activityData_2.cont']: data[i].cont,
               });
             }
-          }
-          for (var i = 0; i < goodsListData_2.length; i++) {
-            for (var j = 0; j < goodsListData_2[i].cont.length; j++) {
-              if (goodsListData_2[i].cont[j].tagPath) {
-                goodsListData_2[i].cont[j].tagPath = goodsListData_2[i].cont[j].tagPath.split(',');
-              }
+            if (data[i].code == "activity-3") {
+              obj.setData({
+                ['activityData_3.own']: data[i].own,
+                ['activityData_3.cont']: data[i].cont,
+              });
             }
           }
           goodsListData_1.forEach(function(v,i){
@@ -618,12 +712,23 @@ App({
             }
           });
           obj.setData({
-            goodsListData_1: goodsListData_1,
-            goodsListData_2: goodsListData_2,
+            goodsListData_1: goodsListData_1
           });
         }
       },
       fail: function (res) {
+        var route = obj.route;
+        var detailObj = {
+          route: route,
+          data: data
+        }
+        var d = {
+          'logsName': 'ajaxFail',
+          'errorCode': 'getIndexData',
+          'errorMsg': res,
+          'detail': detailObj
+        };
+        that.setLogs(d);
         wx.showToast({
           title: '请求失败，请检查网络是否畅通',
           icon: 'none',
@@ -660,6 +765,18 @@ App({
         }
       },
       fail: function (res) {
+        var route = obj.route;
+        var detailObj = {
+          route: route,
+          data: data
+        }
+        var d = {
+          'logsName': 'ajaxFail',
+          'errorCode': 'getNavData',
+          'errorMsg': res,
+          'detail': detailObj
+        };
+        that.setLogs(d);
         wx.showToast({
           title: '请求失败，请检查网络是否畅通',
           icon: 'none',
@@ -679,7 +796,7 @@ App({
     if (data.secondCategory) { requestUrl += '&secondCategory=' + data.secondCategory; }
     if (data.thirdCategory) { requestUrl += '&thirdCategory=' + data.thirdCategory; }
     if (data.upShelves) { requestUrl += '&upShelves=' + data.upShelves; }
-    if (data.goodsName) { requestUrl += '&goodsName=' + data.goodsName; }
+    if (data.goodsName) { requestUrl += '&goodsName=' + encodeURIComponent(data.goodsName); }
     if (data.type) { requestUrl += '&type=' + data.type; }
     if (data.tag) { requestUrl += '&tag=' + data.tag; }
     if (data.sortField && data.sortRule) { requestUrl += ('&sortList[0].sortField=' + data.sortField + '&sortList[0].sortRule=' + data.sortRule)};
@@ -726,6 +843,14 @@ App({
               'searchListData.totalPages': res.data.obj.pagination.totalPages
             });
           }
+          if (data.pageType == 'index'){
+            var indexCurrentPagre = data.currentPage;
+            var totalPages = obj.data.goodsList_2.totalPages || 0;
+            obj.setData({
+              goodsListData_2: oldData.concat(res.data.obj.goodsList),
+              'goodsList_2.totalPages': res.data.obj.pagination.totalPages
+            })
+          }
         } else {
           wx.showToast({
             title: '请求失败，请检查网络是否畅通',
@@ -735,6 +860,18 @@ App({
         }
       },
       fail: function (res) {
+        var route = obj.route;
+        var detailObj = {
+          route: route,
+          data: data
+        }
+        var d = {
+          'logsName': 'ajaxFail',
+          'errorCode': 'getSearchListData',
+          'errorMsg': res,
+          'detail': detailObj
+        };
+        that.setLogs(d);
         wx.showToast({
           title: '请求失败，请检查网络是否畅通',
           icon: 'none',
@@ -865,6 +1002,18 @@ App({
         }
       },
       fail: function (res) {
+        var route = obj.route;
+        var detailObj = {
+          route: route,
+          data: data
+        }
+        var d = {
+          'logsName': 'ajaxFail',
+          'errorCode': 'getGoodsDetailData',
+          'errorMsg': res,
+          'detail': detailObj
+        };
+        that.setLogs(d);
         wx.showToast({
           title: '请求失败，请检查网络是否畅通',
           icon: 'none',
@@ -948,6 +1097,18 @@ App({
         }
       },
       fail: function (res) {
+        var route = obj.route;
+        var detailObj = {
+          route: route,
+          data: data
+        }
+        var d = {
+          'logsName': 'ajaxFail',
+          'errorCode': 'getShoppingCartData',
+          'errorMsg': res,
+          'detail': detailObj
+        };
+        that.setLogs(d);
         wx.showToast({
           title: '请求失败，请检查网络是否畅通',
           icon: 'none',
@@ -1017,6 +1178,18 @@ App({
         }
       },
       fail: function (res) {
+        var route = obj.route;
+        var detailObj = {
+          route: route,
+          data: data
+        }
+        var d = {
+          'logsName': 'ajaxFail',
+          'errorCode': 'delShoppingCartData',
+          'errorMsg': res,
+          'detail': detailObj
+        };
+        that.setLogs(d);
         wx.showToast({
           title: '请求失败，请检查网络是否畅通',
           icon: 'none',
@@ -1061,6 +1234,18 @@ App({
         }
       },
       fail: function (res) {
+        var route = obj.route;
+        var detailObj = {
+          route: route,
+          data: data
+        }
+        var d = {
+          'logsName': 'ajaxFail',
+          'errorCode': 'getShoppingCartCount',
+          'errorMsg': res,
+          'detail': detailObj
+        };
+        that.setLogs(d);
         wx.showToast({
           title: '请求失败，请检查网络是否畅通',
           icon: 'none',
@@ -1129,6 +1314,18 @@ App({
                 }
               },
               fail: function (res) {
+                var route = obj.route;
+                var detailObj = {
+                  route: route,
+                  data: data
+                }
+                var d = {
+                  'logsName': 'ajaxFail',
+                  'errorCode': 'addShopCart',
+                  'errorMsg': res,
+                  'detail': detailObj
+                };
+                that.setLogs(d);
                 wx.showToast({
                   title: '请求失败，请检查网络是否畅通',
                   icon: 'none',
@@ -1175,6 +1372,18 @@ App({
                   }
                 },
                 fail: function (res) {
+                  var route = obj.route;
+                  var detailObj = {
+                    route: route,
+                    data: data
+                  }
+                  var d = {
+                    'logsName': 'ajaxFail',
+                    'errorCode': 'addShopCart',
+                    'errorMsg': res,
+                    'detail': detailObj
+                  };
+                  that.setLogs(d);
                   wx.showToast({
                     title: '请求失败，请检查网络是否畅通',
                     icon: 'none',
@@ -1206,6 +1415,18 @@ App({
         }
       },
       fail: function (res) {
+        var route = obj.route;
+        var detailObj = {
+          route: route,
+          data: data
+        }
+        var d = {
+          'logsName': 'ajaxFail',
+          'errorCode': 'addShopCart',
+          'errorMsg': res,
+          'detail': detailObj
+        };
+        that.setLogs(d);
         wx.showToast({
           title: '请求失败，请检查网络是否畅通',
           icon: 'none',
@@ -1257,6 +1478,18 @@ App({
         }
       },
       fail: function (res) {
+        var route = obj.route;
+        var detailObj = {
+          route: route,
+          data: data
+        }
+        var d = {
+          'logsName': 'ajaxFail',
+          'errorCode': 'getAddressData',
+          'errorMsg': res,
+          'detail': detailObj
+        };
+        that.setLogs(d);
         wx.showToast({
           title: '请求失败，请检查网络是否畅通',
           icon: 'none',
@@ -1309,6 +1542,18 @@ App({
         }
       },
       fail: function (res) {
+        var route = obj.route;
+        var detailObj = {
+          route: route,
+          data: data
+        }
+        var d = {
+          'logsName': 'ajaxFail',
+          'errorCode': 'createAddressMsg',
+          'errorMsg': res,
+          'detail': detailObj
+        };
+        that.setLogs(d);
         wx.showToast({
           title: '请求失败，请检查网络是否畅通',
           icon: 'none',
@@ -1359,6 +1604,18 @@ App({
         }
       },
       fail: function (res) {
+        var route = obj.route;
+        var detailObj = {
+          route: route,
+          data: data
+        }
+        var d = {
+          'logsName': 'ajaxFail',
+          'errorCode': 'updateAddressMsg',
+          'errorMsg': res,
+          'detail': detailObj
+        };
+        that.setLogs(d);
         wx.showToast({
           title: '请求失败，请检查网络是否畅通',
           icon: 'none',
@@ -1395,6 +1652,18 @@ App({
         }
       },
       fail: function (res) {
+        var route = obj.route;
+        var detailObj = {
+          route: route,
+          data: data
+        }
+        var d = {
+          'logsName': 'ajaxFail',
+          'errorCode': 'deteleAddressMsg',
+          'errorMsg': res,
+          'detail': detailObj
+        };
+        that.setLogs(d);
         wx.showToast({
           title: '请求失败，请检查网络是否畅通',
           icon: 'none',
@@ -1427,6 +1696,18 @@ App({
         }
       },
       fail: function (res) {
+        var route = obj.route;
+        var detailObj = {
+          route: route,
+          data: data
+        }
+        var d = {
+          'logsName': 'ajaxFail',
+          'errorCode': 'getPostFee',
+          'errorMsg': res,
+          'detail': detailObj
+        };
+        that.setLogs(d);
         wx.showToast({
           title: '请求失败，请检查网络是否畅通',
           icon: 'none',
@@ -1477,6 +1758,18 @@ App({
         }
       },
       fail: function (res) {
+        var route = obj.route;
+        var detailObj = {
+          route: route,
+          data: data
+        }
+        var d = {
+          'logsName': 'ajaxFail',
+          'errorCode': 'getUserDetail',
+          'errorMsg': res,
+          'detail': detailObj
+        };
+        that.setLogs(d);
         wx.showToast({
           title: '请求失败，请检查网络是否畅通',
           icon: 'none',
@@ -1503,13 +1796,36 @@ App({
         'authentication': that.globalData.authentication
       },
       success: function (res) {
+        var pages = getCurrentPages() //获取加载的页面
+        var currentPage = pages[pages.length - 1] //获取当前页面的对象
+        var url = currentPage.route //当前页面url
         if(res.data && res.data.success){
-          wx.navigateBack({
-            delta: 1
-          })
+          if (url == 'web/orderSure/orderSure'){
+            obj.setData({
+              idNumAlert: false,
+              haveCode: true
+            })
+          }else{
+            wx.navigateBack({
+              delta: 1
+            })
+          }
         }
+        that.userDetailQuery(obj, {});
       },
       fail: function (res) {
+        var route = obj.route;
+        var detailObj = {
+          route: route,
+          data: data
+        }
+        var d = {
+          'logsName': 'ajaxFail',
+          'errorCode': 'createUserDetail',
+          'errorMsg': res,
+          'detail': detailObj
+        };
+        that.setLogs(d);
         wx.showToast({
           title: '请求失败，请检查网络是否畅通',
           icon: 'none',
@@ -1537,16 +1853,10 @@ App({
       },
       success: function (res) {
         if (res.data && res.data.success) {
-          if (!data.noBack){
-            wx.navigateBack({
-              delta: 1
-            })
-          }else{
-            obj.setData({
-              idNumAlert: false,
-              haveCode: true
-            })
-          }
+          wx.navigateBack({
+            delta: 1
+          })
+          that.userDetailQuery(obj,{});
         }else{
           wx.showToast({
             title: '保存个人信息失败',
@@ -1556,6 +1866,18 @@ App({
         }
       },
       fail: function (res) {
+        var route = obj.route;
+        var detailObj = {
+          route: route,
+          data: data
+        }
+        var d = {
+          'logsName': 'ajaxFail',
+          'errorCode': 'saveUserDetail',
+          'errorMsg': res,
+          'detail': detailObj
+        };
+        that.setLogs(d);
         wx.showToast({
           title: '请求失败，请检查网络是否畅通',
           icon: 'none',
@@ -1597,6 +1919,18 @@ App({
         }
       },
       fail: function (res) {
+        var route = obj.route;
+        var detailObj = {
+          route: route,
+          data: data
+        }
+        var d = {
+          'logsName': 'ajaxFail',
+          'errorCode': 'getValidation',
+          'errorMsg': res,
+          'detail': detailObj
+        };
+        that.setLogs(d);
         wx.showToast({
           title: '请求失败，请检查网络是否畅通',
           icon: 'none',
@@ -1690,6 +2024,18 @@ App({
         }
       },
       fail: function (res) {
+        var route = obj.route;
+        var detailObj = {
+          route: route,
+          data: data
+        }
+        var d = {
+          'logsName': 'ajaxFail',
+          'errorCode': 'getOrderListData',
+          'errorMsg': res,
+          'detail': detailObj
+        };
+        that.setLogs(d);
         wx.showToast({
           title: '请求失败，请检查网络是否畅通',
           icon: 'none',
@@ -1733,6 +2079,18 @@ App({
         }
       },
       fail: function (res) {
+        var route = obj.route;
+        var detailObj = {
+          route: route,
+          data: data
+        }
+        var d = {
+          'logsName': 'ajaxFail',
+          'errorCode': 'getLogisticsData',
+          'errorMsg': res,
+          'detail': detailObj
+        };
+        that.setLogs(d);
         wx.showToast({
           title: '请求失败，请检查网络是否畅通',
           icon: 'none',
@@ -1772,6 +2130,18 @@ App({
         }
       },
       fail: function (res) {
+        var route = obj.route;
+        var detailObj = {
+          route: route,
+          data: data
+        }
+        var d = {
+          'logsName': 'ajaxFail',
+          'errorCode': 'deleteOrder',
+          'errorMsg': res,
+          'detail': detailObj
+        };
+        that.setLogs(d);
         wx.showToast({
           title: '请求失败，请检查网络是否畅通',
           icon: 'none',
@@ -1811,6 +2181,18 @@ App({
         }
       },
       fail: function (res) {
+        var route = obj.route;
+        var detailObj = {
+          route: route,
+          data: data
+        }
+        var d = {
+          'logsName': 'ajaxFail',
+          'errorCode': 'closeOrder',
+          'errorMsg': res,
+          'detail': detailObj
+        };
+        that.setLogs(d);
         wx.showToast({
           title: '请求失败，请检查网络是否畅通',
           icon: 'none',
@@ -1850,6 +2232,18 @@ App({
         }
       },
       fail: function (res) {
+        var route = obj.route;
+        var detailObj = {
+          route: route,
+          data: data
+        }
+        var d = {
+          'logsName': 'ajaxFail',
+          'errorCode': 'sureOrder',
+          'errorMsg': res,
+          'detail': detailObj
+        };
+        that.setLogs(d);
         wx.showToast({
           title: '请求失败，请检查网络是否畅通',
           icon: 'none',
@@ -1860,12 +2254,20 @@ App({
     })
   },
   createOrder: function(obj, data){
+    wx.showLoading({
+      title: '正在加载...',
+      mask: true
+    })
     var that = this;
     var host = that.globalData.host;
     var userId = wx.getStorageSync('userId');
     var openId = wx.getStorageSync('openId');
     var shopId = that.globalData.shopId;
     var centerId = that.globalData.centerId;
+    var orderDetail = data.orderDetail;
+    orderDetail.customerIdNum = obj.data.personalData.userDetail &&obj.data.personalData.userDetail.idNum;
+    orderDetail.customerName = obj.data.personalData.userDetail && obj.data.personalData.userDetail.name;
+    orderDetail.customerPhone = obj.data.personalData.phone;
     wx.request({
       url: host + '/ordercenter/1.0/order?type=JSAPI_WX_APPLET&openId=' + openId,
       method: 'POST',
@@ -1892,6 +2294,7 @@ App({
         'authentication': that.globalData.authentication
       },
       success: function (res) {
+        wx.hideLoading();
         if (res.data && res.data.success) {
           if (data.ids.length > 0){
             var d = {
@@ -1900,7 +2303,6 @@ App({
             }
             that.delShoppingCartData(obj, d);
           }
-          wx.hideLoading();
           wx.requestPayment({
             timeStamp: res.data.obj.timeStamp,
             nonceStr: res.data.obj.nonceStr,
@@ -1934,7 +2336,7 @@ App({
                 }
               }
             },
-            fail(res) {
+            fail(r) {
               var ordersInfo_data = obj.data.ordersInfo;
               var ordersInfo_storage = wx.getStorageSync('ordersInfo');
               delete ordersInfo_data[data.orderFlag][data.supplierId];
@@ -1960,25 +2362,52 @@ App({
                   })
                 }
               }
+              var d = {
+                'logsName': 'orderSure',
+                'errorCode': 'wxPay',
+                'errorMsg': '用户取消支付',
+                'detail': data.orderGoodsList,
+                'orderId': res.data.errorMsg
+              };
+              that.setLogs(d);
             }
           })
         } else if (res.data && !res.data.success){
+          var d = {
+            'logsName': 'orderSure',
+            'errorCode': 'createOrder',
+            'errorMsg': res.data.errorMsg,
+            'detail': data.orderGoodsList,
+            'orderId': '订单未生成'
+          };
+          that.setLogs(d);
           wx.showToast({
             title: res.data.errorMsg,
             icon: 'none',
             duration: 1500
           })
-          wx.hideLoading();
         }else {
           wx.showToast({
             title: '创建订单失败',
             icon: 'none',
             duration: 1500
           })
-          wx.hideLoading();
         }
       },
       fail: function (res) {
+        var route = obj.route;
+        var detailObj = {
+          route: route,
+          data: data
+        }
+        var d = {
+          'logsName': 'ajaxFail',
+          'errorCode': 'createOrder',
+          'errorMsg': res,
+          'detail': detailObj
+        };
+        that.setLogs(d);
+        wx.hideLoading();
         wx.showToast({
           title: '请求失败，请检查网络是否畅通',
           icon: 'none',
@@ -2026,6 +2455,18 @@ App({
         }
       },
       fail: function (res) {
+        var route = obj.route;
+        var detailObj = {
+          route: route,
+          data: data
+        }
+        var d = {
+          'logsName': 'ajaxFail',
+          'errorCode': 'orderToPay',
+          'errorMsg': res,
+          'detail': detailObj
+        };
+        that.setLogs(d);
         wx.showToast({
           title: '请求失败，请检查网络是否畅通',
           icon: 'none',
@@ -2112,6 +2553,18 @@ App({
         }
       },
       fail: function (res) {
+        var route = obj.route;
+        var detailObj = {
+          route: route,
+          data: data
+        }
+        var d = {
+          'logsName': 'ajaxFail',
+          'errorCode': 'getBargainIndexData',
+          'errorMsg': res,
+          'detail': detailObj
+        };
+        that.setLogs(d);
         wx.showToast({
           title: '请求失败，请检查网络是否畅通',
           icon: 'none',
@@ -2213,6 +2666,18 @@ App({
                   }
                 },
                 fail: function (res) {
+                  var route = obj.route;
+                  var detailObj = {
+                    route: route,
+                    data: data
+                  }
+                  var d = {
+                    'logsName': 'ajaxFail',
+                    'errorCode': 'getUserBargainData',
+                    'errorMsg': res,
+                    'detail': detailObj
+                  };
+                  that.setLogs(d);
                   wx.showToast({
                     title: '请求失败，请检查网络是否畅通',
                     icon: 'none',
@@ -2281,6 +2746,18 @@ App({
         }
       },
       fail: function (res) {
+        var route = obj.route;
+        var detailObj = {
+          route: route,
+          data: data
+        }
+        var d = {
+          'logsName': 'ajaxFail',
+          'errorCode': 'getUserBargainData',
+          'errorMsg': res,
+          'detail': detailObj
+        };
+        that.setLogs(d);
         wx.showToast({
           title: '请求失败，请检查网络是否畅通',
           icon: 'none',
@@ -2327,6 +2804,18 @@ App({
         }
       },
       fail: function (res) {
+        var route = obj.route;
+        var detailObj = {
+          route: route,
+          data: data
+        }
+        var d = {
+          'logsName': 'ajaxFail',
+          'errorCode': 'createBargainTeam',
+          'errorMsg': res,
+          'detail': detailObj
+        };
+        that.setLogs(d);
         wx.showToast({
           title: '请求失败，请检查网络是否畅通',
           icon: 'none',
@@ -2367,6 +2856,18 @@ App({
         }
       },
       fail: function (res) {
+        var route = obj.route;
+        var detailObj = {
+          route: route,
+          data: data
+        }
+        var d = {
+          'logsName': 'ajaxFail',
+          'errorCode': 'getBarginGoodsDetailData',
+          'errorMsg': res,
+          'detail': detailObj
+        };
+        that.setLogs(d);
         wx.showToast({
           title: '请求失败，请检查网络是否畅通',
           icon: 'none',
@@ -2408,6 +2909,18 @@ App({
         }
       },
       fail: function (res) {
+        var route = obj.route;
+        var detailObj = {
+          route: route,
+          data: data
+        }
+        var d = {
+          'logsName': 'ajaxFail',
+          'errorCode': 'closeBargainTeam',
+          'errorMsg': res,
+          'detail': detailObj
+        };
+        that.setLogs(d);
         wx.showToast({
           title: '请求失败，请检查网络是否畅通',
           icon: 'none',
@@ -2467,6 +2980,18 @@ App({
         }
       },
       fail: function (res) {
+        var route = obj.route;
+        var detailObj = {
+          route: route,
+          data: data
+        }
+        var d = {
+          'logsName': 'ajaxFail',
+          'errorCode': 'helpBargain',
+          'errorMsg': res,
+          'detail': detailObj
+        };
+        that.setLogs(d);
         wx.showToast({
           title: '请求失败，请检查网络是否畅通',
           icon: 'none',
@@ -2565,6 +3090,18 @@ App({
         }
       },
       fail: function (res) {
+        var route = obj.route;
+        var detailObj = {
+          route: route,
+          data: data
+        }
+        var d = {
+          'logsName': 'ajaxFail',
+          'errorCode': 'bargainBuy',
+          'errorMsg': res,
+          'detail': detailObj
+        };
+        that.setLogs(d);
         wx.showToast({
           title: '请求失败，请检查网络是否畅通',
           icon: 'none',
@@ -2617,6 +3154,18 @@ App({
         }
       },
       fail: function (res) {
+        var route = obj.route;
+        var detailObj = {
+          route: route,
+          data: data
+        }
+        var d = {
+          'logsName': 'ajaxFail',
+          'errorCode': 'rebargainTeam',
+          'errorMsg': res,
+          'detail': detailObj
+        };
+        that.setLogs(d);
         wx.showToast({
           title: '请求失败，请检查网络是否畅通',
           icon: 'none',
@@ -2657,6 +3206,18 @@ App({
         }
       },
       fail: function (res) {
+        var route = obj.route;
+        var detailObj = {
+          route: route,
+          data: data
+        }
+        var d = {
+          'logsName': 'ajaxFail',
+          'errorCode': 'getShareImg',
+          'errorMsg': res,
+          'detail': detailObj
+        };
+        that.setLogs(d);
         wx.hideLoading();
         wx.showToast({
           title: '请求失败，请检查网络是否畅通',
@@ -2665,6 +3226,21 @@ App({
         })
       },
       complete: function (res) { }
+    })
+  },
+  setLogs: function(data){
+    var that = this;
+    var nodeHost = that.globalData.nodeHost;
+    data.userId = wx.getStorageSync('userId');
+    data.shopId = wx.getStorageSync('shopId');
+    wx.request({
+      url: nodeHost + '/Data/handle/logs',
+      method: 'POST',
+      data: data,
+      header: {
+        'content-type': 'application/json', // 默认值
+      },
+      success: function(){}
     })
   }
 })

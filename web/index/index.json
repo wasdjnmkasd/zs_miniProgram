@@ -1,6 +1,5 @@
 {
   "usingComponents": {
-    "component-header": "/components/base/header/header",
     "component-banner": "/components/base/banner/banner",
     "component-navInlet-1": "/components/base/navInlet-1/navInlet-1",
     "component-navInlet-2": "/components/base/navInlet-2/navInlet-2",
@@ -8,6 +7,7 @@
     "component-goodsList-2": "/components/base/goodsList-2/goodsList-2",
     "component-footer": "/components/base/footer/footer",
     "component-activity-1": "/components/base/activity-1/activity-1",
-    "component-activity-2": "/components/base/activity-2/activity-2"
+    "component-activity-2": "/components/base/activity-2/activity-2",
+    "component-activity-3": "/components/base/activity-3/activity-3"
   }
 }

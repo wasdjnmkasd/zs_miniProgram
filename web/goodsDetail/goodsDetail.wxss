@@ -1,5 +1,38 @@
 page{
   padding-top: 0;
+  width: 100%;
+  height: calc(100% - 160rpx);
+  overflow: hidden;
+}
+.goodsDetailNav{
+  text-align: center;
+  background: #fff;
+  border-bottom: 1px solid #efefef;
+  height: 60rpx;
+  line-height: 48rpx;
+}
+.goodsDetailNav view.item{
+  display: inline;
+  font-size: 24rpx;
+  margin: 0 35rpx;
+}
+.goodsDetailNav view.item.active{
+  color: #009944;
+}
+.goodsDetailNav view.item image{
+  width: 26rpx;
+  height: 34rpx;
+  vertical-align: middle;
+  margin-top: -7rpx;
+  margin-right: 5rpx;
+}
+.goodsDetailNav image.navShareIcon{
+  position: absolute;
+  top:0;
+  right:10rpx;
+  width:30rpx;
+  height:30rpx;
+  padding:15rpx;
 }
 .goodsDetail-1-content{
   width: 100%;
@@ -160,29 +193,43 @@ page{
   font-size: 28rpx;
   color: #999;
   overflow: hidden;
+  padding: 20rpx 28rpx;
 }
-.goodsDetail-1-content .goodsDetail-moreMsg .moreMsg-item{
-  width: 100%;
-  height: 80rpx;
-  line-height: 80rpx;
-  padding-left: 35rpx;
-  box-sizing: border-box;
-  border-bottom: 1rpx solid #efefef;
+.goodsDetail-moreMsg .moreMsg-left{
+  float: left;
+  width: 100rpx;
+  font-size: 28rpx;
 }
-.goodsDetail-1-content .goodsDetail-moreMsg .moreMsg-item:last-child{
-  border-bottom: none;
+.goodsDetail-moreMsg .moreMsg-right{
+  float: left;
+  width: 594rpx;
+  position: relative;
 }
-.goodsDetail-1-content .goodsDetail-moreMsg .moreMsg-item.item-choose text{
-  color: #666;
-  width: calc(100% - 85rpx);
-  overflow: hidden;
-  display: inline-block;
+.goodsDetail-moreMsg .moreMsg-right .address{
+  font-size: 28rpx;
+  color: #333;
+  margin-bottom: 5rpx;
 }
-.goodsDetail-1-content .goodsDetail-moreMsg .moreMsg-item image{
-  float: right;
-  width: 65rpx;
-  height: 80rpx;
-  margin: 0 10rpx 0 0;
+.goodsDetail-moreMsg .moreMsg-right .supplierMsg{
+  font-size: 24rpx;
+  margin-bottom: 5rpx;
+}
+.goodsDetail-moreMsg .moreMsg-right .msg{
+  font-size: 24rpx;
+}
+.goodsDetail-moreMsg .moreMsg-right .msg image{
+  width: 30rpx;
+  height: 30rpx;
+  margin: 0 5rpx;
+  vertical-align: middle;
+  margin-top: -5rpx;
+}
+.goodsDetail-moreMsg .moreMsg-right .bgImg{
+  position: absolute;
+  right: -30rpx;
+  top: -15rpx;
+  width: 70rpx;
+  height: 70rpx;
 }
 .goodsDetail-1-content .goodsDetail-detailMsg{
   overflow: hidden;
@@ -194,8 +241,10 @@ page{
   padding: 40rpx 30rpx;
   position: relative;
   background-color: #ffffff;
-  margin-top: 20rpx;
   font-weight: 500;
+}
+.goodsDetail-detailMsg .detailMsg{
+  overflow: hidden;
 }
 .goodsDetail-1-content .goodsDetail-detailMsg .goodsDetail-detailMsg-title::before{
   content: '';
@@ -535,7 +584,7 @@ page{
   width: 100%;
   height: 100%;
   overflow: hidden;
-  z-index: 9999;
+  z-index: 999999;
 }
 .goodsDetail-1-content .share-bg{
   position: fixed;
@@ -623,7 +672,7 @@ page{
 .fixedShare{
   position: fixed;
   right: 20rpx;
-  bottom: 250rpx;
+  bottom: 220rpx;
   width: 80rpx;
   height: 80rpx;
   border-radius: 40rpx;
@@ -635,4 +684,81 @@ page{
   width: 40rpx;
   height: 40rpx;
   padding: 20rpx;
+}
+.fixed-top{
+  position: fixed;
+  right: 20rpx;
+  bottom: 120rpx;
+  width: 80rpx;
+  height: 80rpx;
+  z-index: 999;
+}
+.fixed-top image{
+  width: 80rpx;
+  height: 80rpx;
+}
+.userBook{
+  display:block;
+  border-top:1rpx solid #e7e7e7;
+  min-height:590rpx;
+  padding: 16rpx 30rpx 28rpx;
+  background: #fff;
+}
+.userBook > view{
+  font-size: 28rpx;
+  color: #e60211;
+  line-height: 30rpx;
+  padding-bottom: 10rpx;
+  margin-top: 10rpx;
+  font-weight: 600;
+}
+.userBook > view.center{
+  text-align: center;
+}
+.userBook > view.content{
+  font-size:24rpx;
+  color:#333;
+  line-height:30rpx;
+}
+.userBook > view.content > view{
+  display: inline-block;
+}
+.userBook > view.content > view.nickName{
+  width: 100%;
+}
+.userBook > view.content > view.header{
+  width: 100%;
+  margin-bottom: 15rpx;
+  text-indent: 49rpx;
+}
+.userBook > view.content > view.stage{
+  width: 100%;
+}
+.userBook > view.content > view.stage .path1{
+  float: left;
+  width: 26rpx;
+  margin-left: 28rpx;
+}
+.userBook > view.content > view.stage .path2{
+  float: left;
+  width: calc(100% - 54rpx);
+}
+.userBook > view.content > view.stage .question{
+  margin-left: 54rpx;
+  display: block;
+  font-weight: 600;
+  color: #e60211;
+  text-decoration: underline;
+}
+.userBook > view.content > view.stage .answer{
+  margin-left: 54rpx;
+  display: block;
+}
+.footer{
+  width: 100%;
+  margin-top: 10rpx;
+}
+.footer .block{
+  width: 100%;
+  text-align: right;
 }

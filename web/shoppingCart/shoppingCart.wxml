@@ -1,4 +1,4 @@
-<component-header headerData="{{headerData}}" bind:changeStatus="changeStatus"></component-header>
+<!-- <component-header headerData="{{headerData}}" bind:changeStatus="changeStatus"></component-header> -->
 <view class="shoppingCart-content">
   <block wx:if="{{shopCartData.length > 0}}">
     <scroll-view class="shoppingCart-ordersDetails" scroll-y>

@@ -5,12 +5,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-    headerData:{
-      type: 'title',
-      title: '购物车',
-      leftIcon: false,
-      rightIcon: 'edit'
-    },
+    // headerData:{
+    //   type: 'title',
+    //   title: '购物车',
+    //   leftIcon: false,
+    //   rightIcon: 'edit'
+    // },
     footerData: {
       active: 3,
       shoppingCartCount: 0
@@ -28,6 +28,14 @@ Page({
     var orderCount = 0;
     var orders = {}
     var isCrossOK = true;
+    if (selectedData.length == 0){
+      wx.showToast({
+        title: '请选择需要购买的商品',
+        icon: 'none',
+        duration: 1500
+      })
+      return;
+    }
     selectedData.forEach(function (o1, n1) {
       if (o1.goodsSpecs) {
         var type = o1.type;
@@ -532,7 +540,7 @@ Page({
     var that = this;
     if (app.globalData.isLogin == false) {
       wx.navigateTo({
-        url: '/web/login/login'
+        url: '/web/loginChoose/loginChoose'
       })
       return;
     }
@@ -545,6 +553,9 @@ Page({
         'footerData.shoppingCartCount': 0
       });
     }
+    that.setData({
+      allChooseStatus: 'selected'
+    });
   },
 
   /**

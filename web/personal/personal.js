@@ -61,7 +61,7 @@ Page({
         success: function (res) {
           if (res.confirm) {
             wx.navigateTo({
-              url: '/web/login/login',
+              url: '/web/loginChoose/loginChoose',
             })
           }
         }
@@ -82,7 +82,7 @@ Page({
         success: function (res) {
           if (res.confirm) {
             wx.navigateTo({
-              url: '/web/login/login',
+              url: '/web/loginChoose/loginChoose',
             })
           }
         }
@@ -103,7 +103,7 @@ Page({
         success: function (res) {
           if (res.confirm) {
             wx.navigateTo({
-              url: '/web/login/login',
+              url: '/web/loginChoose/loginChoose',
             })
           }
         }
@@ -124,7 +124,7 @@ Page({
         success: function (res) {
           if (res.confirm) {
             wx.navigateTo({
-              url: '/web/login/login',
+              url: '/web/loginChoose/loginChoose',
             })
           }
         }

@@ -13,6 +13,6 @@ image.icon_mark{
   position: absolute;
   left: 0;
   top: 0;
-  width: 200rpx;
-  height: 200rpx;
+  width: 140rpx;
+  height: 140rpx;
 }

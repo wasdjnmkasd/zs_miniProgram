@@ -118,10 +118,9 @@ Page({
     }
     var data = {
       name: userName,
-      idNum: idNum,
-      noBack: true
+      idNum: idNum
     }
-    app.saveUserDetail(that,data);
+    app.createUserDetail(that,data);
   },
   getPostFee: function(addressId){
     var that = this;
@@ -163,6 +162,10 @@ Page({
         }
         if (isCount){
           app.getPostFee(that, dataArr);
+        }else{
+          that.setData({
+            postFeeArr: []
+          });
         }
       }
     });
@@ -226,10 +229,6 @@ Page({
     var addressData = that.data.addressListData;
     var addressItem = '';
     var ids = [];
-    wx.showLoading({
-      title: '正在加载...',
-      mask: true
-    })
     addressData.forEach(function (v, i) {
       if (v.id == addressId) {
         addressItem = v;
@@ -287,16 +286,24 @@ Page({
       }
     }
     d.ids = ids;
-    if (tType == 0){
-      if (that.data.haveCode) {
+    if(that.data.addressListData.length > 0){
+      if (tType == 0) {
+        if (that.data.haveCode) {
+          app.createOrder(that, d);
+        } else if (!that.data.haveCode) {
+          that.setData({
+            idNumAlert: true
+          })
+        }
+      } else {
         app.createOrder(that, d);
-      } else if (!that.data.haveCode) {
-        that.setData({
-          idNumAlert: true
-        })
       }
     }else{
-      app.createOrder(that, d);
+      wx.showToast({
+        title: '请填写收货地址',
+        icon: 'none',
+        duration: 1500
+      })
     }
   },
   remarkBlur: function(e){
@@ -305,6 +312,11 @@ Page({
     that.setData({
       remark: remark
     });
+  },
+  toProtocol: function(){
+    wx.navigateTo({
+      url: '/web/protocol/protocol',
+    })
   },
   /**
    * 生命周期函数--监听页面加载

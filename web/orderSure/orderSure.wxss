@@ -285,7 +285,7 @@ page{
 .orderSure-orderDetails .goodsList .body .commodity-price{
   height: 50rpx;
   float: left;
-  padding: 0 5rpx 0 50rpx;
+  padding: 0 5rpx 0 20rpx;
 }
 .orderSure-orderDetails .goodsList .body .commodity-price .money{
   padding-right: 10rpx;
@@ -344,6 +344,19 @@ page{
   padding: 0 40rpx;
   width: 100%;
   background: #fff;
+}
+.orderSure-orderDetails .goodsList .body .commodity-protocol{
+  font-size: 27rpx;
+  padding: 20rpx 40rpx;
+  width: 100%;
+  background: #fff;
+  color: #666;
+  margin-top: -5rpx;
+  margin-bottom: 1rpx;
+}
+.orderSure-orderDetails .goodsList .body .commodity-protocol view{
+  display: inline-block;
+  color: #333;
 }
 .orderSure-orderDetails .goodsList .body .commodity-payInfo{
   width: 100%;

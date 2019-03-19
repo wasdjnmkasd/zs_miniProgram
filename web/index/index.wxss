@@ -1,5 +1,12 @@
 page{
   padding-top: 0;
+  overflow: hidden;
+  width: 100%;
+  height: calc(100% - 100rpx);
+}
+page scroll-view{
+  width: 100%;
+  height: 100%;
 }
 .index-search{
   position: fixed;
@@ -58,4 +65,34 @@ page{
   line-height: 60rpx;
   font-weight: 400;
   color: #333333;
+}
+.fixed-top{
+  position: fixed;
+  right: 10rpx;
+  bottom: 120rpx;
+}
+.fixed-top image{
+  width: 80rpx;
+  height: 80rpx;
+}
+.fixed-kefu{
+  position: fixed;
+  right: 10rpx;
+  bottom: 220rpx;
+  padding: 0;
+  margin: 0;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 40rpx;
+  overflow: hidden;
+  z-index: 999;
+}
+.fixed-kefu:after{
+  border: none;
+}
+.fixed-kefu image{
+  width: 80rpx;
+  height: 80rpx;
+  padding: 5rpx;
+  box-sizing: border-box;
 }

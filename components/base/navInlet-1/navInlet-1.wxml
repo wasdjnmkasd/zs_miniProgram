@@ -21,8 +21,8 @@
       </navigator>
     </view>
     <view class="content-item">
-      <navigator open-type="navigate" url="/web/searchProduct/searchProduct?goodsName=宠物用品&firstCategory=first12" hover-class="none">
-        <image src="{{imgHost}}/images/platform/navInlet-new/navInlet-5.png"></image>
+      <navigator open-type="navigate" url="/web/searchProduct/searchProduct?upShelves=1&&type=0" hover-class="none">
+        <image src="{{imgHost}}/images/platform/navInlet-new/navInlet-11.png"></image>
       </navigator>
     </view>
     <view class="content-item">

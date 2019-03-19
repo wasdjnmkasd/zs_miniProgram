@@ -3,7 +3,7 @@
   width: 750rpx;
   height: 449rpx;
   display: block;
-  margin-bottom: 20rpx;
+  margin: 20rpx 0;
   background: #fff;
   position: relative;
   overflow: hidden;

@@ -1,0 +1,19 @@
+page{
+  padding: 0;
+}
+.protocol-content{
+  overflow: hidden;
+}
+.protocol-content .protocol-content-title{
+  width: 100%;
+  background: #fff;
+  font-size: 28rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+.protocol-content .protocol-content-content{
+  width: 100%;
+  font-size: 24rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+}

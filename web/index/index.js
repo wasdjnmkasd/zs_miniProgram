@@ -18,7 +18,12 @@ Page({
     footerData:{
       active: 1,
       shoppingCartCount: 0
-    }
+    },
+    goodsList_2:{
+      currentPage: 1,
+      numPerPage: 10
+    },
+    toTopShow: false
   },
   scanCode: function () {
     wx.scanCode({
@@ -35,6 +40,45 @@ Page({
     wx.navigateTo({
       url: '/web/searchProduct/searchProduct?goodsName=' + searchName,
     })
+  },
+  getMoreData: function(){
+    var that = this;
+    var currentPage = that.data.goodsList_2.currentPage;
+    var numPerPage = that.data.goodsList_2.numPerPage;
+    var oldData = that.data.goodsListData_2 || [];
+    var totalPages = that.data.goodsList_2.totalPages || 1000;
+    var data = {
+      upShelves: 1,
+      currentPage: currentPage,
+      numPerPage: numPerPage,
+      pageType: 'index'
+    }
+    if (currentPage <= totalPages){
+      app.getSearchListData(that, data, oldData);
+      currentPage++;
+      that.setData({
+        'goodsList_2.currentPage': currentPage
+      })
+    }
+  },
+  defaultScroll: function(e){
+    var top = e.detail.scrollTop;
+    var that = this;
+    if(top > 300){
+      that.setData({
+        toTopShow: true
+      })
+    } else {
+      that.setData({
+        toTopShow: false
+      })
+    }
+  },
+  toTop: function(){
+    var that = this;
+    that.setData({
+      scrollHeight: 0
+    });
   },
   /**
    * 生命周期函数--监听页面加载
