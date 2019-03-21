@@ -192,28 +192,28 @@
     <button type='primary' size='mini' class='openSetting' open-type="openSetting"
 bindopensetting='handleSetting' hidden='{{openSettingBtnHidden}}'>去授权</button>
   </view>
-  <view class="share-btns" style="display:{{alertShare ? 'block' : 'none'}}">
-    <view class="share-bg-cancel" bindtap="hideShare"></view>
-    <view class="share-bg">
-      <view class="share-title">
-        <view class="text">分享</view>
-        <view class="btn" bindtap="hideShare">X</view>
-      </view>
-      <button class="share-item" bindtap="hideShare" open-type="share">
-        <view class="imgBox">
-          <image src="{{imgHost}}/images/platform/goods/share_01.png"></image>
-        </view>
-        <view class="text" style="margin-top: -15rpx;">分享给朋友</view>
-      </button>
-      <button class="share-item" data-goodsId="{{goodsDetailData.goodsId}}" bindtap="share" type="primary">
-        <view class="imgBox friends">
-          <image src="{{imgHost}}/images/platform/goods/share_02.png"></image>
-        </view>
-        <view class="text">保存图片</view>
-      </button>
-    </view>
-  </view>
 </scroll-view>
+<view class="share-btns" style="display:{{alertShare ? 'block' : 'none'}}">
+  <view class="share-bg-cancel" bindtap="hideShare"></view>
+  <view class="share-bg">
+    <view class="share-title">
+      <view class="text">分享</view>
+      <view class="btn" bindtap="hideShare">X</view>
+    </view>
+    <button class="share-item" bindtap="statistics_friend" open-type="share">
+      <view class="imgBox">
+        <image src="{{imgHost}}/images/platform/goods/share_01.png"></image>
+      </view>
+      <view class="text" style="margin-top: -15rpx;">分享给朋友</view>
+    </button>
+    <button class="share-item" data-goodsId="{{goodsDetailData.goodsId}}" bindtap="share" type="primary">
+      <view class="imgBox friends">
+        <image src="{{imgHost}}/images/platform/goods/share_02.png"></image>
+      </view>
+      <view class="text">保存图片</view>
+    </button>
+  </view>
+</view>
 <view class="goodsDetail-btns">
   <view class="goodsDetail-btns-content">
     <view class="btnBox">

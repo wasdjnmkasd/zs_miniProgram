@@ -1,9 +1,9 @@
 const watch = require("/utils/watch.js");
 App({
   globalData: {
-    host: 'https://api.cncoopbuy.com',
-    imgHost: 'https://teststatic.cncoopbuy.com:8080/wechat',
-    nodeHost: 'https://front.cncoopbuy.com',
+    host: 'https://api.cncoopay.com',
+    imgHost: 'https://teststatic.cncoopay.com:8080/wechat',
+    nodeHost: 'https://front.cncoopay.com',
     centerId: 2,
     platUserType: 5,
     loginType: 1,
@@ -3241,6 +3241,19 @@ App({
         'content-type': 'application/json', // 默认值
       },
       success: function(){}
+    })
+  },
+  setStatistics: function(data){
+    var that = this;
+    var nodeHost = that.globalData.nodeHost;
+    wx.request({
+      url: nodeHost + '/Data/handle/statistics',
+      method: 'POST',
+      data: data,
+      header: {
+        'content-type': 'application/json', // 默认值
+      },
+      success: function () { }
     })
   }
 })

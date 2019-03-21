@@ -577,7 +577,7 @@ page{
   width: 148rpx;
   color: #333333;
 }
-.goodsDetail-1-content .share-btns{
+.share-btns{
   position: fixed;
   left: 0;
   top: 0;
@@ -586,7 +586,7 @@ page{
   overflow: hidden;
   z-index: 999999;
 }
-.goodsDetail-1-content .share-bg{
+.share-bg{
   position: fixed;
   left: 0;
   bottom: 0;
@@ -596,7 +596,7 @@ page{
   z-index: 9999;
   box-shadow: 0rpx -5rpx 10rpx rgba(220,220,220,0.3); 
 }
-.goodsDetail-1-content .share-bg-cancel{
+.share-bg-cancel{
   position: fixed;
   left: 0;
   top: 0;
@@ -604,7 +604,7 @@ page{
   height: calc(100% - 212rpx);
   z-index: 9999;
 }
-.goodsDetail-1-content .share-title{
+.share-title{
   overflow: hidden;
   width: 100%;
   background: #eee;
@@ -612,17 +612,17 @@ page{
   line-height: 60rpx;
   color: #666;
 }
-.goodsDetail-1-content .share-title .text{
+.share-title .text{
   float: left;
   font-size: 26rpx;
   padding-left: 20rpx;
 }
-.goodsDetail-1-content .share-title .btn{
+.share-title .btn{
   float: right;
   font-size: 26rpx;
   padding: 0 20rpx;
 }
-.goodsDetail-1-content .share-btns .share-item{
+.share-btns .share-item{
   width: 50%;
   float: left;
   text-align: center;
@@ -630,19 +630,19 @@ page{
   line-height: inherit;
   background: #fff;
 }
-.goodsDetail-1-content .share-btns .share-item::after{
+.share-btns .share-item::after{
   border: none;
 }
-.goodsDetail-1-content .share-btns .share-item image{
+.share-btns .share-item image{
   width: 80rpx;
   height: 80rpx;
 }
-.goodsDetail-1-content .share-btns .share-item .friends image{
+.share-btns .share-item .friends image{
   width: 70rpx;
   height: 70rpx;
   padding: 5rpx;
 }
-.goodsDetail-1-content .share-btns .share-item .text{
+.share-btns .share-item .text{
   font-size: 26rpx;
   color: #333;
   margin-top: -10rpx;

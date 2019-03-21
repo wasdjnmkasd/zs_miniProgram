@@ -596,6 +596,14 @@ Page({
       title: '加载中...',
       mask: true
     })
+    var data = {
+      type: '小程序商详生成分享图片',
+      userId: wx.getStorageSync('userId') || 0,
+      shopId: wx.getStorageSync('shopId') || 2,
+      goodsId: that.data.goodsDetailData.goodsId,
+      logsName: 'statistics'
+    }
+    app.setStatistics(data);
   },
   save: function () {
     var that = this;
@@ -621,6 +629,14 @@ Page({
           })
         } else {
           that.saveImg(that.data.prurl);
+          var data = {
+            type: '小程序商详保存分享图片',
+            userId: wx.getStorageSync('userId') || 0,
+            shopId: wx.getStorageSync('shopId') || 2,
+            goodsId: that.data.goodsDetailData.goodsId,
+            logsName: 'statistics'
+          }
+          app.setStatistics(data);
         }
       }
     })
@@ -762,6 +778,20 @@ Page({
       })
     }
   },
+  statistics_friend: function (e) {
+    var that = this;
+    var data = {
+      type: '小程序商详分享给朋友',
+      userId: wx.getStorageSync('userId') || 0,
+      shopId: wx.getStorageSync('shopId') || 2,
+      goodsId: that.data.goodsDetailData.goodsId,
+      logsName: 'statistics'
+    }
+    app.setStatistics(data);
+    that.setData({
+      alertShare: false
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -814,6 +844,16 @@ Page({
           url: '/web/index/index',
         })
       }
+    }
+    if (options.isShare){
+      var data = {
+        type: '小程序分享进入',
+        userId: wx.getStorageSync('userId') || 0,
+        shopId: wx.getStorageSync('shopId') || 2,
+        goodsId: options.goodsId,
+        logsName: 'statistics'
+      }
+      app.setStatistics(data);
     }
     wx.createSelectorQuery().select('#goodsDetail-moreMsg').boundingClientRect(function (rect) {
       that.setData({
@@ -891,7 +931,7 @@ Page({
     var imageUrl = that.data.goodsDetailData.goodsFileList[0].path;
     return {
       title: goodsName,
-      path: 'web/goodsDetail/goodsDetail?scene=goodsId%3D' + goodsId + '%26shopId%3D' + shopId,
+      path: 'web/goodsDetail/goodsDetail?scene=goodsId%3D' + goodsId + '%26shopId%3D' + shopId + '%26isShare%3Dtrue',
       imageUrl: imageUrl
     }
   }

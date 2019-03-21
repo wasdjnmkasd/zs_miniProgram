@@ -4,7 +4,7 @@
     <scroll-view scroll-y class="content-list">
       <block wx:for="{{activityData_2.cont}}" wx:key="">
         <view class="list-item">
-          <navigator url="{{item.href}}" open-type='navigate' hover-class='none'>
+          <navigator url="{{item.href}}" data-goodsId="{{item.goodsId}}" open-type='navigate' hover-class='none' bindtap="statistics">
             <view class="shopImg">
               <image src="{{item.picPath}}"></image>
             </view>
