@@ -2,7 +2,7 @@ const watch = require("/utils/watch.js");
 App({
   globalData: {
     host: 'https://api.cncoopay.com',
-    imgHost: 'https://teststatic.cncoopay.com:8080/wechat',
+    imgHost: 'https://static.cncoopay.com:8080/wechat',
     nodeHost: 'https://front.cncoopay.com',
     centerId: 2,
     platUserType: 5,
@@ -264,6 +264,14 @@ App({
                 delta: 2
               })
             } else if (data.loginType == 5){
+              var pages = getCurrentPages();    //获取加载的页面
+              var currentPage = pages[pages.length - 1];    //获取当前页面的对象
+              var url = currentPage.route;
+              if (url == 'web/bindMobile/bindMobile') {
+                wx.navigateBack({
+                  delta: 2
+                })
+              }
               wx.navigateBack({
                 delta: 1
               })

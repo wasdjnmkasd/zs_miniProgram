@@ -275,7 +275,8 @@ Page({
         itemName: data.itemObj[k1].itemName,
         itemPrice: data.itemObj[k1].priceList[0].price,
         itemQuantity: data.itemObj[k1].quantity,
-        sku: data.itemObj[k1].itemSpecs.sku
+        sku: data.itemObj[k1].itemSpecs.sku,
+        unit: data.itemObj[k1].itemSpecs.unit
       }
       if (data.supplierBargainPrice && data.couponIds){
         _d.actualPrice = data.itemObj[k1].priceList[0].price * 1 - data.supplierBargainPrice * 1;

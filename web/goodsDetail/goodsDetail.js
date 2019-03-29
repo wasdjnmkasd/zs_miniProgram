@@ -233,6 +233,7 @@ Page({
         data[goodsDetailData.type][goodsDetailData.supplierId].itemObj[chooseItemData.itemId].itemSpecs['itemId'] = chooseItemData.itemId;
         data[goodsDetailData.type][goodsDetailData.supplierId].itemObj[chooseItemData.itemId].itemSpecs['sku'] = chooseItemData.sku;
         data[goodsDetailData.type][goodsDetailData.supplierId].itemObj[chooseItemData.itemId].itemSpecs['info'] = chooseItemData.info;
+        data[goodsDetailData.type][goodsDetailData.supplierId].itemObj[chooseItemData.itemId].itemSpecs['unit'] = chooseItemData.unit;
         if (chooseItemData.info){
           var info = '';
           var d = JSON.parse(chooseItemData.info);
@@ -313,6 +314,7 @@ Page({
         data.supplierId = goodsDetailData.supplierId;
         data.supplierName = goodsDetailData.supplierName;
         data.type = goodsDetailData.type;
+        data.unit = chooseItemData.unit;
         app.addShopCart(that, data);
       }else{
         wx.showToast({

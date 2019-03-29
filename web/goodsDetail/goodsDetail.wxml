@@ -186,13 +186,13 @@
       <view class="goodsDetail-alert-cancel" bindtap="alertContent">x</view>
     </scroll-view>
   </view>
-  <view hidden='{{hidden}}' class='preview'>
-    <image src='{{prurl}}' mode='widthFix'></image>
-    <button type='primary' size='mini' class='saveImg' bindtap='save' hidden='{{saveImgBtnHidden}}'>保存图片</button>
-    <button type='primary' size='mini' class='openSetting' open-type="openSetting"
-bindopensetting='handleSetting' hidden='{{openSettingBtnHidden}}'>去授权</button>
-  </view>
 </scroll-view>
+<view hidden='{{hidden}}' class='preview'>
+  <image src='{{prurl}}' mode='widthFix'></image>
+  <button type='primary' size='mini' class='saveImg' bindtap='save' hidden='{{saveImgBtnHidden}}'>保存图片</button>
+  <button type='primary' size='mini' class='openSetting' open-type="openSetting"
+bindopensetting='handleSetting' hidden='{{openSettingBtnHidden}}'>去授权</button>
+</view>
 <view class="share-btns" style="display:{{alertShare ? 'block' : 'none'}}">
   <view class="share-bg-cancel" bindtap="hideShare"></view>
   <view class="share-bg">
