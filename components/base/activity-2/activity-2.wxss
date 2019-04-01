@@ -1,7 +1,11 @@
 .activity-2-content{
   overflow: hidden;
   background: #fff;
-  margin-bottom: 10rpx;
+}
+.content-bg{
+  margin: 10rpx 15rpx;
+  background: #ffe9c0;
+  border-radius: 10rpx;
 }
 .activity-2-content .title{
   height: 80rpx;
@@ -9,33 +13,44 @@
   margin-left: 30rpx;
   font-size: 32rpx;
   color: #333;
+  padding: 10rpx 0;
+}
+.activity-2-content .title image{
+  width: 61rpx;
+  height: 40rpx;
+  vertical-align: middle;
+  margin-top: -15rpx;
+}
+.activity-2-content .title .more{
+  float: right;
+  margin-right: 40rpx;
+  font-size: 24rpx;
+  color: #999;
 }
 .activity-2-content .goodsList-list{
   overflow-x: auto;
   overflow-y: hidden;
   position: relative;
-  padding-bottom: 20rpx;
+  /* padding-bottom: 20rpx; */
 }
 .goodsList-list .content-list{
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
   overflow: hidden;
-  padding: 0 30rpx;
+  padding: 0 15rpx;
   box-sizing: border-box;
+  max-height: 664rpx;
 }
 .goodsList-list .content-list .list-item{
   float: left;
   width: 220rpx;
-  height: 257rpx;
+  /* height: 257rpx; */
   background: #fff;
   margin-right: 15rpx;
-  margin-bottom: 10rpx;
+  margin-bottom: 15rpx;
   overflow: hidden;
-  border: 1rpx solid #efefef;
+  /* border: 1rpx solid #efefef; */
   box-sizing: border-box;
 }
-.goodsList-list .content-list .list-item:last-child{
+.goodsList-list .content-list .list-item:nth-child(3n){
   margin-right: 0;
 }
 .goodsList-list .content-list .list-item .shopImg{
@@ -66,23 +81,33 @@
   line-height: 25rpx;
   overflow: hidden;
   margin-top: 5rpx;
+  word-break: break-all;
 }
 .goodsList-list .content-list .list-item .shopPrice{
-  height: 34rpx;
-}
-.goodsList-list .content-list .list-item .shopPrice text{
-  float: left;
-  font-size: 20rpx;
+  text-align: center;
+  font-size: 22rpx;
+  margin-top: 5rpx;
   font-weight: 600;
-  padding-top: 8rpx;
   color: #f00;
 }
-.goodsList-list .content-list .list-item .shopPrice text.enname{
-  font-size: 16rpx;
-  padding-top: 12rpx;
+.goodsList-list .content-list .list-item .oldPrice{
+  text-align: center;
   color: #999;
-  text-decoration: line-through;
-  margin-left: 5rpx;
+}
+.goodsList-list .content-list .list-item .btn{
+  text-align: center;
+  margin-top: 5rpx;
+  padding-bottom: 5rpx;
+}
+.goodsList-list .content-list .list-item .btn text{
+  display: inline-block;
+  font-size: 22rpx;
+  padding: 0 15rpx;
+  background: #f00;
+  border-radius: 40rpx;
+  color: #fff;
+  line-height: 32rpx;
+  vertical-align: middle;
 }
 .goodsList-list .content-list .list-item.lookMore{
   text-align: center;

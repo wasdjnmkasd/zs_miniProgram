@@ -1,7 +1,12 @@
 .activity-3-content{
   overflow: hidden;
   background: #fff;
-  margin-bottom: 10rpx;
+  padding: 10rpx 0;
+}
+.content-bg{
+  margin: 10rpx 15rpx;
+  background: #e5d4fe;
+  border-radius: 10rpx;
 }
 .activity-3-content .title{
   height: 80rpx;
@@ -9,38 +14,37 @@
   margin-left: 30rpx;
   font-size: 32rpx;
   color: #333;
+  padding: 10rpx 0;
+}
+.activity-3-content .title .more{
+  float: right;
+  margin-right: 40rpx;
+  font-size: 24rpx;
+  color: #999;
 }
 .activity-3-content .goodsList-list{
   overflow-x: auto;
   overflow-y: hidden;
   position: relative;
-  padding-bottom: 20rpx;
 }
 .goodsList-list .content-list{
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
   overflow: hidden;
-  padding: 0 30rpx;
+  padding: 0 15rpx;
   box-sizing: border-box;
 }
 .goodsList-list .content-list .list-item{
-  float: left;
-  width: 220rpx;
   height: 257rpx;
   background: #fff;
-  margin-right: 15rpx;
   margin-bottom: 10rpx;
   overflow: hidden;
   border: 1rpx solid #efefef;
   box-sizing: border-box;
-}
-.goodsList-list .content-list .list-item:last-child{
-  margin-right: 0;
+  border-radius: 10rpx;
 }
 .goodsList-list .content-list .list-item .shopImg{
+  float: left;
   width: 200rpx;
-  height: 148rpx;
+  height: 200rpx;
   position: relative;
   text-align: center
 }
@@ -48,41 +52,86 @@
   width: 100%;
   height: 100%;
   color: #333;
-  padding: 10rpx;
+  padding: 20rpx;
   font-size: 18rpx;
   text-decoration: none;
   display: inline-block;
   box-sizing: border-box;
 }
 .goodsList-list .content-list .list-item .shopImg image{
-  max-width: 148rpx;
-  max-height: 148rpx;
+  max-width: 200rpx;
+  max-height: 200rpx;
   display: inline-block;
   margin: auto;
 }
+.goodsList-list .content-list .list-item .shopMsg{
+  float: left;
+  width: calc(100% - 210rpx);
+  height: 200rpx;
+  padding-left: 10rpx;
+  position: relative;
+}
 .goodsList-list .content-list .list-item .shopName{
-  height: 48rpx;
-  font-size: 18rpx;
-  line-height: 25rpx;
+  font-size: 26rpx;
   overflow: hidden;
   margin-top: 5rpx;
+  text-overflow: -o-ellipsis-lastline;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
 }
 .goodsList-list .content-list .list-item .shopPrice{
-  height: 34rpx;
-}
-.goodsList-list .content-list .list-item .shopPrice text{
-  float: left;
-  font-size: 20rpx;
+  height: 40rpx;
+  font-size: 30rpx;
   font-weight: 600;
   padding-top: 8rpx;
   color: #f00;
+  position: absolute;
+  bottom: 35rpx;
+  left: 0;
 }
-.goodsList-list .content-list .list-item .shopPrice text.enname{
-  font-size: 16rpx;
-  padding-top: 12rpx;
+.goodsList-list .content-list .list-item .btn{
+  width: 140rpx;
+  height: 55rpx;
+  line-height: 55rpx;
+  border-radius: 55rpx;
+  background: linear-gradient(to right, #ff0305 , #fd3365);
+  text-align: center;
+  color: #fff;
+  font-size: 26rpx;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+.goodsList-list .content-list .list-item .oldPrice{
+  font-size: 20rpx;
   color: #999;
-  text-decoration: line-through;
   margin-left: 5rpx;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  text-decoration: line-through;
+}
+.goodsList-list .content-list .list-item .tagIcon{
+  position: absolute;
+  bottom: 80rpx;
+  left: 0;
+  color: #f00;
+  font-size: 20rpx;
+}
+.goodsList-list .content-list .list-item .tagIcon text{
+  display: inline-block;
+  border-radius: 40rpx;
+  border: 1rpx solid #f00;
+  padding: 0 10rpx;
+  margin-right: 10rpx;
+}
+.goodsList-list .content-list .list-item .tagIcon text.icon_2{
+  color: #a562f9;
+  border-color: #a562f9;
 }
 .goodsList-list .content-list .list-item.lookMore{
   text-align: center;
@@ -91,4 +140,19 @@
   width: 109rpx;
   height: 135rpx;
   margin-top: 61rpx;
+}
+.activity-3-content .getMore{
+  text-align: center;
+  color: #333;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 24rpx;
+  margin: 0 15rpx;
+  padding: 30rpx 0;
+}
+.activity-3-content .getMore text{
+  display: inline-block;
+  border: 1rpx solid #333;
+  border-radius: 60rpx;
+  width: 100%;
 }

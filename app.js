@@ -264,10 +264,10 @@ App({
                 delta: 2
               })
             } else if (data.loginType == 5){
-              var pages = getCurrentPages();    //获取加载的页面
-              var currentPage = pages[pages.length - 1];    //获取当前页面的对象
-              var url = currentPage.route;
-              if (url == 'web/bindMobile/bindMobile') {
+              var pages = getCurrentPages()    //获取加载的页面
+              var currentPage = pages[pages.length - 1]    //获取当前页面的对象
+              var url = currentPage.route
+              if (url == 'web/bindMobile/bindMobile'){
                 wx.navigateBack({
                   delta: 2
                 })
@@ -3051,7 +3051,7 @@ App({
           data[goodsDetailData.type][goodsDetailData.supplierId].itemObj[chooseItemData.itemId] = chooseItemData;
           data[goodsDetailData.type][goodsDetailData.supplierId].itemObj[chooseItemData.itemId].freePost = goodsDetailData.freePost;
           data[goodsDetailData.type][goodsDetailData.supplierId].itemObj[chooseItemData.itemId].freeTax = goodsDetailData.freeTax;
-          data[goodsDetailData.type][goodsDetailData.supplierId].itemObj[chooseItemData.itemId].incrementTax = 0.16;
+          data[goodsDetailData.type][goodsDetailData.supplierId].itemObj[chooseItemData.itemId].incrementTax = chooseItemData.incrementTax;
           data[goodsDetailData.type][goodsDetailData.supplierId].itemObj[chooseItemData.itemId].priceList[0].price = obj.data.bargainData.goodsPrice;
           data[goodsDetailData.type][goodsDetailData.supplierId].itemObj[chooseItemData.itemId].quantity = 1;
           if (goodsDetailData.goodsFileList) {

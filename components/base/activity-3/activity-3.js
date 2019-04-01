@@ -4,7 +4,8 @@ Component({
     activityData_3: Object
   },
   data: {
-    imgHost: app.globalData.imgHost
+    imgHost: app.globalData.imgHost,
+    showMore: false
   },
   methods: {
     statistics: function (e) {
@@ -16,6 +17,12 @@ Component({
         logsName: 'statistics'
       }
       app.setStatistics(data);
+    },
+    getMore: function () {
+      var that = this;
+      that.setData({
+        showMore: !that.data.showMore
+      })
     }
   }
 });

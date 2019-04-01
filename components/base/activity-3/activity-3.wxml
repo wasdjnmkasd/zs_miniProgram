@@ -1,21 +1,34 @@
 <view class="activity-3-content">
-  <view class="title">{{activityData_3.own.title}}</view>
-  <view class="goodsList-list">
-    <scroll-view scroll-y class="content-list">
-      <block wx:for="{{activityData_3.cont}}" wx:key="">
-        <view class="list-item">
-          <navigator url="{{item.href}}" data-goodsId="{{item.goodsId}}" open-type='navigate' hover-class='none' bindtap="statistics">
-            <view class="shopImg">
-              <image src="{{item.picPath}}"></image>
-            </view>
-            <view class="shopName">{{item.title}}</view>
-            <view class="shopPrice">
-              <text class="text">￥{{item.price}}</text>
-              <text class="enname" wx:if="{{item.enname}}">￥{{item.enname}}</text>
-            </view>
-          </navigator>
-        </view>
-      </block>
-    </scroll-view>
+  <view class="content-bg">
+    <view class="title">
+      {{activityData_3.own.title}}
+      <navigator open-type="navigate" url="/web/searchProduct/searchProduct?goodsName=新品推荐&upShelves=1&tag=新品推荐" class="more" hover-class="none">查看更多</navigator>
+    </view>
+    <view class="goodsList-list">
+      <view class="content-list" style="height:{{showMore ? 'auto' : '780rpx'}};">
+        <block wx:for="{{activityData_3.cont}}" wx:key="">
+          <view class="list-item">
+            <navigator url="{{item.href}}" data-goodsId="{{item.goodsId}}" open-type='navigate' hover-class='none' bindtap="statistics">
+              <view class="shopImg">
+                <image src="{{item.picPath}}"></image>
+              </view>
+              <view class="shopMsg">
+                <view class="shopName">{{item.title}}</view>
+                <view class="shopPrice">￥{{item.price}}</view>
+                <view class="oldPrice">￥{{item.enname}}</view>
+                <view class="tagIcon">
+                  <text class="icon_1">推荐</text>
+                  <text class="icon_2">优选</text>
+                </view>
+                <view class="btn">去抢购</view>
+              </view>
+            </navigator>
+          </view>
+        </block>
+      </view>
+    </view>
+    <view class="getMore" bindtap="getMore">
+      <text>{{showMore? '收起列表' : '展开列表'}}</text>
+    </view>
   </view>
 </view>

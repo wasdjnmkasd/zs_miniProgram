@@ -2,7 +2,6 @@
   overflow: hidden;
   background: #fff;
   margin-top: 2rpx;
-  margin-bottom: 10rpx;
 }
 .activity-1-content .title{
   height: 80rpx;
@@ -10,6 +9,18 @@
   margin-left: 30rpx;
   font-size: 32rpx;
   color: #333;
+}
+.activity-1-content .title image{
+  width:35rpx;
+  height:42rpx;
+  margin-top: -12rpx;
+  vertical-align: middle;
+}
+.activity-1-content .title .more{
+  float: right;
+  margin-right: 40rpx;
+  font-size: 24rpx;
+  color: #999;
 }
 .activity-1-content .title-image{
   width: 690rpx;
@@ -21,30 +32,18 @@
   overflow-x: auto;
   overflow-y: hidden;
   position: relative;
-  padding-bottom: 20rpx;
-}
-.goodsList-list .content-list{
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
-  overflow: hidden;
-  padding: 0 30rpx;
-  box-sizing: border-box;
+  /* padding-bottom: 20rpx; */
 }
 .goodsList-list .content-list .list-item{
   float: left;
   width: 220rpx;
   height: 257rpx;
   background: #fff;
-  margin-right: 15rpx;
+  margin-right: 20rpx;
   margin-bottom: 10rpx;
   overflow: hidden;
   position: relative;
   border: 1rpx solid #efefef;
-  box-sizing: border-box;
-}
-.goodsList-list .content-list .list-item:last-child{
-  margin-right: 0;
 }
 .goodsList-list .content-list .list-item .shopImg{
   width: 200rpx;
@@ -61,6 +60,7 @@
   text-decoration: none;
   display: inline-block;
   box-sizing: border-box;
+  word-break:break-all;
 }
 .goodsList-list .content-list .list-item .shopImg image{
   max-width: 148rpx;

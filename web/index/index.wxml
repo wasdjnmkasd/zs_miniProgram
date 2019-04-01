@@ -12,7 +12,7 @@
     <view class="introduce-1-item">售后无忧</view>
   </view>
   <component-navInlet-1></component-navInlet-1>
-  <component-navInlet-2></component-navInlet-2>
+  <!-- <component-navInlet-2></component-navInlet-2> -->
   <component-activity-1 activityData_1="{{activityData_1}}"></component-activity-1>
   <component-activity-2 activityData_2="{{activityData_2}}"></component-activity-2>
   <component-activity-3 activityData_3="{{activityData_3}}"></component-activity-3>
