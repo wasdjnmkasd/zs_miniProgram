@@ -26,7 +26,7 @@ Page({
   accountBlur: function(e){
     var that = this;
     var account = e.detail.value;
-    var isPhone = (/^1(3|4|5|7|8)\d{9}$/gi).test(account);
+    var isPhone = (/^1(3|4|5|7|8|9)\d{9}$/gi).test(account);
     var data = {
       account: account,
       status: 0
@@ -51,7 +51,7 @@ Page({
   getValidation: function () {
     var that = this;
     var phone = that.data.account.value;
-    var isPhone = (/^1(3|4|5|7|8)\d{9}$/gi).test(phone);
+    var isPhone = (/^1(3|4|5|7|8|9)\d{9}$/gi).test(phone);
     if (isPhone) {
       var data = {
         phone: phone
@@ -98,7 +98,7 @@ Page({
     var that = this;
     var account = that.data.account.value;
     var validation = that.data.validation.value;
-    var isPhone = (/^1(3|4|5|7|8)\d{9}$/gi).test(account);
+    var isPhone = (/^1(3|4|5|7|8|9)\d{9}$/gi).test(account);
     if (isPhone && validation){
       var data = {
         invitationCode: validation,
@@ -142,7 +142,7 @@ Page({
         status: status
       });
     }
-    app.shopDetailQuery();
+    app.shopDetailQuery(that);
   },
 
   /**
@@ -191,6 +191,15 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    var that = this;
+    var shopId = app.globalData.shopId || 2;
+    var pages = getCurrentPages(); //获取加载的页面
+    var currentPage = pages[pages.length - 1]; //获取当前页面的对象
+    var url = currentPage.route; //当前页面url
+    return {
+      title: that.data.shopInfoData.name,
+      path: url + '?scene=shopId%3D' + shopId,
+      imageUrl: ''
+    }
   }
 })

@@ -1861,9 +1861,19 @@ App({
       },
       success: function (res) {
         if (res.data && res.data.success) {
-          wx.navigateBack({
-            delta: 1
-          })
+          var pages = getCurrentPages();    //获取加载的页面
+          var currentPage = pages[pages.length - 1];    //获取当前页面的对象
+          var url = currentPage.route;    //当前页面url
+          if (url != 'web/orderSure/orderSure'){
+            wx.navigateBack({
+              delta: 1
+            })
+          } else {
+            obj.setData({
+              idNumAlert: false,
+              haveCode: true
+            })
+          }
           that.userDetailQuery(obj,{});
         }else{
           wx.showToast({
@@ -3051,7 +3061,7 @@ App({
           data[goodsDetailData.type][goodsDetailData.supplierId].itemObj[chooseItemData.itemId] = chooseItemData;
           data[goodsDetailData.type][goodsDetailData.supplierId].itemObj[chooseItemData.itemId].freePost = goodsDetailData.freePost;
           data[goodsDetailData.type][goodsDetailData.supplierId].itemObj[chooseItemData.itemId].freeTax = goodsDetailData.freeTax;
-          data[goodsDetailData.type][goodsDetailData.supplierId].itemObj[chooseItemData.itemId].incrementTax = chooseItemData.incrementTax;
+          data[goodsDetailData.type][goodsDetailData.supplierId].itemObj[chooseItemData.itemId].incrementTax = goodsDetailData.incrementTax;
           data[goodsDetailData.type][goodsDetailData.supplierId].itemObj[chooseItemData.itemId].priceList[0].price = obj.data.bargainData.goodsPrice;
           data[goodsDetailData.type][goodsDetailData.supplierId].itemObj[chooseItemData.itemId].quantity = 1;
           if (goodsDetailData.goodsFileList) {

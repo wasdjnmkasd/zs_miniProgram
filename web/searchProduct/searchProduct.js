@@ -61,7 +61,7 @@ Page({
     that.setData({
       'searchListData.requestData': data
     });
-    app.shopDetailQuery();
+    app.shopDetailQuery(that);
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -117,6 +117,15 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    var that = this;
+    var shopId = app.globalData.shopId || 2;
+    var pages = getCurrentPages(); //获取加载的页面
+    var currentPage = pages[pages.length - 1]; //获取当前页面的对象
+    var url = currentPage.route; //当前页面url
+    return {
+      title: that.data.shopInfoData.name,
+      path: url + '?scene=shopId%3D' + shopId,
+      imageUrl: ''
+    }
   }
 })

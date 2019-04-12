@@ -29,7 +29,7 @@ Page({
   changePhone: function(e){
     var that = this;
     var val = e.detail.value;
-    var isPhone = (/^1(3|4|5|7|8)\d{9}$/gi).test(val);
+    var isPhone = (/^1(3|4|5|7|8|9)\d{9}$/gi).test(val);
     if (isPhone){
       that.setData({
         telephone: val
@@ -297,7 +297,7 @@ Page({
       'city': city || citys[0].name,
       'county': county || countys[0].name
     });
-    app.shopDetailQuery();
+    app.shopDetailQuery(that);
   },
 
   /**
@@ -346,6 +346,15 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    var that = this;
+    var shopId = app.globalData.shopId || 2;
+    var pages = getCurrentPages(); //获取加载的页面
+    var currentPage = pages[pages.length - 1]; //获取当前页面的对象
+    var url = currentPage.route; //当前页面url
+    return {
+      title: that.data.shopInfoData.name,
+      path: url + '?scene=shopId%3D' + shopId,
+      imageUrl: ''
+    }
   }
 })
