@@ -1,0 +1,90 @@
+<view class="joinUs-content">
+  <view class="content-showImg">
+    <image src="{{imgHost}}/images/platform/joinUs/showImg_01.jpg"></image>
+  </view>
+  <view class="content-form">
+    <view class="list-item userName">
+      <input id="itemUserName" type="text" placeholder="请输入您的姓名（必填）" value="{{userName}}" bindinput="changeName"></input>
+    </view>
+    <view class="list-item userPhone">
+      <input id="itemUserPhone" type="number" placeholder="请输入手机号码（必填）" value="{{userPhone}}" bindinput="changePhone" maxlength="11"></input>
+    </view>
+    <view class="list-item userAddress">
+      <input id="itemUserAddress" type="text" placeholder="请输入联系地址（必填）" value="{{userAddress}}" bindinput="changeAddress"></input>
+    </view>
+    <view class="list-item userCompany">
+      <input id="itemUserCompany" type="text" placeholder="请输入公司名称（选填）" vaule="{{userCompany}}" bindinput="changeCompany"></input>
+    </view>
+    <view class="list-item userContent">
+      <textarea wx:if="{{hidden}}" id="itemUserContent" placeholder="请输入留言内容（选填）" value="{{userContent}}" bindinput="changeContent"></textarea>
+    </view>
+    <view class="imgContent">
+      <view class="cardImg1 imgItem">
+        <block wx:if="{{!cardImg1}}">
+          <text class="icon">+</text>
+          <text>身份证正面照片（必填）</text>
+        </block>
+        <block wx:else>
+          <image src="{{cardImg1}}"></image>
+        </block>
+        <input type="file" accept="image/jpg,image/jpeg,image/png,image/gif" multiple="" data-id="1" bindtap="upload" disabled></input>
+      </view>
+      <view class="cardImg_2 imgItem">
+        <block wx:if="{{!cardImg2}}">
+          <text class="icon">+</text>
+          <text>身份证反面照片（必填）</text>
+        </block>
+        <block wx:else>
+          <image src="{{cardImg2}}"></image>
+        </block>
+        <input type="file" accept="image/jpg,image/jpeg,image/png,image/gif" multiple="" data-id="2" bindtap="upload" disabled></input>
+      </view>
+      <view class="companyImg imgItem">
+        <block wx:if="{{!companyImg}}">
+          <text class="icon">+</text>
+          <text>公司营业执照（选填）</text>
+        </block>
+        <block wx:else>
+          <image src="{{companyImg}}"></image>
+        </block>
+        <input  type="file" accept="image/jpg,image/jpeg,image/png,image/gif" multiple="" data-id="3" bindtap="upload" disabled></input>
+      </view>
+    </view>
+    <view class="btn-submit" bindtap="listSubmit">提交申请</view>
+  </view>
+  <view class="home">
+    <navigator hover-class="none" url="/web/index/index" open-type="switchTab">
+      <image src="{{imgHost}}/images/platform/joinUs/home.png"></image>
+    </navigator>
+  </view>
+  <view class="fixedShare" bindtap="showShare">
+    <image src="{{imgHost}}/images/platform/goods/icon_share.png"></image>
+  </view>
+  <view hidden='{{hidden}}' class='preview'>
+  <image src='{{scanImg}}' mode='widthFix'></image>
+  <button type='primary' size='mini' class='saveImg' bindtap='save' hidden='{{saveImgBtnHidden}}'>保存图片</button>
+  <button type='primary' size='mini' class='openSetting' open-type="openSetting"
+bindopensetting='handleSetting' hidden='{{openSettingBtnHidden}}'>去授权</button>
+</view>
+<view class="share-btns" style="display:{{alertShare ? 'block' : 'none'}}">
+  <view class="share-bg-cancel" bindtap="hideShare"></view>
+  <view class="share-bg">
+    <view class="share-title">
+      <view class="text">分享</view>
+      <view class="btn" bindtap="hideShare">X</view>
+    </view>
+    <button class="share-item" bindtap="statistics_friend" open-type="share">
+      <view class="imgBox">
+        <image src="{{imgHost}}/images/platform/goods/share_01.png"></image>
+      </view>
+      <view class="text" style="margin-top: -15rpx;">分享给朋友</view>
+    </button>
+    <button class="share-item" data-goodsId="{{goodsDetailData.goodsId}}" bindtap="share" type="primary">
+      <view class="imgBox friends">
+        <image src="{{imgHost}}/images/platform/goods/share_02.png"></image>
+      </view>
+      <view class="text">保存图片</view>
+    </button>
+  </view>
+</view>
+</view>

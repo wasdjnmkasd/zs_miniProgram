@@ -131,6 +131,27 @@ Page({
       })
     }
   },
+  toScan: function(e){
+    var url = e.currentTarget.dataset.url;
+    var userId = wx.getStorageSync('userId');
+    if (userId) {
+      wx.navigateTo({
+        url: url,
+      })
+    } else {
+      wx.showModal({
+        title: '温馨提示',
+        content: '您尚未登录，是否登录？',
+        success: function (res) {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '/web/loginChoose/loginChoose',
+            })
+          }
+        }
+      })
+    }
+  },
   alertContentHide: function(){
     var that = this;
     that.setData({

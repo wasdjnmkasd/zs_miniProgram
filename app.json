@@ -21,7 +21,8 @@
     "web/bargainIndex/bargainIndex",
     "web/bargainGoodsDetail/bargainGoodsDetail",
     "web/loginChoose/loginChoose",
-    "web/protocol/protocol"
+    "web/protocol/protocol",
+    "separate/joinUs/joinUs"
   ],
   "window":{
     "backgroundTextStyle": "light",

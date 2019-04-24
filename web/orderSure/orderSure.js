@@ -120,9 +120,9 @@ Page({
       name: userName,
       idNum: idNum
     }
-    if (that.data.personalData.userDetail == null){
+    if (that.data.personalData.userDetail == null) {
       app.createUserDetail(that, data);
-    }else{
+    } else {
       app.saveUserDetail(that, data);
     }
   },

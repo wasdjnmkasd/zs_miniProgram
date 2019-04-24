@@ -623,6 +623,12 @@ App({
     var host = that.globalData.host;
     var shopId = that.globalData.shopId;
     var centerId = that.globalData.centerId;
+    if (shopId == 375) {
+      wx.setNavigationBarColor({
+        frontColor: '#ffffff',
+        backgroundColor: '#ff8500',
+      })
+    }
     wx.request({
       url: host + '/usercenter/auth/1.0/grade/config/' + centerId + '?shopId=' + shopId,
       method: 'GET',
@@ -718,6 +724,7 @@ App({
             if (v.own && v.own.href){
               v.own._href = v.own.href.split('?')[1];
             }
+            v.idx  = i;
           });
           obj.setData({
             goodsListData_1: goodsListData_1
@@ -1864,7 +1871,7 @@ App({
           var pages = getCurrentPages();    //获取加载的页面
           var currentPage = pages[pages.length - 1];    //获取当前页面的对象
           var url = currentPage.route;    //当前页面url
-          if (url != 'web/orderSure/orderSure'){
+          if (url != 'web/orderSure/orderSure') {
             wx.navigateBack({
               delta: 1
             })
@@ -1874,8 +1881,8 @@ App({
               haveCode: true
             })
           }
-          that.userDetailQuery(obj,{});
-        }else{
+          that.userDetailQuery(obj, {});
+        } else {
           wx.showToast({
             title: '保存个人信息失败',
             icon: 'none',
@@ -3272,6 +3279,60 @@ App({
         'content-type': 'application/json', // 默认值
       },
       success: function () { }
+    })
+  },
+  setOpenShopData: function(data){
+    var that = this;
+    var nodeHost = that.globalData.nodeHost;
+    wx.request({
+      url: nodeHost + '/Data/img/json',
+      method: 'POST',
+      data: data,
+      header: {
+        'content-type': 'application/json', // 默认值
+      },
+      success: function (res) { 
+        if(res.data.success){
+          wx.showModal({
+            title: '申请成功',
+            content: '申请成功，工作员人将在三个工作日内会联系您，请保持手机通讯畅通',
+            showCancel: false,
+            success(res) {
+              wx.navigateBack({
+                delta: 1
+              })
+            }
+          })
+        }
+      }
+    })
+  },
+  gertMyStoreCode: function (obj) {
+    var that = this;
+    var host = that.globalData.host;
+    var shopId = wx.getStorageSync('shopId') || 2;
+    wx.request({
+      url: host + '/usercenter/auth/1.0/grade/shopBillboard?shopId=' + shopId,
+      method: 'POST',
+      data: {},
+      header: {
+        'content-type': 'application/json', // 默认值
+      },
+      success: function (res) {
+        wx.hideLoading();
+        if (res && res.data) {
+          obj.setData({
+            scanImg: 'data:image/png;base64,' + res.data,
+            hidden: false
+          });
+        } else {
+          wx.showToast({
+            title: '生成分享图片失败，请稍后重试',
+            icon: 'none',
+            duration: 1500
+          })
+        }
+      }
     })
   }
 })

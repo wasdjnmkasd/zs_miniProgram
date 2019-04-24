@@ -1,43 +1,82 @@
 .floor-1-content{
-  width: 750rpx;
-  display: block;
-  position: relative;
-  background-color: #ffffff;
+  overflow: hidden;
+  background: #fff;
 }
-.floor-1-content .mainImg{
-  height: 325rpx;
+.bg-0 .content-bg{
+  margin: 10rpx 15rpx;
+  background: #fff1f7;
+  border-radius: 10rpx;
 }
-.floor-1-content .mainImg navigator{
-  width: 100%;
-  height: 100%;
+.bg-1 .content-bg{
+  margin: 10rpx 15rpx;
+  background: #f6efff;
+  border-radius: 10rpx;
 }
-.floor-1-content .mainImg image{
-  width: 100%;
-  height: 100%;
+.bg-2 .content-bg{
+  margin: 10rpx 15rpx;
+  background: #fff5f3;
+  border-radius: 10rpx;
+}
+.bg-3 .content-bg{
+  margin: 10rpx 15rpx;
+  background: #f3faf3;
+  border-radius: 10rpx;
+}
+.bg-4 .content-bg{
+  margin: 10rpx 15rpx;
+  background: #fffbfc;
+  border-radius: 10rpx;
+}
+.bg-5 .content-bg{
+  margin: 10rpx 15rpx;
+  background: #fff2f7;
+  border-radius: 10rpx;
+}
+.floor-1-content .title{
+  height: 80rpx;
+  line-height: 80rpx;
+  margin-left: 30rpx;
+  font-size: 32rpx;
+  color: #333;
+  /* padding: 10rpx 0; */
+}
+.floor-1-content .title image{
+  width: 61rpx;
+  height: 40rpx;
+  vertical-align: middle;
+  margin-top: -15rpx;
+}
+.floor-1-content .title .more{
+  float: right;
+  margin-right: 40rpx;
+  font-size: 24rpx;
+  color: #999;
 }
 .floor-1-content .goodsList-list{
-  top: -60rpx;
   overflow-x: auto;
   overflow-y: hidden;
   position: relative;
+  /* padding-bottom: 20rpx; */
 }
 .goodsList-list .content-list{
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
   overflow: hidden;
-  padding: 2rpx 20rpx;
+  padding: 0 15rpx;
+  box-sizing: border-box;
+  max-height: 288rpx;
 }
 .goodsList-list .content-list .list-item{
   float: left;
   width: 220rpx;
-  height: 257rpx;
+  /* height: 257rpx; */
   background: #fff;
-  border-radius: 16rpx;
-  box-shadow: 0 0 4rpx rgba(0,0,0,0.2);
-  margin-right: 10rpx;
-  margin-bottom: 10rpx;
+  margin-right: 15rpx;
+  margin-bottom: 15rpx;
   overflow: hidden;
+  /* border: 1rpx solid #efefef; */
+  box-sizing: border-box;
+}
+.goodsList-list .content-list .list-item:nth-child(3n){
+  margin-right: 0;
 }
 .goodsList-list .content-list .list-item .shopImg{
   width: 200rpx;
@@ -67,24 +106,34 @@
   line-height: 25rpx;
   overflow: hidden;
   margin-top: 5rpx;
+  word-break: break-all;
 }
 .goodsList-list .content-list .list-item .shopPrice{
-  height: 34rpx;
-}
-.goodsList-list .content-list .list-item .shopPrice .text{
-  float: left;
-  font-size: 20rpx;
+  text-align: center;
+  font-size: 22rpx;
+  margin-top: 5rpx;
   font-weight: 600;
-  padding-top: 8rpx;
   color: #f00;
 }
-.goodsList-list .content-list .list-item .shopPrice .linePrice{
-  font-size: 16rpx;
-  padding-top: 12rpx;
+.goodsList-list .content-list .list-item .oldPrice{
+  text-align: center;
   color: #999;
   text-decoration: line-through;
-  margin-left: 5rpx;
-  float: left;
+}
+.goodsList-list .content-list .list-item .btn{
+  text-align: center;
+  margin-top: 5rpx;
+  padding-bottom: 5rpx;
+}
+.goodsList-list .content-list .list-item .btn text{
+  display: inline-block;
+  font-size: 22rpx;
+  padding: 0 15rpx;
+  background: #f00;
+  border-radius: 40rpx;
+  color: #fff;
+  line-height: 32rpx;
+  vertical-align: middle;
 }
 .goodsList-list .content-list .list-item.lookMore{
   text-align: center;

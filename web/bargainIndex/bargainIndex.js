@@ -143,7 +143,6 @@ Page({
   onLoad: function (options) {
     var that = this;
     app.setWatcher(that);
-    app.shopDetailQuery(that);
     wx.setNavigationBarTitle({
       title: '砍价低价拿'
     })
@@ -202,6 +201,7 @@ Page({
         })
       }
     }
+    app.shopDetailQuery(that);
   },
   onHide: function () {
     clearInterval(app.globalData.timer);

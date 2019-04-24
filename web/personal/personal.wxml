@@ -55,6 +55,13 @@
       <text>客服信息</text>
       <image src="{{imgHost}}/images/platform/personal/href_blod.png" class="icon_right"></image>
     </view>
+    <block wx:if="{{shopInfoData.shopExtensionFlg == 1}}">
+      <view data-url="/separate/joinUs/joinUs" bindtap="toScan">
+        <image style="margin: 14rpx 14rpx 0 0; width: 60rpx;height:60rpx;" src="{{imgHost}}/images/platform/personal/scan.png"></image>
+        <text>申请开店</text>
+        <image src="{{imgHost}}/images/platform/personal/href_blod.png" class="icon_right"></image>
+      </view>
+    </block>
   </view>
   <view class="personal-btn" bindtap="toLoginChoose" wx:if="{{isLogin}}">
     <text>切换登录</text>

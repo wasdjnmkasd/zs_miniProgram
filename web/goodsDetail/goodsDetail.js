@@ -882,6 +882,7 @@ Page({
   onShow: function () {
     var that = this;
     var userId = wx.getStorageSync('userId');
+    var shopId = app.globalData.shopId;
     if (userId) {
       app.getShoppingCartCount(that, {});
     } else {
@@ -891,6 +892,12 @@ Page({
     }
     if (userId) {
       app.getAddressData(that, {});
+    }
+    if (shopId == 375) {
+      wx.setNavigationBarColor({
+        frontColor: '#ffffff',
+        backgroundColor: '#ff8500',
+      })
     }
   },
 

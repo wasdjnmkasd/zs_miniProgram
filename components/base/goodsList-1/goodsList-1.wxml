@@ -1,12 +1,12 @@
-<view class="floor-1-{{goodsListData_1.sort}}">
-  <view class="floor-1-content">
-    <view class="mainImg">
-      <navigator url="{{goodsListData_1.own.href}}" open-type='navigate' hover-class='none'>
-        <image src="{{imgHost}}{{goodsListData_1.own.picPath}}"></image>
-      </navigator>
+<view class="floor-1-content bg-{{goodsListData_1.idx}}">
+  <view class="content-bg">
+    <view class="title">
+      <!-- <image src="{{imgHost}}/images/platform/index/floorIcon_week.png"></image> -->
+      {{goodsListData_1.own.title}}
+      <navigator open-type="navigate" url="{{goodsListData_1.own.href}}" class="more" hover-class="none">查看更多</navigator>
     </view>
     <view class="goodsList-list">
-      <scroll-view scroll-y class="content-list">
+      <view class="content-list">
         <block wx:for="{{goodsListData_1.cont}}" wx:key="">
           <view class="list-item">
             <navigator url="{{item.href}}" open-type='navigate' hover-class='none'>
@@ -15,18 +15,18 @@
               </view>
               <view class="shopName">{{item.title}}</view>
               <view class="shopPrice">
-                <text class="text">￥{{item.price}}</text>
-                <text class="linePrice" wx:if="{{item.enname}}">￥{{item.enname}}</text>
+                惊爆价￥{{item.price}}
               </view>
+              <view class="oldPrice">
+                原价￥{{item.enname}}
+              </view>
+              <!-- <view class="btn">
+                <text>立即抢购</text>
+              </view> -->
             </navigator>
           </view>
         </block>
-        <view class="list-item lookMore">
-          <navigator url="/web/searchProduct/searchProduct?{{goodsListData_1.own._href}}" open-type='navigate' hover-class='none'>
-            <image src="{{imgHost}}/images/platform/goodsList/goodsList-more.png"></image>
-          </navigator>
-        </view>
-      </scroll-view>
+      </view>
     </view>
   </view>
 </view>

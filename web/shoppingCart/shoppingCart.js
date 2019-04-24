@@ -524,7 +524,7 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    app.shopDetailQuery();
+    app.shopDetailQuery(that);
   },
 
   /**
