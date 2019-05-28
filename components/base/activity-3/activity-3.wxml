@@ -2,7 +2,7 @@
   <view class="content-bg">
     <view class="title">
       {{activityData_3.own.title}}
-      <navigator open-type="navigate" url="/web/searchProduct/searchProduct?goodsName=新品推荐&upShelves=1&tag=新品推荐" class="more" hover-class="none">查看更多</navigator>
+      <navigator open-type="navigate" url="{{activityData_3.own.href}}" class="more" hover-class="none">查看更多</navigator>
     </view>
     <view class="goodsList-list">
       <view class="content-list" style="height:{{showMore ? 'auto' : '780rpx'}};">
@@ -11,6 +11,7 @@
             <navigator url="{{item.href}}" data-goodsId="{{item.goodsId}}" open-type='navigate' hover-class='none' bindtap="statistics">
               <view class="shopImg">
                 <image src="{{item.picPath}}"></image>
+                <image class="remark" src="{{imgHost}}/images/platform/index/icon_new.png"></image>
               </view>
               <view class="shopMsg">
                 <view class="shopName">{{item.title}}</view>

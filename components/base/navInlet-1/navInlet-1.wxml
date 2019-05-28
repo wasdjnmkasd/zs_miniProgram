@@ -2,57 +2,52 @@
   <view class="navInlet-1-content">
     <view class="content-item">
       <navigator open-type="navigate" url="/web/searchProduct/searchProduct?goodsName=个护美妆&firstCategory=first4" hover-class="none">
-        <image src="{{imgHost}}/images/platform/navInlet-new/navInlet-1.png"></image>
+        <image src="{{imgHost}}/images/platform/navInlet-new/icon_001.png"></image>
       </navigator>
     </view>
     <view class="content-item">
       <navigator open-type="navigate" url="/web/searchProduct/searchProduct?goodsName=母婴用品&firstCategory=first3" hover-class="none">
-        <image src="{{imgHost}}/images/platform/navInlet-new/navInlet-2.png"></image>
+        <image src="{{imgHost}}/images/platform/navInlet-new/icon_002.png"></image>
       </navigator>
     </view>
     <view class="content-item">
       <navigator open-type="navigate" url="/web/searchProduct/searchProduct?goodsName=营养保健&firstCategory=first5" hover-class="none">
-        <image src="{{imgHost}}/images/platform/navInlet-new/navInlet-3.png"></image>
+        <image src="{{imgHost}}/images/platform/navInlet-new/icon_003.png"></image>
       </navigator>
     </view>
     <view class="content-item">
       <navigator open-type="navigate" url="/web/searchProduct/searchProduct?goodsName=家居日用&firstCategory=first6" hover-class="none">
-        <image src="{{imgHost}}/images/platform/navInlet-new/navInlet-4.png"></image>
+        <image src="{{imgHost}}/images/platform/navInlet-new/icon_004.png"></image>
       </navigator>
     </view>
     <view class="content-item">
       <navigator open-type="navigate" url="/web/searchProduct/searchProduct?upShelves=1&&type=0" hover-class="none">
-        <image src="{{imgHost}}/images/platform/navInlet-new/navInlet-11.png"></image>
+        <image src="{{imgHost}}/images/platform/navInlet-new/icon_005.png"></image>
       </navigator>
     </view>
     <view class="content-item">
       <navigator open-type="navigate" url="/web/searchProduct/searchProduct?goodsName=食品酒水&firstCategory=first8" hover-class="none">
-        <image src="{{imgHost}}/images/platform/navInlet-new/navInlet-6.png"></image>
+        <image src="{{imgHost}}/images/platform/navInlet-new/icon_006.png"></image>
       </navigator>
     </view>
     <view class="content-item">
       <navigator open-type="navigate" url="/web/searchProduct/searchProduct?goodsName=奶粉&thirdCategory=third4&secondCategory=second6&firstCategory=first3" hover-class="none">
-        <image src="{{imgHost}}/images/platform/navInlet-new/navInlet-7.png"></image>
+        <image src="{{imgHost}}/images/platform/navInlet-new/icon_007.png"></image>
       </navigator>
     </view>
-    <!-- <view class="content-item">
-      <navigator open-type="navigate" url="/web/searchProduct/searchProduct?goodsName=爆款&upShelves=1&tag=爆款" hover-class="none">
-        <image src="{{imgHost}}/images/platform/navInlet-new/navInlet-8.png"></image>
-      </navigator>
-    </view> -->
     <view class="content-item">
       <navigator open-type="navigate" url="/web/bargainIndex/bargainIndex" hover-class="none">
-        <image src="{{imgHost}}/images/platform/navInlet-new/navInlet-8.png"></image>
+        <image src="{{imgHost}}/images/platform/navInlet-new/icon_008.png"></image>
       </navigator>
     </view>
     <view class="content-item">
       <navigator open-type="navigate" url="/web/searchProduct/searchProduct?goodsName=一般贸易&upShelves=1&type=2" hover-class="none">
-        <image src="{{imgHost}}/images/platform/navInlet-new/navInlet-9.png"></image>
+        <image src="{{imgHost}}/images/platform/navInlet-new/icon_009.png"></image>
       </navigator>
     </view>
     <view class="content-item">
       <navigator open-type="navigate" url="/web/searchProduct/searchProduct?goodsName=所有分类&upShelves=1" hover-class="none">
-        <image src="{{imgHost}}/images/platform/navInlet-new/navInlet-10.png"></image>
+        <image src="{{imgHost}}/images/platform/navInlet-new/icon_010.png"></image>
       </navigator>
     </view>
   </view>

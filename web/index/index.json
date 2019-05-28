@@ -8,6 +8,7 @@
     "component-footer": "/components/base/footer/footer",
     "component-activity-1": "/components/base/activity-1/activity-1",
     "component-activity-2": "/components/base/activity-2/activity-2",
-    "component-activity-3": "/components/base/activity-3/activity-3"
+    "component-activity-3": "/components/base/activity-3/activity-3",
+    "component-activity-4": "/components/base/activity-4/activity-4"
   }
 }

@@ -245,7 +245,7 @@ Page({
       expressType: 0,
       orderSource: 10,
       orderFlag: tType,
-      supplierId: tSupplierId,
+      supplierId: tSupplierId.split('_')[0],
       orderDetail: {
         payType: 1,
         taxFee: data.taxFee,

@@ -5,10 +5,10 @@
 }
 .navInlet-1-content .content-item{
   width: 86rpx;
-  height: 101rpx;
+  height: 117rpx;
   float: left;
   margin-right: 57rpx;
-  margin-bottom: 40rpx;
+  margin-bottom: 30rpx;
 }
 .navInlet-1-content .content-item:nth-child(5n){
   margin-right: 0;

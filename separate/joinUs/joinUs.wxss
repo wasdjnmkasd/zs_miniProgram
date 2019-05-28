@@ -1,6 +1,14 @@
 page{
   padding: 0;
-  background: #fbfbfb;
+  background: #fff;
+}
+.content-bgImg{
+  overflow: hidden;
+}
+.content-bgImg image{
+  float: left;
+  width: 750rpx;
+  height: 1920rpx;
 }
 .content-showImg image{
   width: 750rpx;
@@ -8,10 +16,12 @@ page{
 }
 .content-form{
   padding-bottom: 50rpx;
-  margin-top: -210rpx;
+  position: absolute;
+  top: 800rpx;
+  left: 0;
 }
 .content-form .list-item{
-  margin-bottom: 20rpx;
+  margin-bottom: 30rpx;
   overflow: hidden;
   color: #333;
   position: relative;
@@ -96,8 +106,8 @@ page{
 }
 .joinUs-content .home{
   position: fixed;
-  right: 10rpx;
-  bottom: 150rpx;
+  left: 10rpx;
+  top: 10rpx;
   width: 80rpx;
   height: 80rpx;
   border-radius: 50%;
@@ -208,7 +218,7 @@ page{
 .fixedShare{
   position: fixed;
   right: 10rpx;
-  bottom: 250rpx;
+  top: 10rpx;
   width: 80rpx;
   height: 80rpx;
   border-radius: 40rpx;

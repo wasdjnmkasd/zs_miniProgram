@@ -20,6 +20,7 @@ Page({
     hidden: true,
     saveImgBtnHidden: false,
     openSettingBtnHidden: true,
+    nodeHost: app.globalData.nodeHost
   },
   changeName: function (e) {
     var that = this;
@@ -65,7 +66,7 @@ Page({
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function (res) {
         wx.uploadFile({
-          url: 'https://testfront.cncoopay.com/Data/img/upLoad',
+          url: that.data.nodeHost + '/Data/img/upLoad',
           filePath: res.tempFilePaths[0],
           name: 'image',
           success: function(res){

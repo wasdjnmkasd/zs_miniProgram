@@ -96,3 +96,51 @@ page scroll-view{
   padding: 5rpx;
   box-sizing: border-box;
 }
+.fixed-openStore{
+  position: fixed;
+  right: 10rpx;
+  bottom: 320rpx;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.fixed-openStore image{
+  width: 80rpx;
+  height: 80rpx;
+}
+.alertAdv{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999999;
+  background: rgba(0,0,0,0.3);
+  text-align: center;
+}
+.alertAdv .alertAdvContent{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -400rpx;
+  margin-left: -300rpx;
+  width: 600rpx;
+  height: 800rpx;
+}
+.alertAdv .alertAdvContent image{
+  width: 100%;
+  height: 100%;
+}
+.alertAdv .adv-cancel-btn{
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 30rpx;
+  line-height: 60rpx;
+  text-align: center;
+  color: #fff;
+  border: 1rpx solid #fff;
+  position: absolute;
+  top: 0;
+  right: 30rpx;
+}

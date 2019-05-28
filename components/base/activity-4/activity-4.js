@@ -1,15 +1,15 @@
-const app= getApp();
+const app = getApp();
 Component({
   properties: {
-    goodsListData_1: Object
+    activityData_4: Object
   },
   data: {
     imgHost: app.globalData.imgHost
   },
   methods: {
-    statistics: function (e) {
+    statistics: function(e){
       var data = {
-        type: '小程序楼层-' + e.currentTarget.dataset.title,
+        type: '小程序本周特卖',
         userId: wx.getStorageSync('userId') || 0,
         shopId: wx.getStorageSync('shopId') || 2,
         goodsId: e.currentTarget.dataset.goodsid,

@@ -1,5 +1,5 @@
 {
-  "pages":[
+  "pages": [
     "web/index/index",
     "web/nav/nav",
     "web/personal/personal",
@@ -24,7 +24,7 @@
     "web/protocol/protocol",
     "separate/joinUs/joinUs"
   ],
-  "window":{
+  "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#009944",
     "navigationBarTitleText": "中国供销海外购",
@@ -49,5 +49,6 @@
         "text": "个人"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

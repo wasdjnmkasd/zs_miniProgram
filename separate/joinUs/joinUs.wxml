@@ -1,7 +1,10 @@
 <view class="joinUs-content">
-  <view class="content-showImg">
-    <image src="{{imgHost}}/images/platform/joinUs/showImg_01.jpg"></image>
+  <view class="content-bgImg">
+    <image src="{{imgHost}}/images/platform/joinUs/openStoreImg_01.png"></image>
   </view>
+  <!-- <view class="content-showImg">
+    <image src="{{imgHost}}/images/platform/joinUs/showImg_01.jpg"></image>
+  </view> -->
   <view class="content-form">
     <view class="list-item userName">
       <input id="itemUserName" type="text" placeholder="请输入您的姓名（必填）" value="{{userName}}" bindinput="changeName"></input>

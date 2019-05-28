@@ -9,7 +9,7 @@
       <view class="content-list">
         <block wx:for="{{goodsListData_1.cont}}" wx:key="">
           <view class="list-item">
-            <navigator url="{{item.href}}" open-type='navigate' hover-class='none'>
+            <navigator url="{{item.href}}" open-type='navigate' hover-class='none' bindtap='statistics' data-goodsId="{{item.goodsId}}" data-title="{{goodsListData_1.own.title}}">
               <view class="shopImg">
                 <image src="{{item.picPath}}"></image>
               </view>

@@ -1,7 +1,7 @@
 <view class="activity-1-content">
   <view class="title">
     <image src="{{imgHost}}/images/platform/index/floorIcon_hot.png"></image>
-    人气推荐
+    {{activityData_1.own.title}}
     <navigator open-type="navigate" url="/web/searchProduct/searchProduct?goodsName=热销榜单&upShelves=1&tag=热销榜单" class="more" hover-class="none">查看更多</navigator>
   </view>
   <navigator open-type="navigate" url="{{activityData_1.own.href}}" hover-class="none">

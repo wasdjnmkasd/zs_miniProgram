@@ -13,11 +13,22 @@
   </view>
   <component-navInlet-1></component-navInlet-1>
   <!-- <component-navInlet-2></component-navInlet-2> -->
-  <component-activity-1 activityData_1="{{activityData_1}}"></component-activity-1>
-  <component-activity-2 activityData_2="{{activityData_2}}"></component-activity-2>
-  <component-activity-3 activityData_3="{{activityData_3}}"></component-activity-3>
-  <block wx:for="{{goodsListData_1}}" wx:key="">
-    <component-goodsList-1 goodsListData_1="{{item}}"></component-goodsList-1>
+  <block wx:for="{{indexData}}" wx:key="">
+    <block wx:if="{{item.code == 'activity-1'}}">
+      <component-activity-1 activityData_1="{{item}}"></component-activity-1>
+    </block>
+    <block wx:if="{{item.code == 'activity-2'}}">
+      <component-activity-2 activityData_2="{{item}}"></component-activity-2>
+    </block>
+    <block wx:if="{{item.code == 'activity-3'}}">
+      <component-activity-3 activityData_3="{{item}}"></component-activity-3>
+    </block>
+    <block wx:if="{{item.code == 'activity-4'}}">
+      <component-activity-4 activityData_4="{{item}}"></component-activity-4>
+    </block>
+    <block wx:if="{{item.code == 'goodsList-2'}}">
+      <component-goodsList-1 goodsListData_1="{{item}}"></component-goodsList-1>
+    </block>
   </block>
   <component-goodsList-2 goodsListData_2="{{goodsListData_2}}"></component-goodsList-2>
 </scroll-view>
@@ -27,4 +38,17 @@
 <button open-type='contact' class="fixed-kefu">
   <image src="{{imgHost}}/images/platform/page/kefu.png"></image>
 </button>
+<block wx:if="{{shopInfoData.shopExtensionFlg == 1}}">
+  <view class="fixed-openStore">
+    <image src="{{imgHost}}/images/platform/index/openStore.gif" bindtap="toOpenStore"></image>
+  </view>
+</block>
+<block wx:if="{{shopInfoData.shopExtensionFlg == 1}}">
+  <view class="alertAdv" style="display:{{alertAdv? 'block' : 'none'}}">
+    <view class="alertAdvContent">
+      <image src="{{imgHost}}/images/platform/index/alertAdv01.png" bindtap="toOpenStore"></image>
+      <view class="adv-cancel-btn" bindtap="alertAdvCancel">X</view>
+    </view>
+  </view>
+</block>
 <component-footer footerData="{{footerData}}"></component-footer>

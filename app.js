@@ -39,6 +39,7 @@ App({
     var shopId = (urlShopId * 1) || (sceneShopId * 1) || localShopId || 2;
     that.globalData.shopId = shopId;
     wx.setStorageSync('shopId', shopId);
+    that.getUserIp();
   },
   onShow: function(options){
     var that = this;
@@ -682,7 +683,7 @@ App({
       },
       success: function (res) {
         var data = res.data.module || [];
-        var goodsListData_1 = [];
+        var indexData = [];
         if (data == []) {
           wx.showToast({
             title: '获取数据失败',
@@ -690,45 +691,29 @@ App({
             duration: 1500
           })
         } else {
-          for (var i = 0; i < data.length; i++) {
-            if (data[i].code == "banner-1") {
+          data.forEach(function (v, i) {
+            if (v.code == "banner-1") {
               obj.setData({
-                ['bannerData.imgs']: data[i].cont
+                ['bannerData.imgs']: v.cont
               });
             }
-            if (data[i].code == "goodsList-2") {
-              goodsListData_1.push(data[i]);
+            if (v.code == "activity-1" || v.code == "activity-2" || v.code == "activity-3" || v.code == "activity-4" || v.code == "goodsList-2") {
+              indexData.push(v);
             }
-            // if (data[i].code == "goodsList-3") {
-            //   goodsListData_2.push(data[i]);
-            // }
-            if (data[i].code == "activity-1"){
-              obj.setData({
-                ['activityData_1.own']: data[i].own,
-                ['activityData_1.cont']: data[i].cont,
-              });
+          })
+          var index = 0;
+          indexData.forEach(function (v, i) {
+            if (v.code == 'goodsList-2') {
+              if (v.own && v.own.href) {
+                v.own._href = v.own.href.split('?')[1];
+              }
+              v.idx = index;
+              index ++;
             }
-            if (data[i].code == "activity-2") {
-              obj.setData({
-                ['activityData_2.cont']: data[i].cont,
-              });
-            }
-            if (data[i].code == "activity-3") {
-              obj.setData({
-                ['activityData_3.own']: data[i].own,
-                ['activityData_3.cont']: data[i].cont,
-              });
-            }
-          }
-          goodsListData_1.forEach(function(v,i){
-            if (v.own && v.own.href){
-              v.own._href = v.own.href.split('?')[1];
-            }
-            v.idx  = i;
           });
           obj.setData({
-            goodsListData_1: goodsListData_1
-          });
+            indexData: indexData
+          })
         }
       },
       fail: function (res) {
@@ -848,6 +833,15 @@ App({
             v.oneRealPrice = (v.realPrice / (v.goodsSpecsList[0].conversion || 1)).toFixed(2);
           })
           if (searchListData.length > 0){
+            searchListData.forEach(function (v1, k1) {
+              var newTagListArr = [];
+              v1.tagListArr.forEach(function (v2, k2) {
+                if (v2 == '特卖商品' || v2 == '新品推荐') {
+                  newTagListArr.push(v2);
+                }
+              });
+              v1.newTagListArr = newTagListArr;
+            });
             obj.setData({
               'searchListData.data': searchListData,
               'searchListData.totalPages': res.data.obj.pagination.totalPages
@@ -977,24 +971,30 @@ App({
             });
           }
           data.detailList = newDetailList
+          var newTagListArr = [];
+          data.tagListArr.forEach(function(v,k){
+            if(v == '特卖商品' || v == '新品推荐'){
+              newTagListArr.push(v);
+            }
+          });
           obj.setData({
             'bannerData.imgs': imgsArr,
             'bannerData.type': data.type,
+            'bannerData.tagListArr': newTagListArr,
             'goodsDetailData': data,
             'commodityAttr': commodityAttr,
             'includeGroup': commodityAttr
           });
           obj.distachAttrValue(commodityAttr);
-          // if (obj.data.commodityAttr.length == 1) {
-          //   if (obj.data.commodityAttr[0].attrValueList){
-          //     for (var i = 0; i < obj.data.commodityAttr[0].attrValueList.length; i++) {
-          //       obj.data.attrValueList[i].selectedValue = obj.data.commodityAttr[0].attrValueList[i].attrValue;
-          //     }
-          //     obj.setData({
-          //       attrValueList: obj.data.attrValueList
-          //     });
-          //   }
-          // }
+          var d = {
+            type: 'goodsDetail',
+            userIp: that.globalData.ip,
+            goodsId: data.goodsId,
+            goodsName: data.customGoodsName,
+            href: '',
+            logsName: 'goodsDetail'
+          }
+          that.setGoodsStatistics(d);
         } else {
           wx.showToast({
             title: '该商品已下架',
@@ -3281,6 +3281,19 @@ App({
       success: function () { }
     })
   },
+  setGoodsStatistics: function (data) {
+    var that = this;
+    var nodeHost = that.globalData.nodeHost;
+    wx.request({
+      url: nodeHost + '/Data/handle/goodsStatistics',
+      method: 'POST',
+      data: data,
+      header: {
+        'content-type': 'application/json', // 默认值
+      },
+      success: function () { }
+    })
+  },
   setOpenShopData: function(data){
     var that = this;
     var nodeHost = that.globalData.nodeHost;
@@ -3334,5 +3347,20 @@ App({
         }
       }
     })
+  },
+  getUserIp: function(){
+    var that = this;
+    var host = that.globalData.host;
+    wx.request({
+      url: host + '/3rdcenter/auth/1.0/ip',
+      data: {},
+      method: 'GET',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      success: function (res) {
+        that.globalData.ip = res.data.obj;
+      }
+    });
   }
 })

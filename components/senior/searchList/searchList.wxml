@@ -26,12 +26,19 @@
           <view class="item-content">
             <navigator url="/web/goodsDetail/goodsDetail?goodsId={{item.goodsSpecsList[0].goodsId}}" open-type="navigate" hover-class="none">
               <view class="imgBox">
-              <view>
-                <image wx:if="{{item.goodsFileList != null}}" src="{{item.goodsFileList[0].path}}"></image>
-                <image wx:else src="{{imgHost}}/images/platform/account/default_img.jpg"></image>
-                <image wx:if="{{item.type == 0}}" class="corner_mark" src="{{imgHost}}/images/platform/tag/icon_cross.png"></image>
-                <image wx:elif="{{item.type == 2}}" class="corner_mark" src="{{imgHost}}/images/platform/tag/icon_normal.png"></image>
-              </view>
+                <view>
+                  <image wx:if="{{item.goodsFileList != null}}" src="{{item.goodsFileList[0].path}}"></image>
+                  <image wx:else src="{{imgHost}}/images/platform/account/default_img.jpg"></image>
+                  <image wx:if="{{item.type == 0}}" class="corner_mark" src="{{imgHost}}/images/platform/tag/icon_cross.png"></image>
+                  <image wx:elif="{{item.type == 2}}" class="corner_mark" src="{{imgHost}}/images/platform/tag/icon_normal.png"></image>
+                  <block wx:if="{{item.newTagListArr && item.newTagListArr.length == 1}}">
+                    <image wx:if="{{item.newTagListArr[0] == '特卖商品'}}" class="icon_mark_right" src="{{imgHost}}/images/platform/index/icon_hot.png"></image>
+                    <image wx:if="{{item.newTagListArr[0] == '新品推荐'}}" class="icon_mark_right" src="{{imgHost}}/images/platform/index/icon_new.png"></image>
+                  </block>
+                  <block wx:elif="{{item.newTagListArr && item.newTagListArr.length > 1}}">
+                    <image class="icon_mark_right" src="{{imgHost}}/images/platform/index/icon_hot.png"></image>
+                  </block>
+                </view>
               </view>
             </navigator>
             <view class="textGroup">

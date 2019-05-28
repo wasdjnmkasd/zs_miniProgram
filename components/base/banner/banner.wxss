@@ -16,3 +16,10 @@ image.icon_mark{
   width: 140rpx;
   height: 140rpx;
 }
+image.icon_mark_right{
+  position: absolute;
+  top: 10rpx;
+  right: 10rpx;
+  width: 120rpx;
+  height: 120rpx;
+}

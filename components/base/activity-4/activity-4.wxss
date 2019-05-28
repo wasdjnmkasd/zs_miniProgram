@@ -1,4 +1,4 @@
-.activity-2-content{
+.activity-4-content{
   overflow: hidden;
   background: #fff;
 }
@@ -7,7 +7,7 @@
   background: #ffe9c0;
   border-radius: 10rpx;
 }
-.activity-2-content .title{
+.activity-4-content .title{
   height: 80rpx;
   line-height: 80rpx;
   margin-left: 30rpx;
@@ -15,19 +15,19 @@
   color: #333;
   padding: 10rpx 0;
 }
-.activity-2-content .title image{
+.activity-4-content .title image{
   width: 61rpx;
   height: 40rpx;
   vertical-align: middle;
   margin-top: -15rpx;
 }
-.activity-2-content .title .more{
+.activity-4-content .title .more{
   float: right;
   margin-right: 40rpx;
   font-size: 24rpx;
   color: #999;
 }
-.activity-2-content .goodsList-list{
+.activity-4-content .goodsList-list{
   overflow-x: auto;
   overflow-y: hidden;
   position: relative;

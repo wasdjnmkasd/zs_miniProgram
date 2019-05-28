@@ -41,7 +41,7 @@ Page({
         var type = o1.type;
         var itemId = o1.itemId;
         var status = o1.goodsSpecs.status;
-        var supplierId = o1.supplierId;
+        var supplierId = (o1.supplierId == 2 ? (o1.supplierId + '_' + n1) : o1.supplierId);
         var supplierName = o1.supplierName;
         var typeName = type === 0 ? "跨境" : type === 2 ? "一般" : type === 1 ? "大贸" : "";
         orders[type] = orders[type] || {};
