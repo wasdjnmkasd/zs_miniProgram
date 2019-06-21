@@ -38,16 +38,16 @@
 <button open-type='contact' class="fixed-kefu">
   <image src="{{imgHost}}/images/platform/page/kefu.png"></image>
 </button>
-<block wx:if="{{shopInfoData.shopExtensionFlg == 1}}">
-  <view class="fixed-openStore">
-    <image src="{{imgHost}}/images/platform/index/openStore.gif" bindtap="toOpenStore"></image>
-  </view>
-</block>
+<!-- <block wx:if="{{shopInfoData.shopExtensionFlg == 1}}"> -->
+<view class="fixed-openStore">
+  <image src="{{imgHost}}/images/platform/index/openStore.gif" bindtap="toOpenStore"></image>
+</view>
+<!-- </block> -->
 <block wx:if="{{shopInfoData.shopExtensionFlg == 1}}">
   <view class="alertAdv" style="display:{{alertAdv? 'block' : 'none'}}">
     <view class="alertAdvContent">
-      <image src="{{imgHost}}/images/platform/index/alertAdv01.png" bindtap="toOpenStore"></image>
-      <view class="adv-cancel-btn" bindtap="alertAdvCancel">X</view>
+      <image src="{{imgHost}}/images/platform/index/alertAdv02.png" bindtap="toOpenStoreShow"></image>
+      <view class="adv-cancel-btn" bindtap="alertAdvCancel"></view>
     </view>
   </view>
 </block>

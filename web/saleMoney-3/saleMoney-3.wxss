@@ -1,0 +1,51 @@
+page{
+  padding: 0;
+  background: #fff;
+  font-size: 28rpx;
+  color: #333;
+  overflow: hidden;
+  height: 100%;
+}
+.saleMoney-3-content{
+  height: 100%;
+}
+.list-header{
+  width: 100%;
+  overflow: hidden;
+  padding: 20rpx 15rpx;
+  box-sizing: border-box;
+  background: #efefef;
+}
+.list-header view{
+  float: left;
+  width: 20%;
+  text-align: center;
+  overflow: hidden;
+}
+.list-header view:first-child{
+  width: 40%;
+  text-align: left;
+}
+.list-content{
+  height: calc(100% - 79rpx);
+}
+.list-item{
+  overflow: hidden;
+  padding: 20rpx 15rpx;
+  box-sizing: border-box;
+}
+.list-item:nth-child(even){
+  background:#efefef;
+}
+.list-item view{
+  float: left;
+  width: 20%;
+  text-align: center;
+  word-break: break-all;
+  padding: 0 5rpx;
+  box-sizing: border-box;
+}
+.list-item view:first-child{
+  width: 40%;
+  text-align: left;
+}

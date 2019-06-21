@@ -1,4 +1,5 @@
 const app = getApp();
+var tcity = require("../../utils/citys.js");
 const FileSystemManager = wx.getFileSystemManager();
 Page({
 
@@ -11,6 +12,7 @@ Page({
     cardImg2: null,
     companyImg: null,
     userName: '',
+    checkNum: '',
     userPhone: '',
     userAddress: '',
     userCompany: '',
@@ -18,9 +20,59 @@ Page({
     submit: true,
     alertShare: false,
     hidden: true,
+    vNum: 60, 
+    isOk: true,
+    vClick: false,
     saveImgBtnHidden: false,
     openSettingBtnHidden: true,
-    nodeHost: app.globalData.nodeHost
+    nodeHost: app.globalData.nodeHost,
+    provinces: [],
+    province: "",
+    citys: [],
+    city: "",
+    countys: [],
+    county: '',
+    value: [0, 0, 0],
+    condition: false,
+    shopStatus: 0
+  },
+  watch: {
+    infoData: function(newVal, oldVal){
+      var that = this;
+      that.setData({
+        userPhone: newVal.phone
+      })
+      var data = {
+        phone: newVal.phone
+      }
+      app.getShopCheck(that, data);
+    },
+    shopStatus: function(newVal, oldVal){
+      var that = this;
+      var data = {
+        phone: that.data.infoData.phone
+      }
+      var isReSubmit = wx.getStorageSync('isReSubmit');
+      if (isReSubmit){
+        that.setData({
+          isReSubmit: isReSubmit
+        })
+      }
+      if (newVal == 2 || newVal == 3){
+        app.getApplyShopData(that, data);
+      }
+    },
+    reId: function(newVal, oldVal){
+      var that = this;
+      var shopStatus = that.data.shopStatus;
+      wx.setStorageSync('shopId', newVal);
+      app.globalData.shopId = newVal;
+      if (shopStatus == 3) {
+        wx.redirectTo({
+          url: '/web/shopSetting/shopSetting',
+        })
+      }
+    }
   },
   changeName: function (e) {
     var that = this;
@@ -60,30 +112,34 @@ Page({
   upload: function(e){
     var that = this;
     var type = e.currentTarget.dataset.id;
+    var shopId = app.globalData.shopId;
     wx.chooseImage({
       count: 1, //最多可以选择的图片总数
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function (res) {
         wx.uploadFile({
-          url: that.data.nodeHost + '/Data/img/upLoad',
+          url: that.data.nodeHost + '/Data/img/upLoad?shopId=' + shopId,
           filePath: res.tempFilePaths[0],
           name: 'image',
           success: function(res){
             var r = JSON.parse(res.data);
-            if(type == 1){
-              that.setData({
-                cardImg1: that.data.imgHost + r.downUrl
-              });
-            } else if (type == 2){
-              that.setData({
-                cardImg2: that.data.imgHost + r.downUrl
-              });
-            } else if (type == 3) {
-              that.setData({
-                companyImg: that.data.imgHost + r.downUrl
-              });
-            }
+            that.setData({
+              cardImg: app.globalData.imgUrl + r.downUrl
+            });
+            // if(type == 1){
+            //   that.setData({
+            //     cardImg1: that.data.imgHost + r.downUrl
+            //   });
+            // } else if (type == 2){
+            //   that.setData({
+            //     cardImg2: that.data.imgHost + r.downUrl
+            //   });
+            // } else if (type == 3) {
+            //   that.setData({
+            //     companyImg: that.data.imgHost + r.downUrl
+            //   });
+            // }
           }
         })
       }
@@ -91,25 +147,27 @@ Page({
   },
   listSubmit: function(){
     var that = this;
+    var openId = wx.getStorageSync('openId');
     var userName = that.data.userName;
     var userPhone = that.data.userPhone;
     var userAddress = that.data.userAddress;
-    var userCompany = that.data.userCompany;
     var userContent = that.data.userContent;
-    var cardImg1 = that.data.cardImg1;
-    var cardImg2 = that.data.cardImg2;
-    var companyImg = that.data.companyImg;
+    var province = that.data.province;
+    var city = that.data.city;
+    var county = that.data.county;
+    var cardImg = that.data.cardImg;
     var isPhone = (/^1(3|4|5|7|8|9)\d{9}$/gi).test(userPhone);
     var data = {
-      userName: userName,
-      userPhone: userPhone,
-      userAddress: userAddress,
-      usercompany: userCompany,
-      userContent: userContent,
-      cardImg1: cardImg1,
-      cardImg2: cardImg2,
-      companyImg: companyImg,
-      shopId: wx.getStorageSync('shopId') || 2
+      wechat: openId,
+      personInCharge: userName,
+      phone: userPhone,
+      province: province,
+      city: city,
+      district: county,
+      address: userAddress,
+      remark: userContent,
+      idCardPicPath: cardImg,
+      parentId: wx.getStorageSync('shopId') || 2
     }
     if (userName == ''){
       wx.showToast({
@@ -137,21 +195,13 @@ Page({
     }
     if (userAddress == '') {
       wx.showToast({
-        title: '请输入您的联系地址',
+        title: '请输入您的详细地址',
         icon: 'none',
         duration: 1500
       })
       return;
     }
-    if (userCompany != '' && companyImg == null){
-      wx.showToast({
-        title: '若填写公司名称，请长传营业执照',
-        icon: 'none',
-        duration: 1500
-      })
-      return;
-    }
-    if(cardImg1 == null){
+    if(cardImg == null){
       wx.showToast({
         title: '请上传身份证正面照片',
         icon: 'none',
@@ -159,24 +209,30 @@ Page({
       })
       return;
     }
-    if (cardImg2 == null) {
-      wx.showToast({
-        title: '请上传身份证反面照片',
-        icon: 'none',
-        duration: 1500
-      })
-      return;
-    }
-    if(that.data.submit){
-      app.setOpenShopData(data);
-      that.setData({
-        submit: false
-      })
-      setTimeout(function(){
+    if (that.data.submit) {
+      if (that.data.isOk){
+        var isReSubmit = wx.getStorageSync('isReSubmit');
+        if (isReSubmit){
+          data.id = that.data.reId;
+          app.shopReApply(that, data);
+        }else{
+          app.shopApply(that, data);
+        }
         that.setData({
-          submit: true
+          submit: false
         })
-      },10000);
+        setTimeout(function () {
+          that.setData({
+            submit: true
+          })
+        }, 10000);
+      }else{
+        wx.showToast({
+          title: '手机验证码错误',
+          icon: 'none',
+          duration: 1500
+        })
+      }
     }else{
       wx.showToast({
         title: '请勿频繁提交，请稍后再试',
@@ -184,7 +240,6 @@ Page({
         duration: 1500
       })
     }
-    
   },
   showShare: function () {
     var that = this;
@@ -306,11 +361,205 @@ Page({
       }
     });
   },
+  bindChange: function (e) {
+    var that = this;
+    var val = e.detail.value;
+    var v = that.data.value;
+    var cityData = that.data.cityData[86];
+    var provinces = that.data.provinces;
+    var citys = that.data.citys;
+    var countys = that.data.countys;
+    var newCitys = [];
+    var newCountys = [];
+    if (val[0] != v[0]) {
+      let d1 = cityData[provinces[val[0]].code];
+      for (let k1 in d1) {
+        let data = {};
+        data.code = k1;
+        data.name = d1[k1];
+        newCitys.push(data);
+      }
+      let d2 = cityData[newCitys[0].code];
+      for (let k2 in d2) {
+        let data = {};
+        data.code = k2;
+        data.name = d2[k2];
+        newCountys.push(data);
+      }
+      val[1] = 0;
+      val[2] = 0;
+      that.setData({
+        province: provinces[val[0]].name,
+        citys: newCitys,
+        city: newCitys[0].name,
+        countys: newCountys,
+        county: newCountys[0].name,
+        value: val
+      });
+    }
+    if (val[1] != v[1]) {
+      let d3 = cityData[citys[val[1]].code];
+      for (let k3 in d3) {
+        let data = {};
+        data.code = k3;
+        data.name = d3[k3];
+        newCountys.push(data);
+      }
+      val[2] = 0;
+      that.setData({
+        city: citys[val[1]].name,
+        countys: newCountys,
+        county: newCountys[0].name,
+        value: val
+      });
+    }
+    if (val[2] != v[2]) {
+      that.setData({
+        county: countys[val[2]].name,
+        value: val
+      });
+    }
+  },
+  open: function () {
+    this.setData({
+      condition: !this.data.condition
+    })
+  },
+  getValidation: function(){
+    var that = this;
+    var phone = that.data.userPhone;
+    var isPhone = (/^1(3|4|5|7|8|9)\d{9}$/gi).test(phone);
+    if (isPhone) {
+      var data = {
+        phone: phone
+      }
+      app.getValidation(that, data);
+      that.setData({
+        vClick: true
+      });
+    }
+    if (that.data.vClick) {
+      var t = setInterval(function () {
+        var vNum = that.data.vNum;
+        if (vNum == 0) {
+          clearInterval(t);
+          that.setData({
+            vClick: false,
+            vNum: 60
+          });
+          return;
+        }
+        vNum--;
+        that.setData({
+          vNum: vNum
+        });
+      }, 1000);
+    }
+  },
+  validationBlur: function(e){
+    var that = this;
+    var phone = that.data.userPhone;
+    var isPhone = (/^1(3|4|5|7|8|9)\d{9}$/gi).test(phone);
+    var checkNum = e.detail.value;
+    var data = {
+      phone: phone,
+      code: checkNum
+    }
+    if (isPhone && checkNum != ''){
+      app.checkVerify(that, data);
+    }
+  },
+  reSubmit: function(){
+    var that = this;
+    that.setData({
+      shopStatus: 0
+    })
+    wx.setStorageSync('isReSubmit', true);
+  },
+  toIndex: function(){
+    wx.switchTab({
+      url: '/web/index/index',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    app.shopDetailQuery();
+    var that = this;
+    app.setWatcher(that);
+    var userId = wx.getStorageSync('userId');
+    var openId = wx.getStorageSync('openId');
+    var shopStatus = wx.getStorageSync('shopStatus');
+    var province = '';
+    var city = '';
+    var county = '';
+    tcity.init(that);//三级联动数据初始化
+    var cityData = that.data.cityData[86];//获取三级联动数据
+    var d1 = {};
+    var d2 = {};
+    const provinces = [];
+    const citys = [];
+    const countys = [];
+    for (var k1 in cityData) {
+      if (k1 == 100000) {
+        for (var k2 in cityData[k1]) {
+          let data = {};
+          data.code = k2;
+          data.name = cityData[k1][k2];
+          provinces.push(data);
+        }
+      }
+    }
+    if (province) {
+      provinces.forEach(function (v, i) {
+        if (province && v.name == province) {
+          d1 = cityData[v.code];
+        }
+      });
+    } else {
+      d1 = cityData[provinces[0].code]
+    }
+    for (var k in d1) {
+      let data = {};
+      data.code = k;
+      data.name = d1[k];
+      citys.push(data);
+    }
+    if (city) {
+      citys.forEach(function (v, i) {
+        if (city && v.name == city) {
+          d2 = cityData[v.code];
+        }
+      });
+    } else {
+      d2 = cityData[citys[0].code];
+    }
+    for (var k in d2) {
+      let data = {};
+      data.code = k;
+      data.name = d2[k];
+      countys.push(data);
+    }
+    that.setData({
+      'provinces': provinces,
+      'citys': citys,
+      'countys': countys,
+      'province': province || provinces[0].name,
+      'city': city || citys[0].name,
+      'county': county || countys[0].name
+    });
+    if(userId){
+      app.shopDetailQuery();
+      that.setData({
+        isOk: true,
+        showChekNum: false
+      });
+    }else{
+      that.setData({
+        isOk: false,
+        showChekNum: true
+      });
+    }
   },
 
   /**
@@ -324,7 +573,24 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that = this;
+    var userId = wx.getStorageSync('userId');
+    var openId = wx.getStorageSync('openId');
+    if(userId){
+      app.getUserDetail(that); 
+      that.setData({
+        showChekNum: false
+      });
+    }else{
+      that.setData({
+        showChekNum: true
+      });
+    }
+    if(!openId){
+      wx.navigateTo({
+        url: '/web/authorizedLogin/authorizedLogin',
+      })
+    }
   },
 
   /**

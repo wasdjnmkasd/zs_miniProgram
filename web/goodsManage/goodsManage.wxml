@@ -1,0 +1,76 @@
+<view class="goodsManageContent">
+  <view class="chooseType">
+    <view class="typeItem" bindtap="chooseItem" data-id="0">
+      <text class="text">销量</text>
+      <text class="icon {{icon_type == 'top_0' ? 'top' : icon_type == 'bottom_0' ? 'bottom' : ''}}"></text>
+    </view>
+    <view class="typeItem" bindtap="chooseItem" data-id="1">
+      <text class="text">佣金</text>
+      <text class="icon {{icon_type == 'top_1' ? 'top' : icon_type == 'bottom_1' ? 'bottom' : ''}}"></text>
+    </view>
+    <view class="typeItem" bindtap="chooseItem" data-id="2">
+      <text class="text">库存</text>
+      <text class="icon {{icon_type == 'top_2' ? 'top' : icon_type == 'bottom_2' ? 'bottom' : ''}}"></text>
+    </view>
+    <view class="typeItem" bindtap="chooseItem" data-id="3">
+      <text class="text">上架时间</text>
+      <text class="icon {{icon_type == 'top_3' ? 'top' : icon_type == 'bottom_3' ? 'bottom' : ''}}"></text>
+    </view>
+    <view class="typeItem imgBox" bindtap="showSearch">
+      <image src="{{imgHost}}/images/platform/header/i_search.png"></image>
+    </view>
+    <view class="typeItem imgBox" bindtap="toNavList">
+      <image src="{{imgHost}}/images/platform/personal/nav_icon.png"></image>
+    </view>
+    <view class="serachContent" style="display:{{inputShow? 'block' : 'none'}}">
+      <input placeholder="请输入商品名称" type="text" confirm-type="search" bindconfirm="searchProduct" value="{{goodsName}}"></input>
+    </view>
+  </view>
+  <scroll-view scroll-y class="goodsList {{inputShow ? 'active' : ''}}" scroll-top="{{scrollTop}}" bindscrolltolower="getMoreData" wx:if="{{goodsManageData.length > 0}}">
+    <block wx:for="{{goodsManageData}}" wx:key="">
+      <view class="listItem">
+        <view class="listItemContent" bindtap="toGoodsDetail" data-goodsId="{{item.goodsId}}">
+          <view class="listItemLeft">
+            <image wx:if="{{item.picPath}}" src="{{item.picPath}}"></image>
+            <image wx:else src="{{imgHost}}/images/platform/account/default_img.jpg"></image>
+          </view>
+          <view class="listItemRight">
+            <view class="goodsName">{{item.goodsName}}</view>
+            <view class="tagIcon">
+              <text class="icon_1" wx:if="{{item.tagList.length > 0}}">{{item.tagList[0].tagName}}</text>
+              <text class="icon_2" wx:if="{{item.tagList.length > 1}}">{{item.tagList[1].tagName}}</text>
+            </view>
+            <view class="goodsContent">
+              <view class="price">
+                <text>￥{{item.retailPrice}}</text>
+                <text>(佣金:￥{{item.rebate}})</text>
+              </view>
+              <view class="sales">销量 ：{{item.saleNum}}  库存 : {{item.stock}}</view>
+            </view>
+          </view>
+        </view>
+        <view class="listItemBottom">
+          <button hover-class="none" bindtap="toBuy" data-goodsId="{{item.goodsId}}">立即购买</button>
+          <button hover-class="none" bindtap="share" data-goodsId="{{item.goodsId}}">
+            <image src="{{imgHost}}/images/platform/goods/share_02.png"></image>
+            保存图片
+          </button>
+          <button hover-class="none" open-type="share" data-goodsId="{{item.goodsId}}" data-goodsName="{{item.goodsName}}" data-img="{{item.picPath}}">
+            <image src="{{imgHost}}/images/platform/goods/share_01.png"></image>
+            商品分享
+          </button>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+  <view class="empty_search" wx:elif="{{goodsManageData.length == 0}}">
+    <image src="{{imgHost}}/images/platform/product/search.png"></image>
+    <view class="text">您寻找的商品还未上架！</view>
+  </view>
+  <view hidden='{{hidden}}' class='preview'>
+    <image src='{{prurl}}' mode='widthFix'></image>
+    <button type='primary' size='mini' class='saveImg' bindtap='save' hidden='{{saveImgBtnHidden}}'>保存图片</button>
+    <button type='primary' size='mini' class='openSetting' open-type="openSetting"
+  bindopensetting='handleSetting' hidden='{{openSettingBtnHidden}}'>去授权</button>
+  </view>
+</view>

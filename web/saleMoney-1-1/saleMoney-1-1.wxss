@@ -1,0 +1,82 @@
+page{
+  padding: 20rpx;
+  box-sizing: border-box;
+  color: #333;
+}
+.saleMoeny-1-1-content{
+  background: #fff;
+  padding-bottom: 30rpx;
+}
+.saleMoeny-1-1-content .bankList{
+  height: 180rpx;
+  background: #fbfbfb;
+  padding: 0 40rpx;
+}
+.bankList .title{
+  float: left;
+  margin-top: 50rpx;
+  width: 200rpx;
+  font-size: 26rpx;
+}
+.bankList .content{
+  float: left;
+  width: 380rpx;
+  margin-left: 50rpx;
+  margin-top: 50rpx;
+  font-size: 26rpx;
+}
+.bankList .content text{
+  display: block;
+  color: #5b6e97;
+}
+.bankList .content text:last-child{
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 10rpx;
+}
+.moneyContent{
+  padding: 20rpx 40rpx;
+}
+.moneyContent .title{
+  font-size: 28rpx;
+}
+.moneyContent .inputContent{
+  overflow: hidden;
+  font-size: 50rpx;
+  padding: 10rpx 0 30rpx 0;
+  border-bottom: 2rpx solid #efefef;
+  font-weight: 700;
+}
+.moneyContent .inputContent .icon{
+  float: left;
+  width: 70rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+.moneyContent .inputContent input{
+  float: left;
+  width: 560rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 50rpx;
+}
+.msg{
+  margin-top: 15rpx;
+  font-size: 22rpx;
+  color: #999;
+}
+.msg text{
+  color: #5b6e97;
+}
+.submitBtn{
+  background: #009944;
+  color: #fff;
+  text-align: center;
+  font-size: 32rpx;
+  border-radius: 15rpx;
+  width: 630rpx;
+  margin-left: 40rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  margin-top: 20rpx;
+}

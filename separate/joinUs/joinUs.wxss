@@ -8,7 +8,7 @@ page{
 .content-bgImg image{
   float: left;
   width: 750rpx;
-  height: 1920rpx;
+  height: 1980rpx;
 }
 .content-showImg image{
   width: 750rpx;
@@ -46,7 +46,48 @@ page{
   padding: 20rpx 30rpx;
   height: 180rpx;
 }
-.content-form .btn-submit {
+.content-form .list-item.checkNum input{
+  width: calc(100% - 330rpx);
+  float: left;
+  margin-right: 30rpx;
+}
+.content-form .list-item.checkNum view{
+  float: left;
+  width: 200rpx;
+  height: 86rpx;
+  line-height: 86rpx;
+  text-align: center;
+  font-size: 30rpx;
+  color: #333;
+  background-color: #fff;
+  border: solid 1rpx #cccccc;
+  border-radius: 15rpx;
+}
+.obvious{
+  box-sizing: border-box;
+  width: calc((100% - 160rpx) / 3);
+  float: left;
+  margin-right: 30rpx;
+  text-align: center;
+}
+.obvious.county{
+  margin-right: 0;
+}
+.obvious.province{
+  margin-left: 50rpx;
+}
+.obvious input{
+  height: 86rpx;
+  font-size: 30rpx;
+  line-height: inherit;
+  outline: none;
+  background-color: #fff;
+  border: solid 1rpx #cccccc;
+  border-radius: 15rpx;
+  position: relative;
+  z-index: 9;
+}
+.btn-submit, .btn {
   box-sizing: border-box;
   display: inline-block;
   width: calc(100% - 100rpx);
@@ -59,6 +100,40 @@ page{
   text-decoration: none;
   color: #fff;
   background: #b4282d;
+}
+.btn{
+  margin-top: 100rpx;
+}
+.cardImgContent{
+  width: calc(100% - 100rpx);
+  height: 300rpx;
+  line-height: 300rpx;
+  text-align: center;
+  margin: 0 50rpx;
+  background-color: #fff;
+  border: solid 1rpx #cccccc;
+  border-radius: 15rpx;
+  font-size: 30rpx;
+  color: #666;
+  position: relative;
+  overflow: hidden;
+}
+.cardImgContent .icon{
+  font-size: 40rpx;
+  font-weight: 700;
+  margin-right: 10rpx;
+}
+.cardImgContent image{
+  width: 100%;
+  height: 100%;
+}
+.cardImgContent input{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99;
 }
 .imgContent{
   margin: 0 50rpx;
@@ -113,12 +188,13 @@ page{
   border-radius: 50%;
   background: #fff;
   border: 1rpx solid #efefef;
+  z-index: 999;
 }
 .joinUs-content .home navigator{
   width: 100%;
   height: 100%;
 }
-.joinUs-content .home navigator image{
+.joinUs-content .home navigator cover-image{
   width: 60rpx;
   height: 56rpx;
   padding: 10rpx 12rpx;
@@ -225,9 +301,31 @@ page{
   border:1rpx solid #efefef;
   overflow: hidden;
   background: #fff;
+  z-index: 999;
 }
-.fixedShare image{
+.fixedShare cover-image{
   width: 40rpx;
   height: 40rpx;
   padding: 20rpx;
+}
+.success-content,.fail-content{
+  text-align: center;
+}
+.success-content image,.fail-content image{
+  margin-top: 100rpx;
+  margin-bottom: 40rpx;
+  width: 160rpx;
+  height: 160rpx;
+}
+.success-content .title,.fail-content .title{
+  font-size: 36rpx;
+  color: #333;
+  margin-bottom: 20rpx;
+  font-weight: 700;
+}
+.success-content .desc,.fail-content .desc{
+  font-size: 28rpx;
+  color: #999;
+  padding: 0 40rpx;
+  box-sizing: border-box;
 }

@@ -292,7 +292,7 @@ Page({
     }
     d.ids = ids;
     if(that.data.addressListData.length > 0){
-      if (tType == 0) {
+      if (tType == 0 || tType == 3) {
         if (that.data.haveCode) {
           app.createOrder(that, d);
         } else if (!that.data.haveCode) {

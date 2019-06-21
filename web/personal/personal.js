@@ -110,7 +110,7 @@ Page({
       })
     }
   },
-  toCustomerService: function(e){
+  toCustomerService: function (e) {
     var url = e.currentTarget.dataset.url;
     var userId = wx.getStorageSync('userId');
     if (userId) {
@@ -131,13 +131,33 @@ Page({
       })
     }
   },
-  toScan: function(e){
+  toShopSetting: function (e) {
+    var that = this;
     var url = e.currentTarget.dataset.url;
     var userId = wx.getStorageSync('userId');
+    var reId = that.data.reId;
+    var shopId = app.globalData.shopId;
     if (userId) {
-      wx.navigateTo({
-        url: url,
-      })
+      if (shopId == reId){
+        wx.navigateTo({
+          url: url,
+        })
+      }else{
+        wx.showModal({
+          title: '温馨提示',
+          content: '您所在的微店为他人微店，是否切换到自己微店？',
+          showCancel: true,
+          success(res) {
+            if (res.confirm){
+              wx.setStorageSync('shopId', reId);
+              app.globalData.shopId = reId;
+              wx.navigateTo({
+                url: url,
+              })
+            }
+          }
+        })
+      }
     } else {
       wx.showModal({
         title: '温馨提示',
@@ -151,6 +171,12 @@ Page({
         }
       })
     }
+  },
+  toScan: function(e){
+    var url = e.currentTarget.dataset.url;
+    wx.navigateTo({
+      url: url,
+    })
   },
   alertContentHide: function(){
     var that = this;

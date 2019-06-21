@@ -116,7 +116,7 @@
     <view class="alert-content">
       <view class="content-desc">
         <image src="{{imgHost}}/images/platform/order/2.png"></image>
-        <text>海关要求购买跨境商品需要提供实名信息哦~ </text>
+        <text>海关要求购买跨境/直邮商品需要提供实名信息哦~ </text>
       </view>
       <input bindinput="userNameInput" class="userName" type="text" placeholder="真实姓名（即付款账户的实名）"></input>
       <input bindinput="idNumInput" class="idNum" type="text" placeholder="身份证号码（将加密处理）"></input>

@@ -1,0 +1,138 @@
+page{
+  padding: 0;
+  height: 100%;
+}
+.shopSettingContent{
+  height: 100%;
+}
+.content-header{
+  width: 750rpx;
+  height: 350rpx;
+  position: relative;
+}
+.content-header .shopImg{
+  width: 100%;
+  height: auto;
+  text-align: center;
+  margin-top: 20rpx;
+  margin-bottom: 15rpx;
+  display: inline-block;
+  position: relative;
+  z-index: 99;
+}
+.content-header .shopImg .imgBox{
+  width: 180rpx;
+  height: 180rpx;
+  padding: 8rpx;
+  background-color: #cfcfcf;
+  border: solid 1rpx #c3c3c3;
+  border-radius: 90rpx;
+  display: inline-block;
+  box-sizing: border-box;
+}
+.content-header .shopImg .imgBox image{
+  width: 162rpx;
+  height: 162rpx;
+  background-color: #ffffff;
+  background-size: cover;
+  border-radius: 81rpx;
+  display: inline-block;
+}
+.content-header .shopName{
+  width: 100%;
+  height: auto;
+  margin-top: 20rpx;
+  display: inline-block;
+  position: relative;
+  z-index: 99;
+  text-align: center;
+}
+.content-header .shopName text{
+  height: 48rpx;
+  font-family: PingFangSC-Light,helvetica,'Heiti SC';
+  font-weight: 500;
+  font-size: 32rpx;
+  color: #ffffff;
+  line-height: 50rpx;
+  display: inline-block;
+  text-shadow: 1rpx 1rpx 1rpx #555;
+}
+.content-header .personal-bgImg{
+  width: 750rpx;
+  height: 350rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 9;
+}
+.scroll-footer{
+  height: calc(100% - 610rpx);
+  background: #fff;
+}
+.content-middle{
+  overflow: hidden;
+  background: #fff;
+  padding: 20rpx 0;
+  margin-bottom: 10rpx;
+}
+.middle-item{
+  float: left;
+  width: 25%;
+  text-align: center;
+  color: #333;
+  border-right: 1rpx solid #efefef;
+  box-sizing: border-box;
+}
+.middle-item .num{
+  line-height: 70rpx;
+  font-weight: normal;
+  color: #f47162;
+  font-size: 44rpx;
+}
+.middle-item .name{
+  font-size: 24rpx;
+  margin-top: 10rpx;
+  color: #333;
+}
+.middle-item:last-child{
+  border-right: 0;
+}
+.content-footer{
+  width: 100%;
+  overflow: hidden;
+  background: #fff;
+  /* border-bottom: 1rpx solid #efefef; */
+  /* margin-top: 10rpx; */
+  /* height: calc(100% - 620rpx); */
+  /* border-top: 1rpx solid #efefef; */
+  /* position: absolute;
+  left: 0;
+  bottom: 100rpx; */
+}
+.content-footer .title{
+  font-size: 30rpx;
+  color: #333;
+  margin: 20rpx 40rpx;
+  box-sizing: border-box;
+  font-weight: 700;
+}
+.content-footer .footer-item{
+  float: left;
+  width: 25%;
+  text-align: center;
+  padding: 30rpx 0;
+  background: #fff;
+  line-height: 40rpx;
+}
+.content-footer .footer-item::after{
+  border: none;
+}
+.content-footer .footer-item image{
+  width: 80rpx;
+  height: 68rpx;
+}
+.content-footer .footer-item text{
+  display: block;
+  font-size: 24rpx;
+  color: #666;
+}

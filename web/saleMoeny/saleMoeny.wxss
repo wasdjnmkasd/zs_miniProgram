@@ -1,0 +1,93 @@
+page{
+  padding: 0;
+}
+.saleMoney-content{
+  width: 100%;
+  height: auto;
+  margin-bottom: 20rpx;
+  overflow: hidden;
+}
+.saleMoney-content > view{
+  width: 100%;
+  height: 100rpx;
+  padding: 0 4rpx 0 16rpx;
+  overflow: hidden;
+  background-color: #ffffff;
+  display: block;
+  box-sizing: border-box;
+  margin-bottom: 20rpx;
+}
+.saleMoney-content > view:first-child{
+  border-bottom: solid 1rpx #e4e4e4;
+  margin-bottom: 0;
+}
+.saleMoney-content > view image.icon_right{
+  width: 100rpx;
+  height: 100rpx;
+  margin: 0;
+  float: right;
+}
+.saleMoney-content > view text{
+  height: 88rpx;
+  font-family: PingFangSC-Light,helvetica,'Heiti SC';
+  font-size: 32rpx;
+  color: #333333;
+  line-height: 100rpx;
+  float: left;
+  padding-left: 20rpx;
+}
+.saleMoney-content > view text.money{
+  float: right;
+}
+.saleMoney-content > view.content-header{
+  height: 240rpx;
+  text-align: center;
+}
+.saleMoney-content > view.content-header text{
+  display: block;
+  height: 88rpx;
+  line-height: 88rpx;
+  float: none;
+  font-size: 22rpx;
+  color: #f11a22;
+  font-weight: 700;
+  box-sizing: border-box;
+  padding: 0;
+}
+.saleMoney-content > view.content-header text.key{
+  margin-top: 10rpx;
+}
+.saleMoney-content > view.content-header text.value{
+  font-size: 80rpx;
+}
+.saleMoney-content > view.content-header image{
+  position: absolute;
+  top: 80rpx;
+  right: 0;
+}
+.saleMoney-content > view.content-middle{
+  height: 160rpx;
+  overflow: hidden;
+}
+.saleMoney-content > view.content-middle .middle-item{
+  float: left;
+  overflow: hidden;
+  width: 50%;
+  text-align: center;
+}
+.saleMoney-content > view.content-middle text{
+  float: none;
+  display: block;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+.saleMoney-content > view.content-middle text.key{
+  color: #999;
+  font-size: 26rpx;
+}
+.saleMoney-content > view.content-middle text.value{
+  color: #666;
+  font-size: 50rpx;
+  font-weight: 700;
+  margin-top: -20rpx;
+}

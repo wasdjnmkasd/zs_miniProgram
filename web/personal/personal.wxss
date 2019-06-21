@@ -158,7 +158,7 @@ page{
   box-sizing: border-box;
 }
 .personal-function > view:first-child{
-  margin-top: solid 1rpx #e4e4e4;
+  border-top: solid 1rpx #e4e4e4;
 }
 .personal-function > view image{
   width: 70rpx;

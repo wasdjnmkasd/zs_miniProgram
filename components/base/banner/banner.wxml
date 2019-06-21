@@ -3,13 +3,14 @@
   <block wx:for="{{bannerData.imgs}}" wx:key="">
     <swiper-item wx:if="{{item.picPath}}">
       <navigator url="{{item.href}}" open-type='navigate' hover-class='none'>
-        <image src="{{item.picPath}}" class="slide-image" style="width:{{bannerData.imgWidth ? bannerData.imgWidth : '100%'}};height:{{bannerData.imgHeight}};"/>
+        <image src="{{item.picPath}}" class="slide-image" style="width:{{bannerData.imgWidth ? bannerData.imgWidth : '100%'}};height:{{bannerData.imgHeight}};"></image>
       </navigator>
     </swiper-item>
   </block>
 </swiper>
 <image class="icon_mark" bindtap="showContent" wx:if="{{bannerData.type == 0}}" src="{{imgHost}}/images/platform/tag/icon_cross.png"></image>
 <image class="icon_mark" wx:if="{{bannerData.type == 2}}" src="{{imgHost}}/images/platform/tag/icon_normal.png"></image>
+<image class="icon_mark" wx:if="{{bannerData.type == 3}}" src="{{imgHost}}/images/platform/tag/icon_direct.png"></image>
 <block wx:if="{{bannerData.tagListArr && bannerData.tagListArr.length == 1}}">
   <image wx:if="{{bannerData.tagListArr[0] == '特卖商品'}}" class="icon_mark_right" src="{{imgHost}}/images/platform/index/icon_hot.png"></image>
   <image wx:if="{{bannerData.tagListArr[0] == '新品推荐'}}" class="icon_mark_right" src="{{imgHost}}/images/platform/index/icon_new.png"></image>

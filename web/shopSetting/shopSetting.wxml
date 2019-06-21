@@ -1,0 +1,69 @@
+<view class="shopSettingContent">
+  <view class="content-header">
+   <view class="shopImg">
+      <view class="imgBox">
+        <image wx:if="{{shopInfoData.headImg}}" src="{{shopInfoData.headImg}}"></image>
+        <image wx:else src="{{imgHost}}/images/platform/personal/icon_shop.jpg"></image>
+      </view>
+    </view>
+    <view class="shopName">
+      <text>{{shopInfoData.aboutus || shopInfoData.name}}</text>
+    </view>
+    <image class="personal-bgImg" src="{{imgHost}}/images/platform/personal/personalBgImg.png"></image>
+  </view>
+  <view class="content-middle">
+    <view class="middle-item" data-url="/web/shopStatistics/shopStatistics" bindtap="locationTo">
+      <view class="num">{{managerIndexData.visitView}}</view>
+      <view class="name">今日访问量</view>
+    </view>
+    <view class="middle-item" data-url="/web/shopStatistics/shopStatistics" bindtap="locationTo">
+      <view class="num">{{managerIndexData.pageView}}</view>
+      <view class="name">今日浏览量</view>
+    </view>
+    <view class="middle-item" data-url="/web/saleMoney-2/saleMoney-2" bindtap="locationTo">
+      <view class="num">{{managerIndexData.orderNum}}</view>
+      <view class="name">今日订单数</view>
+    </view>
+    <view class="middle-item" data-url="/web/saleMoney-2/saleMoney-2" bindtap="locationTo">
+      <view class="num">{{managerIndexData.rebate}}</view>
+      <view class="name">今日返佣</view>
+    </view>
+  </view>
+  <scroll-view class="scroll-footer" scroll-y>
+    <view class="content-footer">
+      <view class="title">我的店铺</view>
+      <view class="footer-item" data-url="/web/goodsManage/goodsManage" bindtap="locationTo">
+        <image src="{{imgHost}}/images/platform/shopSetting/icon_goods.png"></image>
+        <text>商品管理</text>
+      </view>
+      <view class="footer-item" data-url="/web/saleMoeny/saleMoeny" bindtap="locationTo">
+        <image src="{{imgHost}}/images/platform/shopSetting/icon_money.png"></image>
+        <text>佣金管理</text>
+      </view>
+      <view class="footer-item" data-url="/web/saleMoney-2/saleMoney-2" bindtap="locationTo">
+        <image src="{{imgHost}}/images/platform/shopSetting/icon_order.png"></image>
+        <text>返佣记录</text>
+      </view>
+      <view class="footer-item" data-url="/web/shopStatistics/shopStatistics" bindtap="locationTo">
+        <image src="{{imgHost}}/images/platform/shopSetting/icon_static.png"></image>
+        <text>数据统计</text>
+      </view>
+    </view>
+    <view class="content-footer">
+      <view class="title">常用功能</view>
+      <view class="footer-item" data-url="/web/storeMaintenance/storeMaintenance" bindtap="locationTo">
+        <image src="{{imgHost}}/images/platform/shopSetting/icon_shop.png"></image>
+        <text>店铺维护</text>
+      </view>
+      <button class="footer-item" open-type="share">
+        <image src="{{imgHost}}/images/platform/goods/share_01.png"></image>
+        <text style="margin-top: 2rpx;">微店推广</text>
+      </button>
+      <view class="footer-item" data-url="/web/customerService/customerService" bindtap="locationTo">
+        <image src="{{imgHost}}/images/platform/personal/customerService.png" style="height: 80rpx;"></image>
+        <text style="margin-top: -13rpx;">客服信息</text>
+      </view>
+    </view>
+  </scroll-view>
+</view>
+<component-footer footerData="{{footerData}}"></component-footer>

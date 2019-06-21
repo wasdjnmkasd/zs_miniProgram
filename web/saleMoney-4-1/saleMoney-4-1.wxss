@@ -1,0 +1,50 @@
+page{
+  padding: 0;
+}
+.saleMoney-4-1-content{
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.saleMoney-4-1-content > view{
+  background: #fff;
+  padding: 20rpx 30rpx;
+  box-sizing: border-box;
+  overflow: hidden;
+  font-size: 28rpx;
+  color: #666;
+  border-bottom: 1rpx solid #efefef;
+  height: 100rpx;
+  line-height: 60rpx;
+}
+.saleMoney-4-1-content > view.msg{
+  font-size: 22rpx;
+  color: #999;
+  padding: 15rpx 30rpx 5rpx 30rpx;
+  background: #f4f4f4;
+  height: auto;
+}
+.saleMoney-4-1-content > view .title{
+  float: left;
+  width: 180rpx;
+}
+.saleMoney-4-1-content > view .content{
+  float: left;
+  width: 510rpx;
+}
+.saleMoney-4-1-content > view .content input{
+  height: 60rpx;
+  line-height: 60rpx;
+}
+.saleMoney-4-1-content > view.submitBtn{
+  font-size: 28rpx;
+  text-align: center;
+  width: 690rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  padding: 0;
+  margin: 0 auto;
+  border-radius: 10rpx;
+  background: #009944;
+  color: #fff;
+  margin-top: 50rpx;
+}

@@ -134,6 +134,7 @@
             <image wx:else src="{{imgHost}}/images/platform/account/default_img.jpg"></image>
             <image wx:if="{{goodsDetailData.type == 0}}" src="{{imgHost}}/images/platform/tag/icon_cross_big.png" class="corner_mark"></image>
             <image wx:elif="{{goodsDetailData.type == 2}}" src="{{imgHost}}/images/platform/tag/icon_normal_big.png" class="corner_mark"></image>
+            <image wx:elif="{{goodsDetailData.type == 3}}" src="{{imgHost}}/images/platform/tag/icon_direct.png" class="corner_mark"></image>
           </view>
         </view>
         <view class="goodsDetail-alert-body-msg-right">

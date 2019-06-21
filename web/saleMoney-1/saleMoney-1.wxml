@@ -1,0 +1,15 @@
+<view class="saleMoeny-1-content">
+  <view class="icon">
+    <image src="{{imgHost}}/images/platform/personal/icon_getMoney.png"></image>
+  </view>
+  <view class="title">我的佣金</view>
+  <view class="money">
+    <text>￥</text>
+    <text>{{rebateManageData.alreadyCheck || 0}}</text>
+  </view>
+  <view class="desc">分享微信商品可用获得更多佣金！</view>
+  <view class="btns">
+    <view class="btn" bindtap="location1">提现</view>
+    <view class="list" bindtap="location2">提现记录</view>
+  </view>
+</view>

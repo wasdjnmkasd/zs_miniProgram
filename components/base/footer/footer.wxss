@@ -52,6 +52,9 @@
 .footer-1-content .footer-shortcutIcon.icon_4{
   width: 25%;
 }
+.footer-1-content .footer-shortcutIcon.icon_5{
+  width: 20%;
+}
 .footer-1-content .footer-shortcutIcon image{
   width: 50rpx;
   height: 75rpx;

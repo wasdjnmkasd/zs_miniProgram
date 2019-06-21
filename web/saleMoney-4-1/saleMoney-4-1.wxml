@@ -1,0 +1,28 @@
+<view class="saleMoney-4-1-content">
+  <view class="msg">请绑定持卡人本人的银行卡</view>
+  <view class="bankNum">
+    <view class="title">银行卡号</view>
+    <view class="content">
+      <input type="number" value="{{cardNo}}" maxlength='20' bindinput="cardNoChange"></input>
+    </view>
+  </view>
+  <view class="bankName">
+    <view class="title">开户银行</view>
+    <view class="content">
+      <input type="text" value="{{cardBank}}" bindinput="cardBankChange"></input>
+    </view>
+  </view>
+  <view class="userName">
+    <view class="title">持卡人姓名</view>
+    <view class="content">
+      <input type="text" value="{{cardName}}" bindinput="cardNameChange"></input>
+    </view>
+  </view>
+  <view class="userPhone">
+    <view class="title">预留手机</view>
+    <view class="content">
+      <input type="text" value="{{cardMobile}}" maxlength='11' bindinput="cardMobileChange"></input>
+    </view>
+  </view>
+  <view class="submitBtn" bindtap="addBankList">提交</view>
+</view>

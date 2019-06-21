@@ -81,13 +81,19 @@ Page({
       scrollHeight: 0
     });
   },
+  toOpenStoreShow: function(){
+    var that = this;
+    wx.navigateTo({
+      url: '/separate/joinShow/joinShow',
+    })
+    that.setData({
+      alertAdv: false
+    })
+  },
   toOpenStore: function () {
     var that = this;
     wx.navigateTo({
       url: '/separate/joinUs/joinUs',
-    })
-    that.setData({
-      alertAdv: false
     })
   },
   alertAdvCancel: function(){
@@ -100,8 +106,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
-    app.shopDetailQuery(that);
+    
   },
 
   /**
@@ -126,6 +131,7 @@ Page({
         'footerData.shoppingCartCount': 0
       });
     }
+    app.shopDetailQuery(that);
   },
 
   /**

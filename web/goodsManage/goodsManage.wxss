@@ -1,0 +1,225 @@
+page{
+  padding: 0;
+  color: #333;
+  overflow: hidden;
+  height: 100%;
+}
+.goodsManageContent{
+  height: 100%;
+}
+.goodsManageContent .chooseType{
+  overflow: hidden;
+  background: #fff;
+}
+.chooseType .typeItem{
+  float: left;
+  text-align: center;
+  width: 19%;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 28rpx;
+  vertical-align: middle;
+  border-bottom: 1rpx solid #efefef;
+}
+.chooseType .typeItem .icon{
+  width: 0;
+  height: 0;
+  display: inline-block;
+  border-left: 10rpx solid transparent;
+  border-right: 10rpx solid transparent;
+  border-top: 20rpx solid transparent;
+  margin-left: 10rpx;
+}
+.chooseType .typeItem .icon.top{
+  border-bottom: none;
+  border-top: 20rpx solid #df4f47;
+}
+.chooseType .typeItem .icon.bottom{
+  border-top: none;
+  border-bottom: 20rpx solid #df4f47;
+}
+.typeItem.imgBox{
+  width: 12%;
+}
+.typeItem.imgBox image{
+  float: left;
+  width: 38rpx;
+  height: 38rpx;
+  margin-left: 25rpx;
+  margin-top: 21rpx;
+}
+.serachContent{
+  margin-top: 81rpx;
+  font-size: 28rpx;
+  padding: 10rpx 40rpx;
+  border-bottom: 1rpx solid #efefef;
+}
+.goodsList{
+  height: calc(100% - 80rpx);
+}
+.goodsList.active{
+  height: calc(100% - 155rpx);
+}
+.goodsList .listItem{
+  overflow: hidden;
+  background: #fff;
+  border-bottom: 1rpx solid #efefef;
+  margin-bottom: 10rpx;
+}
+.listItemContent{
+  overflow: hidden;
+  padding: 10rpx;
+}
+.listItemLeft{
+  float: left;
+  width: 200rpx;
+  height: 200rpx;
+  padding: 10rpx;
+}
+.listItemLeft image{
+  width: 100%;
+  height: 100%;
+}
+.listItemRight{
+  float: left;
+  width: 490rpx;
+  height: 220rpx;
+  padding: 10rpx;
+  box-sizing: border-box;
+  position: relative;
+  margin-left: 10rpx;
+}
+.listItemRight .goodsName{
+  font-size: 28rpx;
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-height: 40rpx;
+  margin-top: 5rpx;
+}
+.listItemRight .goodsContent{
+  position: absolute;
+  left: 10rpx;
+  bottom: 10rpx;
+  width: 490rpx;
+  font-size: 24rpx;
+  color: #666;
+  overflow: hidden;
+}
+.listItemRight .goodsContent .price{
+  font-size: 30rpx;
+  color: #df4f47;
+  font-weight: 700;
+}
+.listItemRight .goodsContent .price text:last-child{
+  color: #777;
+  font-size: 24rpx;
+  margin-left: 10rpx;
+  font-weight: normal;
+}
+.listItemRight .goodsContent .sales{
+  color: #999;
+}
+.listItemRight .tagIcon{
+  /* position: absolute;
+  bottom: 80rpx;
+  left: 0; */
+  color: #f00;
+  font-size: 20rpx;
+  margin-top: 10rpx;
+}
+.listItemRight .tagIcon text{
+  display: inline-block;
+  border-radius: 40rpx;
+  border: 1rpx solid #f00;
+  padding: 0 10rpx;
+  margin-right: 10rpx;
+}
+.listItemRight .tagIcon text.icon_2{
+  color: #a562f9;
+  border-color: #a562f9;
+}
+.listItemBottom{
+  overflow: hidden;
+  border-top: 1rpx solid #efefef;
+  padding: 15rpx 20rpx;
+}
+.listItemBottom button{
+  background: #fff;
+  float: right;
+  margin-left: 20rpx;
+  font-size: 26rpx;
+  color: #666;
+  padding: 0 30rpx;
+  height: 60rpx;
+  line-height: 58rpx;
+  /* border: 1rpx solid #c4c5ce;
+  border-radius: 80rpx; */
+}
+.listItemBottom button::after{
+  border: none;
+}
+.listItemBottom button:first-child{
+  border-color: transparent;
+  float: left;
+}
+.listItemBottom button image{
+  width: 40rpx;
+  height: 40rpx;
+  padding: 5rpx;
+  vertical-align: middle;
+}
+.preview {
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.9);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+}
+.preview image{
+  width: 70%;
+  margin-left: 15%;
+  margin-top: 10%;
+  z-index: 3;
+  border: 1px dashed #fff;
+}
+.preview button{
+  width: 40%;
+  position: absolute;
+  left: 30%;
+  bottom: 5%;
+}
+.empty_search{
+  width: 100%;
+  text-align: center;
+  position: relative;
+}
+.empty_search image{
+   width: 320rpx;
+  height: 320rpx;
+  display: inline-block;
+  position: absolute;
+  top: 80rpx;
+  left: 210rpx;
+}
+.empty_search .text{
+  height: 88rpx;
+  margin: 0 auto;
+  display: inline-block;
+  font-family: PingFangSC-Light,helvetica,'Heiti SC';
+  font-size: 30rpx;
+  color: #888888;
+  font-weight: 400;
+  letter-spacing: 8rpx;
+  position: absolute;
+  top: 418rpx;
+  left: 10rpx;
+  bottom: 0;
+  right: 0;
+}

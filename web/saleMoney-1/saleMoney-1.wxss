@@ -1,0 +1,56 @@
+page{
+  padding: 0;
+  background: #fff;
+  text-align: center;
+}
+.saleMoeny-1-content .icon{
+  margin-top: 100rpx;
+}
+.saleMoeny-1-content .icon image{
+  width: 100rpx;
+  height: 100rpx;
+}
+.saleMoeny-1-content .title{
+  font-size: 30rpx;
+  margin-top: 50rpx;
+}
+.saleMoeny-1-content .money{
+  font-size: 80rpx;
+  font-weight: 700;
+  margin-top: 10rpx;
+  margin-left: -20rpx;
+  vertical-align: top;
+}
+.saleMoeny-1-content .money text{
+  display: inline-block;
+}
+.saleMoeny-1-content .money text:first-child{
+  font-size: 50rpx;
+  margin-right: 10rpx;
+}
+.saleMoeny-1-content .desc{
+  color: #ffc300;
+  font-size: 24rpx;
+  margin-top: 40rpx;
+}
+.saleMoeny-1-content .btns{
+  margin-top: 280rpx;
+}
+.saleMoeny-1-content .btns view{
+  width: 320rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  font-size: 28rpx;
+  margin: 0 auto;
+}
+.saleMoeny-1-content .btns view.btn{
+  color: #fff;
+  background: #07c062;
+  border-radius: 10rpx;
+}
+.saleMoeny-1-content .btns view.list{
+  color: #07c062;
+  background: #ededed;
+  margin-top: 40rpx;
+  border-radius: 10rpx;
+}

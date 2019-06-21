@@ -1,0 +1,31 @@
+<view class="goodsManage-nav-content">
+  <view class="chooseMsg">
+    当前选择：{{firstName}} {{tagName}}
+  </view>
+  <view class="title" data-id="1" bindtap="showList">
+    <text>分类筛选</text>
+    <image wx:if="{{activeId == 1}}" src="{{imgHost}}/images/platform/commodity/href_blod_active.png"></image>
+    <image wx:else src="{{imgHost}}/images/platform/commodity/href_blod.png"></image>
+  </view>
+  <scroll-view class="list" scroll-y wx:if="{{activeId == 1}}">
+    <view class="listItem" wx:for="{{firstListData}}" wx:key="" bindtap="changeFirst" data-id="{{item.id}}" data-industryName="{{item.industryName}}">
+      <text>{{item.industryName}}</text>
+      <image wx:if="{{first == item.id}}" src="{{imgHost}}/images/platform/commodity/selected.png"></image>
+    </view>
+  </scroll-view>
+  <view class="title" data-id="2" bindtap="showList">
+    <text>标签筛选</text>
+    <image wx:if="{{activeId == 2}}" src="{{imgHost}}/images/platform/commodity/href_blod_active.png"></image>
+    <image wx:else src="{{imgHost}}/images/platform/commodity/href_blod.png"></image>
+  </view>
+  <scroll-view class="list" scroll-y wx:if="{{activeId == 2}}">
+    <view class="listItem" wx:for="{{tagListData}}" wx:key="" bindtap="changeTagId" data-id="{{item.id}}" data-tagName="{{item.tagName}}">
+      <text>{{item.tagName}}</text>
+      <image wx:if="{{tagId == item.id}}" src="{{imgHost}}/images/platform/commodity/selected.png"></image>
+    </view>
+  </scroll-view>
+  <view class="submitBtns">
+    <view class="btn-sure" bindtap="chooseSure">确认选择</view>
+    <view class="btn-clear" bindtap="chooseClear">清除选项</view>
+  </view>
+</view>

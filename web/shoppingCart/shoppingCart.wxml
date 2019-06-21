@@ -21,6 +21,7 @@
                   <image wx:else src="{{imgHost}}/images/platform/config/default_img.jpg"></image>
                   <image wx:if="{{item.type == 0}}" class="corner_mark" src="{{imgHost}}/images/platform/tag/icon_cross.png"></image>
                   <image wx:if="{{item.type == 2}}" class="corner_mark" src="{{imgHost}}/images/platform/tag/icon_normal.png"></image>
+                  <image wx:if="{{item.type == 3}}" class="corner_mark" src="{{imgHost}}/images/platform/tag/icon_direct.png"></image>
                 </navigator>
                 <view class="commodity-info">
                   <navigator url="/web/goodsDetail/goodsDetail?goodsId={{item.goodsSpecs.goodsId}}" open-type="navigate" hover-class="none" class="commodity-name">

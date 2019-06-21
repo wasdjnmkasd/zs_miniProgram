@@ -1,0 +1,77 @@
+page{
+  padding: 0;
+  color: #333;
+  overflow: hidden;
+  height: 100%;
+}
+.goodsManage-nav-content{
+  height: 100%;
+}
+.goodsManage-nav-content .chooseMsg{
+  font-size: 28rpx;
+  background: #fff;
+  padding: 0 30rpx;
+  background: #fff8db;
+  height: 60rpx;
+  line-height: 60rpx;
+}
+.title{
+  font-size: 30rpx;
+  padding: 0 10rpx 0 30rpx;
+  box-sizing: border-box;
+  background: #fefefe;
+  height: 80rpx;
+  line-height: 80rpx;
+  /* border-top: 1rpx solid #eee; */
+  border-bottom: 1rpx solid #eee;
+  font-weight: 700;
+}
+.title image{
+  float: right;
+  width: 80rpx;
+  height: 80rpx;
+}
+.list{
+  background: #fff;
+  max-height: calc(100% - 370rpx);
+  border-bottom: 1rpx solid #eee;
+  overflow: auto;
+}
+.list .listItem{
+  font-size: 28rpx;
+  margin: 0 40rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  color: #666;
+}
+.list .listItem image{
+  float: right;
+  width: 30rpx;
+  height: 30rpx;
+  margin-top: 20rpx;
+  margin-right: -5rpx;
+}
+.submitBtns{
+  position: fixed;
+  bottom: 30rpx;
+  left: 45rpx;
+  overflow: hidden;
+  text-align: center;
+}
+.submitBtns view{
+  float: left;
+  width: 310rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 32rpx;
+  background-color: #b4282d;
+  border-radius: 15rpx;
+  color: #fff;
+  border: 1rpx solid #b4282d;
+}
+.submitBtns view.btn-clear{
+  color: #333;
+  background: #fff;
+  border: 1rpx solid #efefef;
+  margin-left: 40rpx;
+}

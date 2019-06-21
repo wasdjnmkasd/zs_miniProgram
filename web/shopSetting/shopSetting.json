@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "component-footer": "/components/base/footer/footer"
+  },
+  "navigationBarTitleText": "微店管理"
+}

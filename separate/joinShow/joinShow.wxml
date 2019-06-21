@@ -1,0 +1,7 @@
+<view class="joinShow-content">
+  <view class="btn" bindtap="toFormList"></view>
+  <block wx:for="{{shopShowList}}" wx:key="">
+    <image style="width:{{item.width}};height:{{item.height}}" src="{{imgHost}}{{item.src}}" bindload="imageLoad"  data-index="{{index}}"></image>
+  </block>
+  <image style="width: 750rpx;height: 130rpx;" bindtap="toFormList" src="{{imgHost}}/images/platform/shopPromotion/promotion_21.png"></image>
+</view>

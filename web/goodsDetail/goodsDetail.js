@@ -268,7 +268,7 @@ Page({
               url: '/web/orderSure/orderSure',
             })
           }
-        } else if (goodsDetailData.type == 2){
+        } else if (goodsDetailData.type == 2 || goodsDetailData.type == 3){
           wx.setStorageSync('ordersInfo', data);
           wx.navigateTo({
             url: '/web/orderSure/orderSure',
@@ -899,6 +899,7 @@ Page({
         backgroundColor: '#ff8500',
       })
     }
+    app.pvuvStatic();
   },
 
   /**

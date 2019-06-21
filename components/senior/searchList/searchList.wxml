@@ -31,6 +31,7 @@
                   <image wx:else src="{{imgHost}}/images/platform/account/default_img.jpg"></image>
                   <image wx:if="{{item.type == 0}}" class="corner_mark" src="{{imgHost}}/images/platform/tag/icon_cross.png"></image>
                   <image wx:elif="{{item.type == 2}}" class="corner_mark" src="{{imgHost}}/images/platform/tag/icon_normal.png"></image>
+                  <image wx:elif="{{item.type == 3}}" class="corner_mark" src="{{imgHost}}/images/platform/tag/icon_direct.png"></image>
                   <block wx:if="{{item.newTagListArr && item.newTagListArr.length == 1}}">
                     <image wx:if="{{item.newTagListArr[0] == '特卖商品'}}" class="icon_mark_right" src="{{imgHost}}/images/platform/index/icon_hot.png"></image>
                     <image wx:if="{{item.newTagListArr[0] == '新品推荐'}}" class="icon_mark_right" src="{{imgHost}}/images/platform/index/icon_new.png"></image>

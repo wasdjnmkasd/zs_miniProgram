@@ -1,0 +1,29 @@
+<view class="saleMoney-content">
+  <view class="content-header" data-url="/web/saleMoney-1/saleMoney-1" bindtap="locationTo">
+    <text class="key">可提现</text>
+    <text class="value">{{rebateManageData.alreadyCheck || 0}}</text>
+    <image src="{{imgHost}}/images/platform/personal/href_blod.png" class="icon_right"></image>
+  </view>
+  <view class="content-middle">
+    <view class="middle-item">
+      <text class="key">待到账奖励</text>
+      <text class="value">{{(rebateManageData.stayToAccount || 0)*1 + (rebateManageData.canBePresented || 0)*1 + (rebateManageData.frozenRebate || 0)*1}}</text>
+    </view>
+    <view class="middle-item">
+      <text class="key">累积奖励</text>
+      <text class="value">{{rebateManageData.totalPrice}}</text>
+    </view>
+  </view>
+  <view data-url="/web/saleMoney-3/saleMoney-3" bindtap="locationTo">
+    <text>提现记录</text>
+    <image src="{{imgHost}}/images/platform/personal/href_blod.png" class="icon_right"></image>
+  </view>
+  <view data-url="/web/saleMoney-2/saleMoney-2" bindtap="locationTo">
+    <text>返佣记录</text>
+    <image src="{{imgHost}}/images/platform/personal/href_blod.png" class="icon_right"></image>
+  </view>
+  <view data-url="/web/saleMoney-4/saleMoney-4" bindtap="locationTo">
+    <text>银行卡</text>
+    <image src="{{imgHost}}/images/platform/personal/href_blod.png" class="icon_right"></image>
+  </view>
+</view>

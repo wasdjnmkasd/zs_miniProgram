@@ -144,7 +144,7 @@ Page({
     var selectedNum = 0;
     var statusNum = 0;
     if (itemIdData.status != 'lose') {
-      if (itemIdData.type == 2){
+      if (itemIdData.type == 2 || itemIdData.type == 3){
         if (itemIdData.status == 'selected') {
           itemIdData.status = '';
           that.setData({
@@ -365,7 +365,7 @@ Page({
         if (data[i].type == 0 && data[i].status == 'selected') {
           allCrossPrice += data[i].goodsSpecs.priceList[0].price * data[i].quantity;
           allCrossCount += data[i].quantity;
-        } else if (data[i].type == 2 && data[i].status == 'selected') {
+        } else if ((data[i].type == 2 || data[i].type == 3) && data[i].status == 'selected') {
           allNormalPrice += data[i].goodsSpecs.priceList[0].price * data[i].quantity;
           allNormalCount += data[i].quantity;
         }

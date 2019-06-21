@@ -55,7 +55,14 @@
       <text>客服信息</text>
       <image src="{{imgHost}}/images/platform/personal/href_blod.png" class="icon_right"></image>
     </view>
-    <block wx:if="{{shopInfoData.shopExtensionFlg == 1}}">
+    <block wx:if="{{shopStatus == 3}}">
+      <view data-url="/web/shopSetting/shopSetting" bindtap="toShopSetting">
+        <image style="margin: 16rpx 16rpx 0 0; width: 56rpx;height:56rpx;" src="{{imgHost}}/images/platform/personal/shopSetting_icon.png"></image>
+        <text>微店管理</text>
+        <image src="{{imgHost}}/images/platform/personal/href_blod.png" class="icon_right"></image>
+      </view>
+    </block>
+    <block wx:else>
       <view data-url="/separate/joinUs/joinUs" bindtap="toScan">
         <image style="margin: 14rpx 14rpx 0 0; width: 60rpx;height:60rpx;" src="{{imgHost}}/images/platform/personal/scan.png"></image>
         <text>申请开店</text>

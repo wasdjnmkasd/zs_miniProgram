@@ -1,0 +1,32 @@
+<view class="saleMoeny-1-1-content">
+  <view class="bankList" bindtap="chooseCard">
+    <block wx:if="{{bankListData.length > 0}}">
+      <block wx:for="{{bankListData}}" wx:key="">
+        <block wx:if="{{item.id == cardBankId}}">
+          <view class="title">到账银行卡</view>
+          <view class="content">
+            <text>{{item.cardBank}}({{item.cardLastNo}})</text>
+            <text>3个工作日内到账</text>
+          </view>
+        </block>
+      </block>
+    </block>
+    <block wx:else>
+      <view class="title">到账银行卡</view>
+          <view class="content">
+            <text>使用新银行卡</text>
+          </view>
+    </block>
+  </view>
+  <view class="moneyContent">
+    <view class="title">提现金额</view>
+    <view class="inputContent">
+      <view class="icon">￥</view>
+      <input type="number" value="{{outMoney}}" bindinput="changeOutMoney"></input>
+    </view>
+    <view class="msg">
+      当前佣金余额{{rebateManageData.alreadyCheck || 0}}元，<text bindtap="getAllMoney">全部提现</text>
+    </view>
+  </view>
+  <view class="submitBtn" bindtap="submitMoney">提现</view>
+</view>

@@ -8,10 +8,11 @@
 		"es6": true,
 		"postcss": true,
 		"minified": true,
-		"newFeature": true
+		"newFeature": true,
+		"checkInvalidKey": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.6.2",
+	"libVersion": "2.4.0",
 	"appid": "wx5f9b1ce05dffd781",
 	"projectname": "%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%95%86%E5%9F%8E",
 	"debugOptions": {
@@ -38,28 +39,28 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
+			"current": -1,
 			"list": [
 				{
 					"id": 0,
 					"name": "scan",
-					"pathName": "web/goodsDetail/goodsDetail",
-					"query": "shopId=2&goodsId=1070",
+					"pathName": "web/index/index",
+					"query": "shopId=2",
 					"scene": "1047"
 				},
 				{
 					"id": 1,
-					"name": "扫码进入",
-					"pathName": "web/goodsDetail/goodsDetail",
-					"query": "goodsId=100000761",
-					"scene": 1011
+					"name": "scan",
+					"pathName": "web/index/index",
+					"query": "shopId=12",
+					"scene": 1001
 				},
 				{
 					"id": 2,
-					"name": "扫码进入",
-					"pathName": "web/index/index",
-					"query": "",
-					"scene": 1001
+					"name": "商详分享",
+					"pathName": "web/goodsDetail/goodsDetail",
+					"query": "goodsId=100000912&shopId=2&isShare=true",
+					"scene": null
 				}
 			]
 		}

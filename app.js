@@ -4,6 +4,7 @@ App({
     host: 'https://api.cncoopay.com',
     imgHost: 'https://static.cncoopay.com:8080/wechat',
     nodeHost: 'https://front.cncoopay.com',
+    imgUrl: 'https://static.cncoopay.com:8080',
     centerId: 2,
     platUserType: 5,
     loginType: 1,
@@ -40,6 +41,7 @@ App({
     that.globalData.shopId = shopId;
     wx.setStorageSync('shopId', shopId);
     that.getUserIp();
+    that.pvuvStatic();
   },
   onShow: function(options){
     var that = this;
@@ -129,7 +131,7 @@ App({
     }
     return null;
   },
-  wxLogin: function(data){
+  wxLogin: function (data) {
     var that = this;
     var platUserType = that.globalData.platUserType;
     var centerId = that.globalData.centerId;
@@ -147,25 +149,34 @@ App({
             success: function (res) {
               if (res.data && res.data.success) {
                 wx.setStorageSync('openId', res.data.obj.openid);
-                if (data && data.type == 'wechat'){
-                  if(res.data.obj.isFirst){
-                    if (data.status == 'index'){
-                      wx.navigateTo({
-                        url: '/web/bindMobile/bindMobile?status=' + data.status,
-                      })
+                if (data && data.type == 'wechat') {
+                  if (res.data.obj.isFirst) {
+                    var pages = getCurrentPages()    //获取加载的页面
+                    var currentPage = pages[pages.length - 1]    //获取当前页面的对象
+                    var url = currentPage.route;
+                    if (url != "web/authorizedLogin/authorizedLogin"){
+                      if (data.status == 'index') {
+                        wx.navigateTo({
+                          url: '/web/bindMobile/bindMobile?status=' + data.status,
+                        })
+                      } else {
+                        wx.navigateTo({
+                          url: '/web/bindMobile/bindMobile',
+                        })
+                      }
                     }else{
-                      wx.navigateTo({
-                        url: '/web/bindMobile/bindMobile',
+                      wx.navigateBack({
+                        delta: 1
                       })
                     }
-                  }else{
-                    var d ={
+                  } else {
+                    var d = {
                       openId: res.data.obj.openid,
                       loginType: 5,
                       userType: platUserType,
                       isFirst: res.data.obj.isFirst
                     }
-                    if(data.status){
+                    if (data.status) {
                       d.status = data.status
                     }
                     that.userLogin('', d);
@@ -177,7 +188,7 @@ App({
                   icon: 'none',
                   duration: 1500
                 })
-              } else{
+              } else {
                 wx.showToast({
                   title: '获取openId失败',
                   icon: 'none',
@@ -440,9 +451,18 @@ App({
                   wx.setStorageSync('userId', res.data.obj.userCenterId);
                   that.globalData.authentication = '"Bearer "' + res.data.obj.token;
                   that.globalData.isLogin = true;
-                  wx.navigateBack({
-                    delta: 2
-                  })
+                  var pages = getCurrentPages();//获取加载的页面
+                  var currentPage = pages[pages.length - 1];//获取当前页面的对象
+                  var url = currentPage.route;//当前页面url
+                  if (url == 'web/register/register'){
+                    wx.navigateBack({
+                      delta: 3
+                    })
+                  }else{
+                    wx.navigateBack({
+                      delta: 2
+                    })
+                  }
                 } else if (res.data && !res.data.success) {
                   wx.showToast({
                     title: res.data.errorMsg,
@@ -590,6 +610,11 @@ App({
       },
       success: function (res) {
         if (res.data && res.data.success) {
+          var d = {
+            phone: res.data.obj.phone
+          }
+          that.getShopCheck(obj, d);
+          that.getApplyShopData(obj, d);
           obj.setData({
             personalData: res.data.obj
           },function(){
@@ -691,8 +716,8 @@ App({
             duration: 1500
           })
         } else {
-          data.forEach(function (v, i) {
-            if (v.code == "banner-1") {
+          data.forEach(function(v,i){
+            if (v.code == "banner-1"){
               obj.setData({
                 ['bannerData.imgs']: v.cont
               });
@@ -708,7 +733,7 @@ App({
                 v.own._href = v.own.href.split('?')[1];
               }
               v.idx = index;
-              index ++;
+              index++;
             }
           });
           obj.setData({
@@ -1083,7 +1108,7 @@ App({
               if (data[i].type == 0) {
                 allCrossPrice += data[i].goodsSpecs.priceList[0].price * data[i].quantity;
                 allCrossCount += data[i].quantity * 1;
-              } else if (data[i].type == 2) {
+              } else if (data[i].type == 2 || data[i].type == 3) {
                 allNormalPrice += data[i].goodsSpecs.priceList[0].price * data[i].quantity;
                 allNormalCount += data[i].quantity * 1;
               }
@@ -2075,7 +2100,7 @@ App({
     var host = that.globalData.host;
     var oldData = obj.data.logisticsData || [];
     wx.request({
-      url: host + '/3rdcenter/1.0/express/getRoute?carrierName=' + data.expressName + '&expressId=' + data.expressId,
+      url: host + '/3rdcenter/1.0/express/getRoute?carrierName=' + encodeURIComponent(data.expressName) + '&expressId=' + data.expressId,
       method: 'GET',
       data: {},
       header: {
@@ -3294,32 +3319,6 @@ App({
       success: function () { }
     })
   },
-  setOpenShopData: function(data){
-    var that = this;
-    var nodeHost = that.globalData.nodeHost;
-    wx.request({
-      url: nodeHost + '/Data/img/json',
-      method: 'POST',
-      data: data,
-      header: {
-        'content-type': 'application/json', // 默认值
-      },
-      success: function (res) { 
-        if(res.data.success){
-          wx.showModal({
-            title: '申请成功',
-            content: '申请成功，工作员人将在三个工作日内会联系您，请保持手机通讯畅通',
-            showCancel: false,
-            success(res) {
-              wx.navigateBack({
-                delta: 1
-              })
-            }
-          })
-        }
-      }
-    })
-  },
   gertMyStoreCode: function (obj) {
     var that = this;
     var host = that.globalData.host;
@@ -3362,5 +3361,790 @@ App({
         that.globalData.ip = res.data.obj;
       }
     });
+  },
+  /*微店管理*/
+  getShopCheck: function(obj, data){
+    var that = this;
+    var host = that.globalData.host;
+    var shopId = that.globalData.shopId;
+    wx.request({
+      url: host + '/usercenter/1.0/apply/shop/check/' + data.phone,
+      method: 'GET',
+      data: {},
+      header: {
+        'content-type': 'application/json', // 默认值
+        'authentication': that.globalData.authentication
+      },
+      success: function (res) {
+        if (res.data && res.data.success) {
+          obj.setData({
+            shopStatus: res.data.obj
+          })
+        } else if (res.data && !res.data.success) {
+          wx.showToast({
+            title: res.data.errorMsg,
+            icon: 'none',
+            duration: 1500
+          })
+        } else {
+          wx.showToast({
+            title: '获取开店状态失败',
+            icon: 'none',
+            duration: 1500
+          })
+        }
+      },
+      fail: function (res) {
+        wx.showToast({
+          title: '请求失败，请检查网络是否畅通',
+          icon: 'none',
+          duration: 1500
+        })
+      },
+      complete: function (res) { }
+    })
+  },
+  getApplyShopData: function(obj, data){
+    var that = this;
+    var host = that.globalData.host;
+    var phone = data.phone;
+    wx.request({
+      url: host + '/usercenter/1.0/apply/shop/' + phone,
+      method: 'GET',
+      data: {},
+      header: {
+        'content-type': 'application/json', // 默认值
+        'authentication': that.globalData.authentication
+      },
+      success: function (res) {
+        if (res.data && res.data.success) {
+          obj.setData({
+            userName: obj.data.userName || (res.data.obj && res.data.obj.personInCharge),
+            userPhone: obj.data.userPhone || (res.data.obj && res.data.obj.phone),
+            userAddress: obj.data.userAddress || (res.data.obj && res.data.obj.address),
+            userContent: obj.data.userContent || (res.data.obj && res.data.obj.remark),
+            province: res.data.obj && res.data.obj.province,
+            city: res.data.obj && res.data.obj.city,
+            county: res.data.obj && res.data.obj.district,
+            cardImg: obj.data.cardImg || (res.data.obj && res.data.obj.idCardPicPath),
+            reId: res.data.obj && res.data.obj.id,
+            'infoData.phone': res.data.obj && res.data.obj.phone,
+          })
+        } else if (res.data && !res.data.success) {
+          wx.showToast({
+            title: res.data.errorMsg,
+            icon: 'none',
+            duration: 1500
+          })
+        } else {
+          wx.showToast({
+            title: '获取开店信息失败，请稍后再试',
+            icon: 'none',
+            duration: 1500
+          })
+        }
+      },
+      fail: function (res) {
+        wx.showToast({
+          title: '请求失败，请检查网络是否畅通',
+          icon: 'none',
+          duration: 1500
+        })
+      },
+      complete: function (res) { }
+    })
+  },
+  getManagerIndexData: function(obj){
+    var that = this;
+    var host = that.globalData.host;
+    var shopId = that.globalData.shopId;
+    wx.request({
+      url: host + '/ordercenter/1.0/cache/shop/manager/index/' + shopId,
+      method: 'GET',
+      data: {},
+      header: {
+        'content-type': 'application/json', // 默认值
+        'authentication': that.globalData.authentication
+      },
+      success: function (res) {
+        if(res.data && res.data.success){
+          obj.setData({
+            managerIndexData: res.data.obj
+          })
+        } else if (res.data && !res.data.success){
+          wx.showToast({
+            title: res.data.errorMsg,
+            icon: 'none',
+            duration: 1500
+          })
+        }else{
+          wx.showToast({
+            title: '获取统计数据失败',
+            icon: 'none',
+            duration: 1500
+          })
+        }
+      },
+      fail: function (res) {
+        wx.showToast({
+          title: '请求失败，请检查网络是否畅通',
+          icon: 'none',
+          duration: 1500
+        })
+      },
+      complete: function (res) { }
+    })
+  },
+  saveStoreMsg: function (obj, data) {
+    var that = this;
+    var host = that.globalData.host;
+    var shopId = that.globalData.shopId;
+    data.gradeId = shopId;
+    wx.request({
+      url: host + '/usercenter/1.0/shop/update',
+      method: 'POST',
+      data: data,
+      header: {
+        'content-type': 'application/json', // 默认值
+        'authentication': that.globalData.authentication
+      },
+      success: function (res) {
+        if (res.data && res.data.success) {
+          wx.navigateBack({
+            delta: 1
+          })
+        } else if (res.data && !res.data.success) {
+          wx.showToast({
+            title: res.data.errorMsg,
+            icon: 'none',
+            duration: 1500
+          })
+        } else {
+          wx.showToast({
+            title: '更新店铺数据失败，请稍后再试',
+            icon: 'none',
+            duration: 1500
+          })
+        }
+      },
+      fail: function (res) {
+        wx.showToast({
+          title: '请求失败，请检查网络是否畅通',
+          icon: 'none',
+          duration: 1500
+        })
+      },
+      complete: function (res) { }
+    })
+  },
+  getGoodsManageData: function(obj, data, oldData){
+    var that = this;
+    var host = that.globalData.host;
+    var shopId = that.globalData.shopId;
+    var oldData = oldData || [];
+    data.shopId = shopId;
+    wx.request({
+      url: host + '/goodscenter/1.0/shop/manager/goods',
+      method: 'POST',
+      data: data,
+      header: {
+        'content-type': 'application/json', // 默认值
+        'authentication': that.globalData.authentication
+      },
+      success: function (res) {
+        if (res.data && res.data.success) {
+          obj.setData({
+            goodsManageData: oldData.concat(res.data.obj),
+            totalPages: res.data.pagination.totalPages
+          })
+        } else if (res.data && !res.data.success) {
+          wx.showToast({
+            title: res.data.errorMsg,
+            icon: 'none',
+            duration: 1500
+          })
+        } else {
+          wx.showToast({
+            title: '获取商品列表失败，请稍后再试',
+            icon: 'none',
+            duration: 1500
+          })
+        }
+      },
+      fail: function (res) {
+        wx.showToast({
+          title: '请求失败，请检查网络是否畅通',
+          icon: 'none',
+          duration: 1500
+        })
+      },
+      complete: function (res) { }
+    })
+  },
+  getRebateManageData: function(obj){
+    var that = this;
+    var host = that.globalData.host;
+    var shopId = that.globalData.shopId;
+    wx.request({
+      url: host + '/financecenter/1.0/finance/rebate/' + shopId,
+      method: 'GET',
+      data: {},
+      header: {
+        'content-type': 'application/json', // 默认值
+        'authentication': that.globalData.authentication
+      },
+      success: function (res) {
+        if (res.data && res.data.success) {
+          obj.setData({
+            rebateManageData: res.data.obj,
+            'rebateManageData.totalPrice': ((res.data.obj.alreadyCheck || 0) + (res.data.obj.stayToAccount || 0) * 1 + (res.data.obj.canBePresented || 0) * 1 + (res.data.obj.frozenRebate || 0) * 1 + (res.data.obj.alreadyPresented || 0)).toFixed(2)
+          });
+        } else if (res.data && !res.data.success) {
+          wx.showToast({
+            title: res.data.errorMsg,
+            icon: 'none',
+            duration: 1500
+          })
+        } else {
+          wx.showToast({
+            title: '获取返佣数据失败，请稍后再试',
+            icon: 'none',
+            duration: 1500
+          })
+        }
+      },
+      fail: function (res) {
+        wx.showToast({
+          title: '请求失败，请检查网络是否畅通',
+          icon: 'none',
+          duration: 1500
+        })
+      },
+      complete: function (res) { }
+    })
+  },
+  getRebateListData: function (obj, data, oldData){
+    var that = this;
+    var host = that.globalData.host;
+    var shopId = that.globalData.shopId;
+    var oldData = oldData || [];
+    data.operatorId = shopId;
+    wx.request({
+      url: host + '/financecenter/1.0/finance/withdrawal/queryForPage',
+      method: 'POST',
+      data: data,
+      header: {
+        'content-type': 'application/json', // 默认值
+        'authentication': that.globalData.authentication
+      },
+      success: function (res) {
+        if (res.data && res.data.success) {
+          res.data.obj.forEach(function(v,i){
+            let cardNum = v.cardNo;
+            v.cardNo = '************' + cardNum.toString().slice(-4);
+          });
+          obj.setData({
+            rebateListData: oldData.concat(res.data.obj),
+            totalPages: res.data.pagination.totalPages
+          })
+        } else if (res.data && !res.data.success) {
+          wx.showToast({
+            title: res.data.errorMsg,
+            icon: 'none',
+            duration: 1500
+          })
+        } else {
+          wx.showToast({
+            title: '获取提现记录失败，请稍后再试',
+            icon: 'none',
+            duration: 1500
+          })
+        }
+      },
+      fail: function (res) {
+        wx.showToast({
+          title: '请求失败，请检查网络是否畅通',
+          icon: 'none',
+          duration: 1500
+        })
+      },
+      complete: function (res) { }
+    })
+  },
+  bindBank: function(obj, data){
+    var that = this;
+    var host = that.globalData.host;
+    var shopId = that.globalData.shopId;
+    data.typeId = shopId;
+    wx.request({
+      url: host + '/financecenter/1.0/finance/card',
+      method: 'POST',
+      data: data,
+      header: {
+        'content-type': 'application/json', // 默认值
+        'authentication': that.globalData.authentication
+      },
+      success: function (res) {
+        if (res.data && res.data.success) {
+          wx.navigateBack({
+            delta: 1
+          })
+        } else if (res.data && !res.data.success) {
+          wx.showToast({
+            title: res.data.errorMsg,
+            icon: 'none',
+            duration: 1500
+          })
+        } else {
+          wx.showToast({
+            title: '绑定银行卡失败，请稍后再试',
+            icon: 'none',
+            duration: 1500
+          })
+        }
+      },
+      fail: function (res) {
+        wx.showToast({
+          title: '请求失败，请检查网络是否畅通',
+          icon: 'none',
+          duration: 1500
+        })
+      },
+      complete: function (res) { }
+    })
+  },
+  deleteBank: function (obj, data) {
+    var that = this;
+    var host = that.globalData.host;
+    wx.request({
+      url: host + '/financecenter/1.0/finance/card/' + data.id,
+      method: 'DELETE',
+      data: {},
+      header: {
+        'content-type': 'application/json', // 默认值
+        'authentication': that.globalData.authentication
+      },
+      success: function (res) {
+        if (res.data && res.data.success) {
+          wx.showToast({
+            title: '删除成功',
+            icon: 'none',
+            duration: 1500
+          })
+          that.getBankListData(obj);
+        } else if (res.data && !res.data.success) {
+          wx.showToast({
+            title: res.data.errorMsg,
+            icon: 'none',
+            duration: 1500
+          })
+        } else {
+          wx.showToast({
+            title: '绑定银行卡失败，请稍后再试',
+            icon: 'none',
+            duration: 1500
+          })
+        }
+      },
+      fail: function (res) {
+        wx.showToast({
+          title: '请求失败，请检查网络是否畅通',
+          icon: 'none',
+          duration: 1500
+        })
+      },
+      complete: function (res) { }
+    })
+  },
+  getBankListData: function(obj){
+    var that = this;
+    var host = that.globalData.host;
+    var shopId = that.globalData.shopId;
+    wx.request({
+      url: host + '/financecenter/1.0/finance/card/' + shopId,
+      method: 'GET',
+      data: {},
+      header: {
+        'content-type': 'application/json', // 默认值
+        'authentication': that.globalData.authentication
+      },
+      success: function (res) {
+        if (res.data && res.data.success) {
+          res.data.obj.forEach(function (v, i) {
+            let cardNum = v.cardNo;
+            v.cardNum = cardNum;
+            v.cardNo = '**** **** **** ' + cardNum.toString().slice(-4);
+            v.cardLastNo = cardNum.toString().slice(-4);
+          });
+          obj.setData({
+            bankListData: res.data.obj
+          });
+          if (!obj.data.cardBankId && res.data.obj.length > 0){
+            obj.setData({
+              cardBankId: res.data.obj[0].id
+            });
+          }
+        } else if (res.data && !res.data.success) {
+          wx.showToast({
+            title: res.data.errorMsg,
+            icon: 'none',
+            duration: 1500
+          })
+        } else {
+          wx.showToast({
+            title: '获取银行卡列表失败，请稍后再试',
+            icon: 'none',
+            duration: 1500
+          })
+        }
+      },
+      fail: function (res) {
+        wx.showToast({
+          title: '请求失败，请检查网络是否畅通',
+          icon: 'none',
+          duration: 1500
+        })
+      },
+      complete: function (res) { }
+    })
+  },
+  checkBankType: function(obj, data){
+    var that = this;
+    var host = that.globalData.host;
+    wx.request({
+      url: host + '/financecenter/1.0/finance/card/check?cardNo=' + data.cardNo,
+      method: 'GET',
+      data: {},
+      header: {
+        'content-type': 'application/json', // 默认值
+        'authentication': that.globalData.authentication
+      },
+      success: function (res) {
+        if (res.data && res.data.success) {
+          obj.setData({
+            cardBank: res.data.obj
+          })
+        } else if (res.data && !res.data.success) {
+          wx.showToast({
+            title: res.data.errorMsg,
+            icon: 'none',
+            duration: 1500
+          })
+          obj.setData({
+            cardBank: null
+          })
+        } else {
+          wx.showToast({
+            title: '获取银行卡类型失败，请稍后再试',
+            icon: 'none',
+            duration: 1500
+          })
+        }
+      },
+      fail: function (res) {
+        wx.showToast({
+          title: '请求失败，请检查网络是否畅通',
+          icon: 'none',
+          duration: 1500
+        })
+      },
+      complete: function (res) { }
+    })
+  },
+  outMoney: function (obj, data) {
+    var that = this;
+    var host = that.globalData.host;
+    var shopId = that.globalData.shopId;
+    data.operatorId = shopId;
+    wx.request({
+      url: host + '/financecenter/1.0/finance/withdrawal/apply',
+      method: 'POST',
+      data: data,
+      header: {
+        'content-type': 'application/json', // 默认值
+        'authentication': that.globalData.authentication
+      },
+      success: function (res) {
+        if (res.data && res.data.success) {
+          wx.showModal({
+            title: '申请成功',
+            content: '申请成功，提现金额将在三个工作日内到账',
+            showCancel: false,
+            success(res) {
+              wx.navigateBack({
+                delta: 1
+              })
+            }
+          })
+        } else if (res.data && !res.data.success) {
+          wx.showToast({
+            title: res.data.errorMsg,
+            icon: 'none',
+            duration: 1500
+          })
+          obj.setData({
+            cardBank: null
+          })
+        } else {
+          wx.showToast({
+            title: '申请提现失败，请稍后再试',
+            icon: 'none',
+            duration: 1500
+          })
+        }
+      },
+      fail: function (res) {
+        wx.showToast({
+          title: '请求失败，请检查网络是否畅通',
+          icon: 'none',
+          duration: 1500
+        })
+      },
+      complete: function (res) { }
+    })
+  },
+  checkVerify: function (obj, data) {
+    var that = this;
+    var host = that.globalData.host;
+    wx.request({
+      url: host + '/3rdcenter/auth/1.0/third-part/phoneVerify?phone=' + data.phone + '&code=' + data.code,
+      method: 'GET',
+      data: {},
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+        if (res.data) {
+          obj.setData({
+            isOk: true
+          })
+        } else {
+          obj.setData({
+            isOk: false
+          })
+          wx.showToast({
+            title: '手机验证码错误',
+            icon: 'none',
+            duration: 1500
+          })
+        }
+      },
+      fail: function (res) {
+        wx.showToast({
+          title: '请求失败，请检查网络是否畅通',
+          icon: 'none',
+          duration: 1500
+        })
+      },
+      complete: function (res) { }
+    })
+  },
+  shopApply: function(obj, data){
+    var that = this;
+    var host = that.globalData.host;
+    var shopId = that.globalData.shopId;
+    wx.request({
+      url: host + '/usercenter/1.0/apply/shop',
+      method: 'POST',
+      data: data,
+      header: {
+        'content-type': 'application/json', // 默认值
+        'authentication': '"Bearer "eyJhbGciOiJIUzUxMiJ9.eyJwbGF0aWQiOiIyMiIsInBsYXRVc2VyVHlwZSI6MSwiZXhwIjoxNjExOTM2MDAwfQ._fkb9o_U_wEQP0FgdS_a87at2Mc2PkI-Vmgk_Bf3x7PIA-i-g4r96EWOmxae3lvYhU9K2aHj77Cd_hzQfi3TdQ'
+      },
+      success: function (res) {
+        if (res.data && res.data.success) {
+          var data = {
+            loginType: that.globalData.loginType,
+            openId: wx.getStorageSync('openId'),
+            platUserType: that.globalData.platUserType
+          }
+          wx.showModal({
+            title: '申请成功',
+            content: '申请成功，审核结果将在三个工作日内以短信形式通知到您，请保持手机畅通',
+            showCancel: false,
+            success(res) {
+              var d = {
+                type: 'wechat'
+              }
+              that.wxLogin(d);
+            }
+          })
+        } else if (res.data && !res.data.success) {
+          wx.showToast({
+            title: res.data.errorMsg,
+            icon: 'none',
+            duration: 1500
+          })
+        } else {
+          wx.showToast({
+            title: '开店申请失败，请稍后再试',
+            icon: 'none',
+            duration: 1500
+          })
+        }
+      },
+      fail: function () {
+        wx.showToast({
+          title: '请求失败，请检查网络是否畅通',
+          icon: 'none',
+          duration: 1500
+        })
+      }
+    })
+  },
+  shopReApply: function (obj, data) {
+    var that = this;
+    var host = that.globalData.host;
+    wx.request({
+      url: host + '/usercenter/1.0/apply/shop/resubmit',
+      method: 'POST',
+      data: data,
+      header: {
+        'content-type': 'application/json', // 默认值
+        'authentication': '"Bearer "eyJhbGciOiJIUzUxMiJ9.eyJwbGF0aWQiOiIyMiIsInBsYXRVc2VyVHlwZSI6MSwiZXhwIjoxNjExOTM2MDAwfQ._fkb9o_U_wEQP0FgdS_a87at2Mc2PkI-Vmgk_Bf3x7PIA-i-g4r96EWOmxae3lvYhU9K2aHj77Cd_hzQfi3TdQ'
+      },
+      success: function (res) {
+        if (res.data && res.data.success) {
+          wx.removeStorageSync('isReSubmit');
+          var data = {
+            loginType: that.globalData.loginType,
+            openId: wx.getStorageSync('openId'),
+            platUserType: that.globalData.platUserType
+          }
+          wx.showModal({
+            title: '申请成功',
+            content: '申请成功，审核结果将在三个工作日内以短信形式通知到您，请保持手机畅通',
+            showCancel: false,
+            success(res) {
+              var d = {
+                type: 'wechat'
+              }
+              that.wxLogin(d);
+            }
+          })
+        } else if (res.data && !res.data.success) {
+          wx.showToast({
+            title: res.data.errorMsg,
+            icon: 'none',
+            duration: 1500
+          })
+        } else {
+          wx.showToast({
+            title: '开店申请失败，请稍后再试',
+            icon: 'none',
+            duration: 1500
+          })
+        }
+      },
+      fail: function () {
+        wx.showToast({
+          title: '请求失败，请检查网络是否畅通',
+          icon: 'none',
+          duration: 1500
+        })
+      }
+    })
+  },
+  pvuvStatic: function(obj, data){
+    var that = this;
+    var host = that.globalData.host;
+    var shopId = that.globalData.shopId;
+    wx.request({
+      url: host + '/3rdcenter/auth/1.0/flow/' + shopId,
+      method: 'GET',
+      data: data,
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: function (res) {
+        
+      },
+      fail: function () {}
+    })
+  },
+  getRebateOrdersList: function(obj, data){
+    var that = this;
+    var host = that.globalData.host;
+    var shopId = that.globalData.shopId;
+    var oldData = oldData || [];
+    data.gradeId = shopId;
+    wx.request({
+      url: host + '/financecenter/1.0/finance/rebate/detail',
+      method: 'POST',
+      data: data,
+      header: {
+        'content-type': 'application/json', // 默认值
+        'authentication': that.globalData.authentication
+      },
+      success: function (res) {
+        if (res.data && res.data.success) {
+          obj.setData({
+            rebateListData: oldData.concat(res.data.obj),
+            totalPages: res.data.pagination.totalPages
+          })
+        } else if (res.data && !res.data.success) {
+          wx.showToast({
+            title: res.data.errorMsg,
+            icon: 'none',
+            duration: 1500
+          })
+        } else {
+          wx.showToast({
+            title: '获取返佣记录失败，请稍后再试',
+            icon: 'none',
+            duration: 1500
+          })
+        }
+      },
+      fail: function (res) {
+        wx.showToast({
+          title: '请求失败，请检查网络是否畅通',
+          icon: 'none',
+          duration: 1500
+        })
+      },
+      complete: function (res) { }
+    })
+  },
+  getGoodsManageNavList: function(obj){
+    var that = this;
+    var host = that.globalData.host;
+    wx.request({
+      url: host + '/goodscenter/1.0/shop/manager/goods/search-conditions',
+      method: 'GET',
+      data: {},
+      header: {
+        'content-type': 'application/json', // 默认值
+        'authentication': that.globalData.authentication
+      },
+      success: function (res) {
+        if (res.data && res.data.success) {
+          obj.setData({
+            firstListData: res.data.obj.firstList,
+            tagListData: res.data.obj.tagList
+          });
+        } else if (res.data && !res.data.success) {
+          wx.showToast({
+            title: res.data.errorMsg,
+            icon: 'none',
+            duration: 1500
+          })
+        } else {
+          wx.showToast({
+            title: '获取筛选列表失败，请稍后再试',
+            icon: 'none',
+            duration: 1500
+          })
+        }
+      },
+      fail: function (res) {
+        wx.showToast({
+          title: '请求失败，请检查网络是否畅通',
+          icon: 'none',
+          duration: 1500
+        })
+      },
+      complete: function (res) { }
+    })
   }
 })

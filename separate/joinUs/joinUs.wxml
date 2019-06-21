@@ -1,93 +1,166 @@
-<view class="joinUs-content">
-  <view class="content-bgImg">
-    <image src="{{imgHost}}/images/platform/joinUs/openStoreImg_01.png"></image>
-  </view>
-  <!-- <view class="content-showImg">
-    <image src="{{imgHost}}/images/platform/joinUs/showImg_01.jpg"></image>
-  </view> -->
-  <view class="content-form">
-    <view class="list-item userName">
-      <input id="itemUserName" type="text" placeholder="请输入您的姓名（必填）" value="{{userName}}" bindinput="changeName"></input>
+<block wx:if="{{shopStatus == 0 || (shopStatus == 2 && isReSubmit)}}">
+  <view class="joinUs-content">
+    <view class="content-bgImg">
+      <image src="{{imgHost}}/images/platform/joinUs/openStoreImg_01.png"></image>
     </view>
-    <view class="list-item userPhone">
-      <input id="itemUserPhone" type="number" placeholder="请输入手机号码（必填）" value="{{userPhone}}" bindinput="changePhone" maxlength="11"></input>
-    </view>
-    <view class="list-item userAddress">
-      <input id="itemUserAddress" type="text" placeholder="请输入联系地址（必填）" value="{{userAddress}}" bindinput="changeAddress"></input>
-    </view>
-    <view class="list-item userCompany">
-      <input id="itemUserCompany" type="text" placeholder="请输入公司名称（选填）" vaule="{{userCompany}}" bindinput="changeCompany"></input>
-    </view>
-    <view class="list-item userContent">
-      <textarea wx:if="{{hidden}}" id="itemUserContent" placeholder="请输入留言内容（选填）" value="{{userContent}}" bindinput="changeContent"></textarea>
-    </view>
-    <view class="imgContent">
-      <view class="cardImg1 imgItem">
-        <block wx:if="{{!cardImg1}}">
-          <text class="icon">+</text>
+    <view class="content-form">
+      <view class="list-item userName">
+        <input id="itemUserName" type="text" placeholder="请输入您的姓名（必填）" value="{{userName}}" bindinput="changeName"></input>
+      </view>
+      <view class="list-item userPhone">
+        <input id="itemUserPhone" type="number" data-id="1" wx:if="{{infoData.phone}}" disabled placeholder="请输入手机号码（必填）" value="{{userPhone}}" maxlength="11"></input>
+        <input id="itemUserPhone" type="number" data-id="2" wx:else placeholder="请输入手机号码（必填）" value="{{userPhone}}" bindinput="changePhone" maxlength="11"></input>
+      </view>
+      <view class="list-item checkNum" wx:if="{{showChekNum}}">
+        <input type="text" placeholder="请输入验证码（必填）" value="{{checkNum}}" bindblur="validationBlur"></input>
+        <view class="textRight" bindtap="getValidation" wx:if="{{!vClick}}">
+          <text>获取验证码</text>
+        </view>
+        <view class="textRight" wx:else>
+          <text wx:if="{{!vClick}}">获取验证码</text>
+          <text wx:else>已发送({{vNum}})</text>
+        </view>
+      </view>
+      <view style="overflow: hidden;margin-bottom:30rpx;">
+        <view class="province obvious">
+          <view class="text" bindtap="open">
+            <input type="text" disabled="true" value="{{province}}"></input>
+          </view>
+        </view>
+        <view class="city obvious">
+          <view class="text" bindtap="open">
+            <input type="text" disabled="true" value="{{city}}"></input>
+          </view>
+        </view>
+        <view class="county obvious">
+          <view class="text" bindtap="open">
+            <input type="text" disabled="true" value="{{county}}"></input>
+          </view>
+        </view>
+      </view>
+      <view class="list-item userAddress">
+        <input id="itemUserAddress" type="text" placeholder="请输入详细地址（必填）" value="{{userAddress}}" bindinput="changeAddress"></input>
+      </view>
+      <!-- <view class="list-item userCompany">
+        <input id="itemUserCompany" type="text" placeholder="请输入公司名称（选填）" vaule="{{userCompany}}" bindinput="changeCompany"></input>
+      </view> -->
+      <view class="list-item userContent">
+        <input wx:if="{{hidden}}" id="itemUserContent" placeholder="请输入留言内容（选填）" value="{{userContent}}" bindinput="changeContent"></input>
+      </view>
+      <!-- <view class="imgContent">
+        <view class="cardImg1 imgItem">
+          <block wx:if="{{!cardImg1}}">
+            <text class="icon">+</text>
+            <text>身份证正面照片（必填）</text>
+          </block>
+          <block wx:else>
+            <image src="{{cardImg1}}"></image>
+          </block>
+          <input type="file" accept="image/jpg,image/jpeg,image/png,image/gif" multiple="" data-id="1" bindtap="upload" disabled></input>
+        </view>
+        <view class="cardImg_2 imgItem">
+          <block wx:if="{{!cardImg2}}">
+            <text class="icon">+</text>
+            <text>身份证反面照片（必填）</text>
+          </block>
+          <block wx:else>
+            <image src="{{cardImg2}}"></image>
+          </block>
+          <input type="file" accept="image/jpg,image/jpeg,image/png,image/gif" multiple="" data-id="2" bindtap="upload" disabled></input>
+        </view>
+        <view class="companyImg imgItem">
+          <block wx:if="{{!companyImg}}">
+            <text class="icon">+</text>
+            <text>公司营业执照（选填）</text>
+          </block>
+          <block wx:else>
+            <image src="{{companyImg}}"></image>
+          </block>
+          <input  type="file" accept="image/jpg,image/jpeg,image/png,image/gif" multiple="" data-id="3" bindtap="upload" disabled></input>
+        </view>
+      </view> -->
+      <view class="cardImgContent">
+        <block wx:if="{{!cardImg}}">
           <text>身份证正面照片（必填）</text>
         </block>
         <block wx:else>
-          <image src="{{cardImg1}}"></image>
+          <image src="{{cardImg}}"></image>
         </block>
-        <input type="file" accept="image/jpg,image/jpeg,image/png,image/gif" multiple="" data-id="1" bindtap="upload" disabled></input>
+        <input type="file" accept="image/jpg,image/jpeg,image/png,image/gif" multiple="" data-id="-1" bindtap="upload" disabled></input>
       </view>
-      <view class="cardImg_2 imgItem">
-        <block wx:if="{{!cardImg2}}">
-          <text class="icon">+</text>
-          <text>身份证反面照片（必填）</text>
-        </block>
-        <block wx:else>
-          <image src="{{cardImg2}}"></image>
-        </block>
-        <input type="file" accept="image/jpg,image/jpeg,image/png,image/gif" multiple="" data-id="2" bindtap="upload" disabled></input>
-      </view>
-      <view class="companyImg imgItem">
-        <block wx:if="{{!companyImg}}">
-          <text class="icon">+</text>
-          <text>公司营业执照（选填）</text>
-        </block>
-        <block wx:else>
-          <image src="{{companyImg}}"></image>
-        </block>
-        <input  type="file" accept="image/jpg,image/jpeg,image/png,image/gif" multiple="" data-id="3" bindtap="upload" disabled></input>
+      <view class="btn-submit" bindtap="listSubmit">提交申请</view>
+    </view>
+    <cover-view class="home">
+      <navigator hover-class="none" url="/web/index/index" open-type="switchTab">
+        <cover-image src="{{imgHost}}/images/platform/joinUs/home.png"></cover-image>
+      </navigator>
+    </cover-view>
+    <cover-view class="fixedShare" bindtap="showShare">
+      <cover-image src="{{imgHost}}/images/platform/goods/icon_share.png"></cover-image>
+    </cover-view>
+    <view hidden='{{hidden}}' class='preview'>
+      <image src='{{scanImg}}' mode='widthFix'></image>
+      <button type='primary' size='mini' class='saveImg' bindtap='save' hidden='{{saveImgBtnHidden}}'>保存图片</button>
+      <button type='primary' size='mini' class='openSetting' open-type="openSetting"
+    bindopensetting='handleSetting' hidden='{{openSettingBtnHidden}}'>去授权</button>
+    </view>
+    <view class="share-btns" style="display:{{alertShare ? 'block' : 'none'}}">
+      <view class="share-bg-cancel" bindtap="hideShare"></view>
+      <view class="share-bg">
+        <view class="share-title">
+          <view class="text">分享</view>
+          <view class="btn" bindtap="hideShare">X</view>
+        </view>
+        <button class="share-item" bindtap="statistics_friend" open-type="share">
+          <view class="imgBox">
+            <image src="{{imgHost}}/images/platform/goods/share_01.png"></image>
+          </view>
+          <view class="text" style="margin-top: -15rpx;">分享给朋友</view>
+        </button>
+        <button class="share-item" data-goodsId="{{goodsDetailData.goodsId}}" bindtap="share" type="primary">
+          <view class="imgBox friends">
+            <image src="{{imgHost}}/images/platform/goods/share_02.png"></image>
+          </view>
+          <view class="text">保存图片</view>
+        </button>
       </view>
     </view>
-    <view class="btn-submit" bindtap="listSubmit">提交申请</view>
   </view>
-  <view class="home">
-    <navigator hover-class="none" url="/web/index/index" open-type="switchTab">
-      <image src="{{imgHost}}/images/platform/joinUs/home.png"></image>
-    </navigator>
-  </view>
-  <view class="fixedShare" bindtap="showShare">
-    <image src="{{imgHost}}/images/platform/goods/icon_share.png"></image>
-  </view>
-  <view hidden='{{hidden}}' class='preview'>
-  <image src='{{scanImg}}' mode='widthFix'></image>
-  <button type='primary' size='mini' class='saveImg' bindtap='save' hidden='{{saveImgBtnHidden}}'>保存图片</button>
-  <button type='primary' size='mini' class='openSetting' open-type="openSetting"
-bindopensetting='handleSetting' hidden='{{openSettingBtnHidden}}'>去授权</button>
-</view>
-<view class="share-btns" style="display:{{alertShare ? 'block' : 'none'}}">
-  <view class="share-bg-cancel" bindtap="hideShare"></view>
-  <view class="share-bg">
-    <view class="share-title">
-      <view class="text">分享</view>
-      <view class="btn" bindtap="hideShare">X</view>
-    </view>
-    <button class="share-item" bindtap="statistics_friend" open-type="share">
-      <view class="imgBox">
-        <image src="{{imgHost}}/images/platform/goods/share_01.png"></image>
+  <view wx:if="{{condition}}" class="citypicker">
+    <view class="citypikcer-bg" bindtap="open"></view>
+    <picker-view indicator-style="height: 100rpx;" style="width: 100%; height: 400rpx;" value="{{value}}" bindchange="bindChange" class="citybody">
+      <view class="cityheader">
+        <view bindtap="open" class="city-cancel">取消</view>
+        <view bindtap="open" class="city-true">确定</view>
       </view>
-      <view class="text" style="margin-top: -15rpx;">分享给朋友</view>
-    </button>
-    <button class="share-item" data-goodsId="{{goodsDetailData.goodsId}}" bindtap="share" type="primary">
-      <view class="imgBox friends">
-        <image src="{{imgHost}}/images/platform/goods/share_02.png"></image>
-      </view>
-      <view class="text">保存图片</view>
-    </button>
+      <picker-view-column>
+        <view wx:for="{{provinces}}" wx:key="" style="line-height:34px;">{{item.name}}</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view wx:for="{{citys}}" wx:key="" style="line-height:34px;">{{item.name}}</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view wx:for="{{countys}}" wx:key="" style="line-height:34px;">{{item.name}}</view>
+      </picker-view-column>
+    </picker-view>
   </view>
+</block>
+<block wx:elif="{{shopStatus == 1}}">
+  <view class="success-content">
+    <image src="{{imgHost}}/images/platform/joinUs/success_icon.png"></image>
+    <view class="title">申请审核中</view>
+    <view class="desc">预计审核结果将在1-3天内以短信的形式通知到您，请保持手机通畅，如3天后未能收到短信，请登录个人中心联系官方客服，或访问该界面查看审核结果。
 </view>
-</view>
+    <view class="desc">更多福利请关注中国供销海外购官方网站：</view>
+    <view class="desc">https://www.cncoopay.com</view>
+    <view class="btn" bindtap="toIndex">去逛逛商品</view>
+  </view>
+</block>
+<block wx:elif="{{shopStatus == 2 && !isReSubmit}}">
+  <view class="fail-content">
+    <image src="{{imgHost}}/images/platform/joinUs/fail_icon.png"></image>
+    <view class="title">审核失败</view>
+    <view class="desc">请检查提交信息是否有误</view>
+    <view class="btn-submit" bindtap="reSubmit">重新申请</view>
+  </view>
+</block>

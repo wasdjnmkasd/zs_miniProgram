@@ -1,0 +1,65 @@
+<view class="content-header">
+  <view class="header-item">
+    <view class="name">今日访客人数</view>
+    <view class="num">{{managerIndexData.visitView}}</view>
+  </view>
+  <view class="header-item">
+    <view class="name">今日浏览次数</view>
+    <view class="num">{{managerIndexData.pageView}}</view>
+  </view>
+</view>
+<view class="shopStatistics-content">
+  <cover-view class="chooseType">
+    <cover-view class="chooseItem {{activeId_1 == 1 ? 'active' : ''}}" data-id="1" bindtap="chooseType">近7天</cover-view>
+    <cover-view class="chooseItem {{activeId_1 == 2 ? 'active' : ''}}" data-id="2" bindtap="chooseType">近30天</cover-view>
+  </cover-view>
+  <view class="echart-content">
+    <ec-canvas id="mychart-dom-line" wx:if="{{activeId_2 == '1_0'}}" canvas-id="mychart-line" ec="{{ ec1_0 }}"></ec-canvas>
+    <ec-canvas id="mychart-dom-line" wx:elif="{{activeId_2 == '2_0'}}" canvas-id="mychart-line" ec="{{ ec2_0 }}"></ec-canvas>
+    <ec-canvas id="mychart-dom-line" wx:elif="{{activeId_2 == '1_1'}}" canvas-id="mychart-line" ec="{{ ec1_1 }}"></ec-canvas>
+    <ec-canvas id="mychart-dom-line" wx:elif="{{activeId_2 == '1_2'}}" canvas-id="mychart-line" ec="{{ ec1_2 }}"></ec-canvas>
+    <ec-canvas id="mychart-dom-line" wx:elif="{{activeId_2 == '1_3'}}" canvas-id="mychart-line" ec="{{ ec1_3 }}"></ec-canvas>
+    <ec-canvas id="mychart-dom-line" wx:elif="{{activeId_2 == '1_4'}}" canvas-id="mychart-line" ec="{{ ec1_4 }}"></ec-canvas>
+    <ec-canvas id="mychart-dom-line" wx:elif="{{activeId_2 == '2_1'}}" canvas-id="mychart-line" ec="{{ ec2_1 }}"></ec-canvas>
+    <ec-canvas id="mychart-dom-line" wx:if="{{activeId_2 == '2_2'}}" canvas-id="mychart-line" ec="{{ ec2_2 }}"></ec-canvas>
+    <ec-canvas id="mychart-dom-line" wx:if="{{activeId_2 == '2_3'}}" canvas-id="mychart-line" ec="{{ ec2_3 }}"></ec-canvas>
+    <ec-canvas id="mychart-dom-line" wx:if="{{activeId_2 == '2_4'}}" canvas-id="mychart-line" ec="{{ ec2_4 }}"></ec-canvas>
+  </view>
+  <view class="content-middle">
+    <view class="middle-item" data-id="1" bindtap="changeCanvas">
+      <view class="num">{{staticData.visitView}}</view>
+      <view class="name">访客人数</view>
+    </view>
+    <view class="middle-item" data-id="2" bindtap="changeCanvas">
+      <view class="num">{{staticData.pageView}}</view>
+      <view class="name">浏览次数</view>
+    </view>
+    <view class="middle-item" data-id="3" bindtap="changeCanvas">
+      <view class="num">{{staticData.orderNum}}</view>
+      <view class="name">付款单数</view>
+    </view>
+    <view class="middle-item" data-id="4" bindtap="changeCanvas">
+      <view class="num">{{staticData.rebate}}</view>
+      <view class="name">销售佣金</view>
+    </view>
+  </view>
+  <view class="content-footer">
+    <view class="footer-title">
+      <view class="title" wx:if="{{activeId_1 == 1}}">7天商品销售排行榜</view>
+      <view class="title" wx:if="{{activeId_1 == 2}}">30天商品销售排行榜</view>
+      <view class="desc">排行数据截止到昨日</view>
+    </view>
+    <scroll-view class="footer-list" scroll-y>
+      <block wx:for="{{staticData.goodsList}}" wx:key="">
+        <view class="list-item" bindtap='locationTo' data-id="{{item.goodsId}}">
+          <view class="index">{{index + 1}}</view>
+          <view class="content">
+            <view class="goodsName">{{item.goodsName}}</view>
+            <view class="statistics" wx:if="{{activeId_1 == 1}}">7天访客{{item.goodsVisitView}}人 浏览{{item.goodsPageView}}次 付款{{item.orderGoodsNum}}单</view>
+            <view class="statistics" wx:if="{{activeId_1 == 2}}">30天访客{{item.goodsVisitView}}人 浏览{{item.goodsPageView}}次 付款{{item.orderGoodsNum}}单</view>
+          </view>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+</view>

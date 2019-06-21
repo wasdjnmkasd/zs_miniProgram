@@ -1,0 +1,99 @@
+page{
+  padding: 0;
+}
+.bankList-item{
+  width: 100%;
+  height: 180rpx;
+  padding: 10rpx;
+  padding-right: 0;
+  overflow: hidden;
+  background-color: #ffffff;
+  position: relative;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  border-bottom: 1rpx solid #efefef;
+}
+.bankList-item .bankList-body{
+  width: 100%;
+  height: 160rpx;
+  padding-top: 12rpx;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  -webkit-transform: translateX(200rpx);
+  transform: translateX(200rpx);
+  margin-left: -200rpx
+}
+.bankList .bankList-del{
+  width: 180rpx;
+  height: 180rpx;
+  text-align: center;
+  font-size: 36rpx;
+  line-height: 240rpx;
+  font-weight: 500;
+  background-color: #b4282d;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  -webkit-transform: translateX(200rpx);
+  transform: translateX(200rpx);
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  margin-top: -10rpx;
+}
+.bankList-item.touch-move-active .bankList-body,
+.bankList-item.touch-move-active .bankList-del {
+ -webkit-transform: translateX(0);
+ transform: translateX(0);
+}
+.bankMsg{
+  overflow: hidden;
+}
+.bankMsg .bankImg{
+  float:left;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 40rpx;
+  background: #fff;
+  overflow: hidden;
+  margin-left: 20rpx;
+}
+.bankMsg .bankImg image{
+  width: 60rpx;
+  height: 60rpx;
+  padding: 10rpx;
+}
+.bankMsg .bankContent{
+  float: left;
+  margin-left: 15rpx;
+}
+.bankMsg .bankContent .bankName{
+  color: #333;
+  font-size: 28rpx; 
+}
+.bankMsg .bankContent .bankType{
+  color: #999;
+  font-size: 22rpx;
+}
+.bankNum{
+  margin-top: 10rpx;
+  margin-left: 115rpx;
+  font-size: 40rpx;
+}
+.addBankList{
+  color: #8f8f8f;
+  padding: 20rpx 0 20rpx 50rpx;
+  box-sizing: border-box;
+  height: 100rpx;
+  line-height: 60rpx;
+}
+.addBankList text{
+  font-size: 30rpx;
+  font-weight: 700;
+  height: 100rpx;
+  line-height: 60rpx;
+  margin-right: 10rpx;
+}

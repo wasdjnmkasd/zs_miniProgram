@@ -32,7 +32,7 @@
             <view class="state" wx:if="{{item_1.status == 2 || item_1.status == 3 || item_1.status == 4 ||item_1.status == 5}}">待发货</view>
             <view class="state" wx:if="{{item_1.status == 6}}">待收货</view>
             <view class="state" wx:if="{{item_1.status == 7}}">交易完成</view>
-            <view class="state" wx:if="{{item_1.status == 8}}">退款中</view>
+            <view class="state" wx:if="{{item_1.status == 8}}">已退款</view>
             <view class="state" wx:if="{{item_1.status == 9}}">交易关闭</view>
             <view class="state" wx:if="{{item_1.status == 99}}">订单异常</view>
           </view>
@@ -45,6 +45,7 @@
                     <image wx:else src="{{imgHost}}/images/platform/account/default_img.jpg"></image>
                     <image wx:if="{{item_1.orderFlag == 0}}" class="corner_mark" src="{{imgHost}}/images/platform/tag/icon_cross.png"></image>
                     <image wx:if="{{item_1.orderFlag == 2}}" class="corner_mark" src="{{imgHost}}/images/platform/tag/icon_normal.png"></image>
+                    <image wx:if="{{item_1.orderFlag == 3}}" class="corner_mark" src="{{imgHost}}/images/platform/tag/icon_direct.png"></image>
                   </navigator>
                 </view>
                 <view class="commodity-info">

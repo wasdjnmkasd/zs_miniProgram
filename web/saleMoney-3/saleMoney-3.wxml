@@ -1,0 +1,18 @@
+<view class="saleMoney-3-content">
+  <view class="list-header">
+    <view>银行卡号</view>
+    <view>银行名称</view>
+    <view>提现金额</view>
+    <view>申请状态</view>
+  </view>
+  <scroll-view scroll-y class="list-content" bindscrolltolower="getMoreData">
+    <block wx:for="{{rebateListData}}" wx:key="">
+      <view class="list-item">
+        <view>{{item.cardNo}}</view>
+        <view>{{item.cardBank}}</view>
+        <view>￥{{item.outMoney}}</view>
+        <view>{{item.status == 1 ? '申请中' : item.status == 2 ? '已同意' : item.status == 3 ? '已拒绝' : ''}}</view>
+      </view>
+    </block>
+  </scroll-view>
+</view>
